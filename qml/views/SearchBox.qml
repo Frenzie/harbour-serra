@@ -13,7 +13,7 @@ Column {
     SilicaListView {
         id: hints
         width: parent.width
-//        height: contentHeight
+        height: contentHeight
         verticalLayoutDirection: ListView.BottomToTop
 
         model: ListModel {}
@@ -74,7 +74,7 @@ Column {
             placeholderText: qsTr("Search query")
             label: qsTr("Search query")
 
-//            onTextChanged: if (focus) yandexSpeechKitHelper.getHints(text)
+            onTextChanged: if (focus) yandexSearchHelper.getHints(text)
 
             EnterKey.enabled: text.length > 0
             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
@@ -116,15 +116,19 @@ Column {
         }
     }
 
+    Connections {
+        target: yandexSearchHelper
+        onGotHints: {
+            hints.model.clear()
+            for (var index = 0; index < data.length; index++) {
+                hints.model.append({ hint: data[index] })
+                if (index === 3) break
+            }
+        }
+    }
+
 //    Connections {
 //        target: yandexSpeechKitHelper
-//        onHintsReceived: {
-//            hints.model.clear()
-//            for (var index in data) {
-//                hints.model.append({ hint: data[index] })
-//                if (index == 3) break
-//            }
-//        }
 //        onGotSearchPage: hints.model.clear()
 //    }
 }

@@ -33,19 +33,27 @@
 #endif
 
 #include <sailfishapp.h>
+#include <QGuiApplication>
+#include <QScopedPointer>
+#include <QQuickView>
+#include <QQmlContext>
+
+#include "yandexsearchhelper.h"
 
 
-int main(int argc, char *argv[])
-{
-    // SailfishApp::main() will display "qml/template.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
+int main(int argc, char *argv[]) {
+    QScopedPointer<QGuiApplication> application(SailfishApp::application(argc, argv));
+    QScopedPointer<QQuickView> view(SailfishApp::createView());
 
-    return SailfishApp::main(argc, argv);
+    QScopedPointer<YandexSearchHelper> yandexSearchHelper(new YandexSearchHelper(view.data()));
+
+    yandexSearchHelper->setNetworkAccessManager(view->engine()->networkAccessManager());
+
+    view->rootContext()->setContextProperty("yandexSearchHelper", yandexSearchHelper.data());
+
+    view->setSource(SailfishApp::pathTo("qml/harbour-serra.qml"));
+    view->show();
+
+    return application->exec();
 }
 

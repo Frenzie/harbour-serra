@@ -14,7 +14,8 @@ TARGET = harbour-serra
 
 CONFIG += sailfishapp
 
-SOURCES += src/harbour-serra.cpp
+SOURCES += src/harbour-serra.cpp \
+    src/yandexsearchhelper.cpp
 
 OTHER_FILES += qml/harbour-serra.qml \
     qml/cover/CoverPage.qml \
@@ -41,4 +42,7 @@ DISTFILES += \
     qml/pages/SettingsPage.qml \
     qml/pages/AboutPage.qml \
     qml/views/SearchBox.qml
+
+HEADERS += \
+    src/yandexsearchhelper.h
 
