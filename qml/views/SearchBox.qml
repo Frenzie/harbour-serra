@@ -39,7 +39,6 @@ Column {
                 searchQueryField.focus = false
                 searchQueryField.text = hintLabel.text
                 googleSearchHelper.getSearchPage(hintLabel.text)
-                hints.model.clear()
                 searchStarted()
             }
         }
@@ -82,7 +81,6 @@ Column {
             EnterKey.onClicked: {
                 focus = false
                 googleSearchHelper.getSearchPage(text)
-                hints.model.clear()
                 searchStarted()
             }
         }
@@ -97,13 +95,17 @@ Column {
             anchors.verticalCenter: parent.verticalCenter
             width: Theme.iconSizeLarge
             height: Theme.iconSizeLarge
-            icon.source: isRecording || searchQuery.focus ? "image://theme/icon-m-search" :
-                                                            "image://theme/icon-m-mic"
+            icon.source: {
+                if (searchQuery.focus) return "image://theme/icon-m-dismiss"
+                else if (isRecording) return "image://theme/icon-m-search"
+                else return "image://theme/icon-m-mic"
+            }
 
             onClicked: {
                 if (searchQuery.focus) {
-                    yandexSpeechKitHelper.getSearchPage(searchQuery.text)
-                    searchStarted()
+                    hints.model.clear()
+                    searchQuery.focus = false
+                    searchQuery.text = ""
                 } else if (isRecording) {
                     isRecording = false
                     recorder.stopRecord()
@@ -127,5 +129,10 @@ Column {
                 if (index === 3) break
             }
         }
+    }
+
+    Connections {
+        target: googleSearchHelper
+        onGotSearchPage: hints.model.clear()
     }
 }
