@@ -6,6 +6,7 @@ Column {
 
     property alias searchQueryField: searchQuery
     property alias searchQueryButton: searchButton
+    property bool isVoiceSearch: false
 
     signal recordStarted()
     signal searchStarted()
@@ -36,6 +37,7 @@ Column {
             }
 
             onClicked: {
+                isVoiceSearch = false
                 searchQueryField.focus = false
                 searchQueryField.text = hintLabel.text
                 googleSearchHelper.getSearchPage(hintLabel.text)
@@ -79,6 +81,7 @@ Column {
             EnterKey.enabled: text.length > 0
             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
             EnterKey.onClicked: {
+                isVoiceSearch = false
                 focus = false
                 googleSearchHelper.getSearchPage(text)
                 searchStarted()
@@ -108,6 +111,7 @@ Column {
                     searchQuery.text = ""
                 } else if (isRecording) {
                     isRecording = false
+                    isVoiceSearch = true
                     recorder.stopRecord()
                     yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation())
                     searchStarted()

@@ -1,3 +1,4 @@
+import QtMultimedia 5.0
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
@@ -6,6 +7,8 @@ import "../views"
 
 Page {
     id: page
+
+    Audio { id: audio }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -86,7 +89,14 @@ Page {
 
     Connections {
         target: googleSearchHelper
-        onGotAnswer: listView.headerItem.text = answer
+        onGotAnswer: {
+            listView.headerItem.text = answer
+            if (searchBox.isVoiceSearch) {
+                audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" + answer +
+                        "\"&format=mp3&lang=ru-RU&speaker=jane&emotion=good&key="
+                audio.play()
+            }
+        }
         onGotSearchPage: listView.model = results
     }
 
