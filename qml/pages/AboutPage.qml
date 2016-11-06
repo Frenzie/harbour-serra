@@ -22,12 +22,12 @@ Page {
             width: parent.width - 2 * Theme.horizontalPageMargin
             spacing: Theme.paddingLarge
 
-//            Image {
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                width: Theme.iconSizeExtraLarge
-//                height: Theme.iconSizeExtraLarge
-//                source: "../harbour-kat.png"
-//            }
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: Theme.iconSizeExtraLarge
+                height: Theme.iconSizeExtraLarge
+                source: "../harbour-serra.png"
+            }
 
             Label {
                 width: parent.width

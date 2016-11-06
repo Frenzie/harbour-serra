@@ -20,10 +20,10 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
 
-            MenuItem {
-                text: qsTr("Settings")
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-            }
+//            MenuItem {
+//                text: qsTr("Settings")
+//                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+//            }
         }
 
         SilicaListView {
@@ -93,7 +93,8 @@ Page {
             listView.headerItem.text = answer
             if (searchBox.isVoiceSearch) {
                 audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" + answer +
-                        "\"&format=mp3&lang=ru-RU&speaker=jane&emotion=good&key="
+                        "\"&format=mp3&lang=ru-RU&speaker=jane&emotion=good&" +
+                        "key="
                 audio.play()
             }
         }

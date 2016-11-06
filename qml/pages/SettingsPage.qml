@@ -7,6 +7,7 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent
+        contentHeight: content.height
 
         PullDownMenu {
 
@@ -16,9 +17,45 @@ Page {
             }
         }
 
-        PageHeader {
-            title: qsTr("Settings")
+        Column {
+            id: content
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            PageHeader {
+                title: qsTr("Settings")
+            }
+
+            ComboBox {
+                width: parent.width
+                label: qsTr("Language:")
+                menu: ContextMenu {
+
+                    MenuItem {
+                        text: qsTr("Russian")
+                        onClicked: {}
+                    }
+
+                    MenuItem {
+                        text: qsTr("English")
+                        onClicked: {}
+                    }
+
+                    MenuItem {
+                        text: qsTr("Turkish")
+                        onClicked: {}
+                    }
+
+                    MenuItem {
+                        text: qsTr("Ukrainian")
+                        onClicked: {}
+                    }
+                }
+            }
         }
+
+        VerticalScrollDecorator {}
     }
 }
 
