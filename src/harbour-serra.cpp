@@ -39,7 +39,9 @@
 #include <QQmlContext>
 
 #include "googlesearchhelper.h"
+#include "recorder.h"
 #include "yandexsearchhelper.h"
+#include "yandexspeechkithelper.h"
 
 
 int main(int argc, char *argv[]) {
@@ -47,10 +49,14 @@ int main(int argc, char *argv[]) {
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
     QScopedPointer<GoogleSearchHelper> googleSearchHelper(new GoogleSearchHelper(view.data()));
+    QScopedPointer<Recorder> recorder(new Recorder(view.data()));
     QScopedPointer<YandexSearchHelper> yandexSearchHelper(new YandexSearchHelper(view.data()));
+    QScopedPointer<YandexSpeechKitHelper> yandexSpeechKitHelper(new YandexSpeechKitHelper(view.data()));
 
     view->rootContext()->setContextProperty("googleSearchHelper", googleSearchHelper.data());
+    view->rootContext()->setContextProperty("recorder", recorder.data());
     view->rootContext()->setContextProperty("yandexSearchHelper", yandexSearchHelper.data());
+    view->rootContext()->setContextProperty("yandexSpeechKitHelper", yandexSpeechKitHelper.data());
 
     view->setSource(SailfishApp::pathTo("qml/harbour-serra.qml"));
     view->show();

@@ -89,4 +89,12 @@ Page {
         onGotAnswer: listView.headerItem.text = answer
         onGotSearchPage: listView.model = results
     }
+
+    Connections {
+        target: yandexSpeechKitHelper
+        onGotResponce: {
+            searchBox.searchQueryField.text = query
+            googleSearchHelper.getSearchPage(query)
+        }
+    }
 }

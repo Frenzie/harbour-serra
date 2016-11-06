@@ -100,21 +100,21 @@ Column {
             icon.source: isRecording || searchQuery.focus ? "image://theme/icon-m-search" :
                                                             "image://theme/icon-m-mic"
 
-//            onClicked: {
-//                if (searchQuery.focus) {
-//                    yandexSpeechKitHelper.getSearchPage(searchQuery.text)
-//                    searchStarted()
-//                } else if (isRecording) {
-//                    isRecording = false
-//                    recorder.stopRecord()
-//                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation())
-//                    searchStarted()
-//                } else {
-//                    isRecording = true
-//                    recorder.startRecord()
-//                    recordStarted()
-//                }
-//            }
+            onClicked: {
+                if (searchQuery.focus) {
+                    yandexSpeechKitHelper.getSearchPage(searchQuery.text)
+                    searchStarted()
+                } else if (isRecording) {
+                    isRecording = false
+                    recorder.stopRecord()
+                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation())
+                    searchStarted()
+                } else {
+                    isRecording = true
+                    recorder.startRecord()
+                    recordStarted()
+                }
+            }
         }
     }
 

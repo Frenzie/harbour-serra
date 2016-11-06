@@ -13,11 +13,14 @@
 TARGET = harbour-serra
 
 CONFIG += sailfishapp
+QT += multimedia dbus
 
 SOURCES += src/harbour-serra.cpp \
     src/yandexsearchhelper.cpp \
     src/googlesearchhelper.cpp \
-    src/searchresultobject.cpp
+    src/searchresultobject.cpp \
+    src/yandexspeechkithelper.cpp \
+    src/recorder.cpp
 
 OTHER_FILES += qml/harbour-serra.qml \
     qml/cover/CoverPage.qml \
@@ -48,5 +51,7 @@ DISTFILES += \
 HEADERS += \
     src/yandexsearchhelper.h \
     src/googlesearchhelper.h \
-    src/searchresultobject.h
+    src/searchresultobject.h \
+    src/yandexspeechkithelper.h \
+    src/recorder.h
 
