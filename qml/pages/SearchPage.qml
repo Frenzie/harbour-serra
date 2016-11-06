@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "../views"
+
 
 Page {
     id: page
@@ -28,8 +30,10 @@ Page {
             VerticalScrollDecorator {}
         }
 
-        Item {
+        SearchBox {
             id: searchBox
+            anchors.bottom: parent.bottom
+            width: parent.width
         }
     }
 }

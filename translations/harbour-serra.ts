@@ -24,6 +24,13 @@
     </message>
 </context>
 <context>
+    <name>SearchBox</name>
+    <message>
+        <source>Search query</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchPage</name>
     <message>
         <source>About</source>
