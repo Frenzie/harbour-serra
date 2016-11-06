@@ -15,8 +15,7 @@ class YandexSearchHelper : public QObject
 
 public:
     explicit YandexSearchHelper(QObject *parent = 0);
-
-    void setNetworkAccessManager(QNetworkAccessManager *mng);
+    ~YandexSearchHelper();
 
     Q_INVOKABLE void getHints(QString text);
 

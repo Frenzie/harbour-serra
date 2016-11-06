@@ -24,8 +24,53 @@ Page {
         }
 
         SilicaListView {
+            id: listView
             anchors.fill: parent
             anchors.bottomMargin: searchBox.height
+            clip: true
+
+            header: TextArea {
+                id: answerField
+                width: parent.width
+                enabled: false
+                color: Theme.secondaryColor
+                wrapMode: TextEdit.WordWrap
+                visible: text.length > 0
+                labelVisible: false
+            }
+
+            delegate: BackgroundItem {
+                id: listItem
+                width: parent.width
+                height: Theme.itemSizeMedium
+
+                Column {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.leftMargin: Theme.paddingLarge
+                    anchors.rightMargin: Theme.paddingLarge
+                    spacing: Theme.paddingSmall
+
+                    Label {
+                        width: parent.width
+                        color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                        font.pixelSize: Theme.fontSizeMedium
+                        truncationMode: TruncationMode.Fade
+                        text: model.modelData.title
+                    }
+
+                    Label {
+                        width: parent.width
+                        color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                        font.pixelSize: Theme.fontSizeSmall
+                        truncationMode: TruncationMode.Fade
+                        text: decodeURI(model.modelData.url)
+                    }
+                }
+
+                onClicked: Qt.openUrlExternally(decodeURI(model.modelData.url))
+            }
 
             VerticalScrollDecorator {}
         }
@@ -34,8 +79,14 @@ Page {
             id: searchBox
             anchors.bottom: parent.bottom
             width: parent.width
+
+            onSearchStarted: listView.headerItem.text = ""
         }
     }
+
+    Connections {
+        target: googleSearchHelper
+        onGotAnswer: listView.headerItem.text = answer
+        onGotSearchPage: listView.model = results
+    }
 }
-
-

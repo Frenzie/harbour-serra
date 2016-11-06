@@ -38,6 +38,7 @@
 #include <QQuickView>
 #include <QQmlContext>
 
+#include "googlesearchhelper.h"
 #include "yandexsearchhelper.h"
 
 
@@ -45,10 +46,10 @@ int main(int argc, char *argv[]) {
     QScopedPointer<QGuiApplication> application(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
+    QScopedPointer<GoogleSearchHelper> googleSearchHelper(new GoogleSearchHelper(view.data()));
     QScopedPointer<YandexSearchHelper> yandexSearchHelper(new YandexSearchHelper(view.data()));
 
-    yandexSearchHelper->setNetworkAccessManager(view->engine()->networkAccessManager());
-
+    view->rootContext()->setContextProperty("googleSearchHelper", googleSearchHelper.data());
     view->rootContext()->setContextProperty("yandexSearchHelper", yandexSearchHelper.data());
 
     view->setSource(SailfishApp::pathTo("qml/harbour-serra.qml"));
@@ -56,4 +57,3 @@ int main(int argc, char *argv[]) {
 
     return application->exec();
 }
-

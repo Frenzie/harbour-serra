@@ -35,12 +35,13 @@ Column {
                 text: hint
             }
 
-//            onClicked: {
-//                searchQueryField.focus = false
-//                searchQueryField.text = hintLabel.text
-//                yandexSpeechKitHelper.getSearchPage(hintLabel.text)
-//                searchStarted()
-//            }
+            onClicked: {
+                searchQueryField.focus = false
+                searchQueryField.text = hintLabel.text
+                googleSearchHelper.getSearchPage(hintLabel.text)
+                hints.model.clear()
+                searchStarted()
+            }
         }
     }
 
@@ -78,11 +79,12 @@ Column {
 
             EnterKey.enabled: text.length > 0
             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
-//            EnterKey.onClicked: {
-//                focus = false
-//                yandexSpeechKitHelper.getSearchPage(text)
-//                searchStarted()
-//            }
+            EnterKey.onClicked: {
+                focus = false
+                googleSearchHelper.getSearchPage(text)
+                hints.model.clear()
+                searchStarted()
+            }
         }
 
         IconButton {
@@ -126,9 +128,4 @@ Column {
             }
         }
     }
-
-//    Connections {
-//        target: yandexSpeechKitHelper
-//        onGotSearchPage: hints.model.clear()
-//    }
 }

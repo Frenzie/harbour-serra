@@ -1,11 +1,13 @@
 #include "yandexsearchhelper.h"
 
-YandexSearchHelper::YandexSearchHelper(QObject *parent) : QObject(parent)
-{}
-
-void YandexSearchHelper::setNetworkAccessManager(QNetworkAccessManager *mng) {
-    _manager = mng;
+YandexSearchHelper::YandexSearchHelper(QObject *parent) : QObject(parent) {
+    _manager = new QNetworkAccessManager(this);
     connect(_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(requestFinished(QNetworkReply*)));
+}
+
+YandexSearchHelper::~YandexSearchHelper() {
+    delete _manager;
+    _manager = NULL;
 }
 
 void YandexSearchHelper::getHints(QString text) {
