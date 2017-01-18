@@ -3,7 +3,9 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import com.jolla.settings.system 1.0
+import org.nemomobile.dbus 2.0
 import org.nemomobile.systemsettings 1.0
+
 
 import "../views"
 
@@ -113,18 +115,57 @@ Page {
                 displaySettings.brightness += Math.round(displaySettings.maximumBrightness / 10)
                 if (displaySettings.brightness > displaySettings.maximumBrightness)
                     displaySettings.brightness = displaySettings.maximumBrightness
-                break;
+                break
             case "уменьшить яркость":
                 displaySettings.brightness -= Math.round(displaySettings.maximumBrightness / 10)
                 if (displaySettings.brightness < 1) displaySettings.brightness = 1
-                break;
+                break
+            case "сделать фото": // TODO
+                cameraDbus.takePhoto()
+                break
+            case "сделать селфи":
+                cameraDbus.takeSelfie()
+                break
+            case "громкость на максимум":
+                profileControl.ringerVolume = 100
+                profileControl.profile = "general"
+                break
+            case "выключить звук":
+                profileControl.ringerVolume = 0
+                profileControl.profile = "silent"
+                break
             default:
-                googleSearchHelper.getSearchPage(query)
+                if (query.indexOf("громкость") === 0 && query.indexOf("процентов") !== -1) {
+                    var volumeLevel = parseInt(query.split(" ")[1])
+                    profileControl.ringerVolume = volumeLevel
+                    profileControl.profile = volumeLevel > 0 ? "general" : "silent"
+                } else {
+                    googleSearchHelper.getSearchPage(query)
+                }
             }
         }
     }
 
     DisplaySettings {
         id: displaySettings
+    }
+
+    ProfileControl {
+        id: profileControl
+    }
+
+    DBusInterface {
+        id: cameraDbus
+        iface: "com.jolla.camera.ui"
+        service: "com.jolla.camera"
+        path: "/"
+
+        function takePhoto() {
+            call("showViewfinder", undefined)
+        }
+
+        function takeSelfie() {
+            call("showFrontViewfinder", undefined)
+        }
     }
 }

@@ -44,12 +44,12 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="22"/>
+        <location filename="../qml/pages/SearchPage.qml" line="24"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="27"/>
+        <location filename="../qml/pages/SearchPage.qml" line="29"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>
