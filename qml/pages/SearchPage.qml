@@ -126,6 +126,16 @@ Page {
             case "сделать селфи":
                 cameraDbus.takeSelfie()
                 break
+            case "увеличить громкость":
+                profileControl.ringerVolume += 10
+                if (profileControl.ringerVolume > 100) profileControl.ringerVolume = 100
+                profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
+                break
+            case "уменьшить громкость":
+                profileControl.ringerVolume -= 10
+                if (profileControl.ringerVolume < 0) profileControl.ringerVolume = 0
+                profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
+                break
             case "громкость на максимум":
                 profileControl.ringerVolume = 100
                 profileControl.profile = "general"
