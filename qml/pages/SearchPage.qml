@@ -2,6 +2,9 @@ import QtMultimedia 5.0
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import com.jolla.settings.system 1.0
+import org.nemomobile.systemsettings 1.0
+
 import "../views"
 
 
@@ -20,10 +23,10 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
 
-//            MenuItem {
-//                text: qsTr("Settings")
-//                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
-//            }
+            MenuItem {
+                text: qsTr("Settings")
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
         }
 
         SilicaListView {
@@ -94,7 +97,7 @@ Page {
             if (searchBox.isVoiceSearch) {
                 audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" + answer +
                         "\"&format=mp3&lang=ru-RU&speaker=jane&emotion=good&" +
-                        "key="
+                        "key=9d7d557a-99dc-44b2-98c8-596cdf3c5dd3"
                 audio.play()
             }
         }
@@ -105,7 +108,23 @@ Page {
         target: yandexSpeechKitHelper
         onGotResponce: {
             searchBox.searchQueryField.text = query
-            googleSearchHelper.getSearchPage(query)
+            switch (query) {
+            case "увеличить яркость":
+                displaySettings.brightness += Math.round(displaySettings.maximumBrightness / 10)
+                if (displaySettings.brightness > displaySettings.maximumBrightness)
+                    displaySettings.brightness = displaySettings.maximumBrightness
+                break;
+            case "уменьшить яркость":
+                displaySettings.brightness -= Math.round(displaySettings.maximumBrightness / 10)
+                if (displaySettings.brightness < 1) displaySettings.brightness = 1
+                break;
+            default:
+                googleSearchHelper.getSearchPage(query)
+            }
         }
+    }
+
+    DisplaySettings {
+        id: displaySettings
     }
 }

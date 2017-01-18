@@ -14,7 +14,7 @@ void YandexSpeechKitHelper::recognizeQuery(QString path_to_file) {
     QFile *file = new QFile(path_to_file);
     if (file->open(QIODevice::ReadOnly)) {
         QUrlQuery query;
-        query.addQueryItem("key", "");
+        query.addQueryItem("key", "9d7d557a-99dc-44b2-98c8-596cdf3c5dd3");
         query.addQueryItem("uuid", _buildUniqID());
         query.addQueryItem("topic", "queries");
         QUrl url("https://asr.yandex.net/asr_xml");

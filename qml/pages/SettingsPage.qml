@@ -29,7 +29,7 @@ Page {
 
             ComboBox {
                 width: parent.width
-                label: qsTr("Language:")
+                label: qsTr("Search and commands language:")
                 menu: ContextMenu {
 
                     MenuItem {
@@ -49,6 +49,47 @@ Page {
 
                     MenuItem {
                         text: qsTr("Ukrainian")
+                        onClicked: {}
+                    }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("News settings")
+            }
+
+            ComboBox {
+                width: parent.width
+                label: qsTr("News language:")
+                menu: ContextMenu {
+
+                    MenuItem {
+                        text: qsTr("English")
+                        onClicked: {}
+                    }
+
+                    MenuItem {
+                        text: qsTr("German")
+                        onClicked: {}
+                    }
+
+                    MenuItem {
+                        text: qsTr("French")
+                        onClicked: {}
+                    }
+
+                    MenuItem {
+                        text: qsTr("Italian")
+                        onClicked: {}
+                    }
+
+                    MenuItem {
+                        text: qsTr("Espaniol")
+                        onClicked: {}
+                    }
+
+                    MenuItem {
+                        text: qsTr("Portugalian")
                         onClicked: {}
                     }
                 }

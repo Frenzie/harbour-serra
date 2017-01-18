@@ -22,8 +22,13 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="38"/>
-        <source>My Cover</source>
+        <location filename="../qml/cover/CoverPage.qml" line="41"/>
+        <source>Recording...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="41"/>
+        <source>Serra</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -39,9 +44,14 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="19"/>
+        <location filename="../qml/pages/SearchPage.qml" line="22"/>
         <source>About</source>
         <translation>О программе</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="27"/>
+        <source>Settings</source>
+        <translation type="unfinished">Настройки</translation>
     </message>
 </context>
 <context>
@@ -58,8 +68,8 @@
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="32"/>
-        <source>Language:</source>
-        <translation>Язык:</translation>
+        <source>Search and commands language:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="36"/>
@@ -68,6 +78,7 @@
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="41"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="67"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
@@ -80,6 +91,41 @@
         <location filename="../qml/pages/SettingsPage.qml" line="51"/>
         <source>Ukrainian</source>
         <translation>Украинский</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="58"/>
+        <source>News settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="63"/>
+        <source>News language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="72"/>
+        <source>German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="77"/>
+        <source>French</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="82"/>
+        <source>Italian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="87"/>
+        <source>Espaniol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="92"/>
+        <source>Portugalian</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
