@@ -150,7 +150,12 @@ Page {
                     profileControl.ringerVolume = volumeLevel
                     profileControl.profile = volumeLevel > 0 ? "general" : "silent"
                 } else {
-                    googleSearchHelper.getSearchPage(query)
+                    var newsSearchRe = /^какие новости (о|об)/
+                    if (query.match(newsSearchRe)) {
+                        googleSearchHelper.getSearchPage(query.split(" ").slice(3).join(" "), true)
+                    } else {
+                        googleSearchHelper.getSearchPage(query)
+                    }
                 }
             }
         }

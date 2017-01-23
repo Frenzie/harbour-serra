@@ -63,8 +63,9 @@ void YandexSpeechKitHelper::_parseResponce(QXmlStreamReader *element) {
         if (element->tokenType() != QXmlStreamReader::StartElement) continue;
         if (element->name() != "variant") continue;
         QXmlStreamAttribute attr = element->attributes().at(0);
-        if (attr.value().toDouble() > idealConfidence) {
-            idealConfidence = attr.value().toDouble();
+        double confidence = attr.value().toDouble() > 0 ? attr.value().toDouble() : -attr.value().toDouble();
+        if (confidence > idealConfidence) {
+            idealConfidence = confidence;
             element->readNext();
             idealQuery = element->text().toString();
         }

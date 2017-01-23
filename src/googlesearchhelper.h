@@ -18,7 +18,7 @@ public:
     explicit GoogleSearchHelper(QObject *parent = 0);
     ~GoogleSearchHelper();
 
-    Q_INVOKABLE void getSearchPage(QString query);
+    Q_INVOKABLE void getSearchPage(QString query, bool isNews = false, int offset = 0);
 
 public slots:
     void requestFinished(QNetworkReply *reply);
@@ -31,7 +31,6 @@ private:
 //    void _parseWebPage(QXmlStreamReader *element);
     QString _parseAnswer(QString data);
     SearchResultObject* _parseSearchResult(QXmlStreamReader *data);
-    QString _parseNewsResult(QXmlStreamReader *data);
 
     QNetworkAccessManager *_manager;
     QList<QObject*> _searchResults;

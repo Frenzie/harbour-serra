@@ -10,8 +10,12 @@ GoogleSearchHelper::~GoogleSearchHelper() {
     _manager = NULL;
 }
 
-void GoogleSearchHelper::getSearchPage(QString query) {
-    QNetworkRequest request(QUrl("https://www.google.com/search?q=" + query /* + "&tbm=nws"+ "&start=10"*/));
+void GoogleSearchHelper::getSearchPage(QString query, bool isNews, int offset) {
+    QString urlText = "https://www.google.com/search?q=" + query;
+    if (isNews) urlText += "&tbm=nws";
+    if (offset > 0) urlText += "&start=" + offset;
+    QUrl url(urlText);
+    QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::UserAgentHeader,
                       "Mozilla/5.0 (Android; Mobile; rv:40.0) Gecko/40.0 Firefox/40.0");
     _manager->get(request);
@@ -140,15 +144,13 @@ SearchResultObject* GoogleSearchHelper::_parseSearchResult(QXmlStreamReader *dat
         case QXmlStreamReader::Characters:
             if (isTitle) {
                 isTitle = false;
-                title = data->text().toString();
+                if (title.isEmpty()) title = data->text().toString();
             }
+            break;
+        default:
             break;
         }
     }
     if (data->hasError()) qDebug() << data->errorString();
     return new SearchResultObject(title, url);
-}
-
-QString GoogleSearchHelper::_parseNewsResult(QXmlStreamReader *data) {
-    return "";
 }
