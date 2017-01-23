@@ -28,7 +28,10 @@ signals:
     void gotSearchPage(QVariant results);
 
 private:
-    void _parseWebPage(QXmlStreamReader *element);
+//    void _parseWebPage(QXmlStreamReader *element);
+    QString _parseAnswer(QString data);
+    SearchResultObject* _parseSearchResult(QXmlStreamReader *data);
+    QString _parseNewsResult(QXmlStreamReader *data);
 
     QNetworkAccessManager *_manager;
     QList<QObject*> _searchResults;
