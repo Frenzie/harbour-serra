@@ -50,7 +50,9 @@ CoverBackground {
             onTriggered: {
                 if (isRecording) {
                     recorder.stopRecord()
-                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation())
+                    var lang = settings.value("lang")
+                    if (!lang) lang = "ru-RU"
+                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang)
                     window.activate()
                 } else recorder.startRecord()
                 isRecording = !isRecording

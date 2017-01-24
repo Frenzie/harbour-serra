@@ -30,70 +30,85 @@ Page {
             ComboBox {
                 width: parent.width
                 label: qsTr("Search and commands language:")
+                currentIndex: {
+                    switch (settings.value("lang")) {
+                    case "ru-RU":
+                        return 0;
+                    case "en-US":
+                        return 1;
+                    case "tr-TR":
+                        return 2;
+                    case "uk-UK":
+                        return 3;
+                    default:
+                        return 0;
+                    }
+                }
+
                 menu: ContextMenu {
 
                     MenuItem {
                         text: qsTr("Russian")
-                        onClicked: {}
+                        onClicked: settings.setValue("lang", "ru-RU")
                     }
 
                     MenuItem {
                         text: qsTr("English")
-                        onClicked: {}
+                        onClicked: settings.setValue("lang", "en-US")
                     }
 
                     MenuItem {
                         text: qsTr("Turkish")
-                        onClicked: {}
+                        onClicked: settings.setValue("lang", "tr-TR")
                     }
 
                     MenuItem {
                         text: qsTr("Ukrainian")
-                        onClicked: {}
+                        onClicked: settings.setValue("lang", "uk-UK")
                     }
                 }
             }
 
-            SectionHeader {
-                text: qsTr("News settings")
-            }
+//            SectionHeader {
+//                text: qsTr("News settings")
+//            }
 
-            ComboBox {
-                width: parent.width
-                label: qsTr("News language:")
-                menu: ContextMenu {
+//            ComboBox {
+//                width: parent.width
+//                label: qsTr("News language:")
+//                menu: ContextMenu {
 
-                    MenuItem {
-                        text: qsTr("English")
-                        onClicked: {}
-                    }
+//                    MenuItem {
+//                        text: qsTr("English")
+//                        onClicked: {}
+//                    }
 
-                    MenuItem {
-                        text: qsTr("German")
-                        onClicked: {}
-                    }
+//                    MenuItem {
+//                        text: qsTr("German")
+//                        onClicked: {}
+//                    }
 
-                    MenuItem {
-                        text: qsTr("French")
-                        onClicked: {}
-                    }
+//                    MenuItem {
+//                        text: qsTr("French")
+//                        onClicked: {}
+//                    }
 
-                    MenuItem {
-                        text: qsTr("Italian")
-                        onClicked: {}
-                    }
+//                    MenuItem {
+//                        text: qsTr("Italian")
+//                        onClicked: {}
+//                    }
 
-                    MenuItem {
-                        text: qsTr("Espaniol")
-                        onClicked: {}
-                    }
+//                    MenuItem {
+//                        text: qsTr("Espaniol")
+//                        onClicked: {}
+//                    }
 
-                    MenuItem {
-                        text: qsTr("Portugalian")
-                        onClicked: {}
-                    }
-                }
-            }
+//                    MenuItem {
+//                        text: qsTr("Portugalian")
+//                        onClicked: {}
+//                    }
+//                }
+//            }
         }
 
         VerticalScrollDecorator {}

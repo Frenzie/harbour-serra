@@ -10,15 +10,17 @@ YandexSpeechKitHelper::~YandexSpeechKitHelper() {
     _manager = NULL;
 }
 
-void YandexSpeechKitHelper::recognizeQuery(QString path_to_file) {
+void YandexSpeechKitHelper::recognizeQuery(QString path_to_file, QString lang) {
     QFile *file = new QFile(path_to_file);
     if (file->open(QIODevice::ReadOnly)) {
         QUrlQuery query;
         query.addQueryItem("key", "9d7d557a-99dc-44b2-98c8-596cdf3c5dd3");
         query.addQueryItem("uuid", _buildUniqID());
         query.addQueryItem("topic", "queries");
+        query.addQueryItem("lang", lang);
         QUrl url("https://asr.yandex.net/asr_xml");
         url.setQuery(query);
+        qDebug() << url;
         QNetworkRequest request(url);
         request.setHeader(QNetworkRequest::ContentTypeHeader, "audio/x-wav");
         request.setHeader(QNetworkRequest::ContentLengthHeader, file->size());
@@ -30,6 +32,7 @@ void YandexSpeechKitHelper::recognizeQuery(QString path_to_file) {
 
 void YandexSpeechKitHelper::requestFinished(QNetworkReply *reply) {
     QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+    qDebug() << reply->errorString();
     if (url.isEmpty()) {
         QString data = reply->readAll();
         data = data.replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
@@ -38,7 +41,7 @@ void YandexSpeechKitHelper::requestFinished(QNetworkReply *reply) {
     } else {
         QNetworkRequest request(url);
         request.setHeader(QNetworkRequest::UserAgentHeader,
-                          "Mozilla/5.0 (Android; Mobile; rv:40.0) Gecko/40.0 Firefox/40.0");
+                          "Mozilla/5.0 (Android; Mobile; rv:50.0) Gecko/50.0 Firefox/50.0");
         _manager->get(request);
     }
 }

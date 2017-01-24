@@ -19,7 +19,7 @@ public:
     explicit YandexSpeechKitHelper(QObject *parent = 0);
     ~YandexSpeechKitHelper();
 
-    Q_INVOKABLE void recognizeQuery(QString path_to_file);
+    Q_INVOKABLE void recognizeQuery(QString path_to_file, QString lang);
 
 public slots:
     void requestFinished(QNetworkReply *reply);

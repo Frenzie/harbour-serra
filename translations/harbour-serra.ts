@@ -75,33 +75,5 @@
         <source>Search and commands language:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>News settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>News language:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>German</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>French</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Italian</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Espaniol</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Portugalian</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 </TS>

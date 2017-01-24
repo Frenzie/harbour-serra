@@ -115,8 +115,10 @@ Page {
         onGotAnswer: {
             listView.headerItem.text = answer
             if (searchBox.isVoiceSearch) {
+                var lang = settings.value("lang")
+                if (lang === "") lang = "ru-RU"
                 audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" + answer +
-                        "\"&format=mp3&lang=ru-RU&speaker=jane&emotion=good&" +
+                        "\"&format=mp3&lang=" + lang + "&speaker=jane&emotion=good&" +
                         "key=9d7d557a-99dc-44b2-98c8-596cdf3c5dd3"
                 audio.play()
             }
