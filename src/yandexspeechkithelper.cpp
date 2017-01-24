@@ -47,8 +47,15 @@ void YandexSpeechKitHelper::requestFinished(QNetworkReply *reply) {
     QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
     if (url.isEmpty()) {
         QString data = reply->readAll();
-        qDebug() << data;
-        if (_isParsing) {} else {
+//        qDebug() << data;
+        if (_isParsing) {
+            QJsonDocument jDoc = QJsonDocument::fromJson(data.toUtf8());
+            QJsonArray date = jDoc.object().value("Date").toArray();
+            int dayOffset = date.at(0).toObject().value("Day").toInt();
+            QJsonArray geoAddr = jDoc.object().value("GeoAddr").toArray().at(0).toObject().value("Fields").toArray();
+            QString cityName = geoAddr.at(0).toObject().value("Name").toString();
+            emit gotWeatherData(cityName, dayOffset);
+        } else {
             data = data.replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
             _parseResponce(new QXmlStreamReader(data));
         }

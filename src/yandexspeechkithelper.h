@@ -1,6 +1,9 @@
 #ifndef YANDEXSPEECHKITHELPER_H
 #define YANDEXSPEECHKITHELPER_H
 
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QFile>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -27,6 +30,7 @@ public slots:
 
 signals:
     void gotResponce(QString query);
+    void gotWeatherData(QString city, int day);
 
 private:
     QString _buildUniqID();

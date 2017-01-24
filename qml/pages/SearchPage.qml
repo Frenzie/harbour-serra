@@ -161,6 +161,13 @@ Page {
 
     Connections {
         target: yandexSpeechKitHelper
+        onGotWeatherData: {
+            if (city !== "" && day !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), day)
+            else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city))
+            else if (day !== 0)
+                weatherHelper.getWeatherByCoordsWithDate(positionSource.position.coordinate.latitude,
+                                                         positionSource.position.coordinate.longitude, day)
+        }
         onGotResponce: {
             searchBox.searchQueryField.text = query
             switch (query) {
@@ -207,6 +214,7 @@ Page {
                     profileControl.ringerVolume = volumeLevel
                     profileControl.profile = volumeLevel > 0 ? "general" : "silent"
                 } else if (query.indexOf("какая погода") === 0) {
+                    query = query.replace("после завтра", "послезавтра")
                     yandexSpeechKitHelper.parseQuery(query)
                 } else {
                     listView.model.clear()
