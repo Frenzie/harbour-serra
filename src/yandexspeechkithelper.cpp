@@ -11,6 +11,7 @@ YandexSpeechKitHelper::~YandexSpeechKitHelper() {
 }
 
 void YandexSpeechKitHelper::recognizeQuery(QString path_to_file, QString lang) {
+    _isParsing = false;
     QFile *file = new QFile(path_to_file);
     if (file->open(QIODevice::ReadOnly)) {
         QUrlQuery query;
@@ -30,14 +31,27 @@ void YandexSpeechKitHelper::recognizeQuery(QString path_to_file, QString lang) {
     file->remove();
 }
 
+void YandexSpeechKitHelper::parseQuery(QString queryText) {
+    _isParsing = true;
+    QUrlQuery query;
+    query.addQueryItem("key", "9d7d557a-99dc-44b2-98c8-596cdf3c5dd3");
+    query.addQueryItem("text", queryText);
+    query.addQueryItem("topic", "Date,GeoAddr");
+    QUrl url("https://vins-markup.voicetech.yandex.net/markup/0.x/");
+    url.setQuery(query);
+    QNetworkRequest request(url);
+    _manager->get(request);
+}
+
 void YandexSpeechKitHelper::requestFinished(QNetworkReply *reply) {
     QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-    qDebug() << reply->errorString();
     if (url.isEmpty()) {
         QString data = reply->readAll();
-        data = data.replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
         qDebug() << data;
-        _parseResponce(new QXmlStreamReader(data));
+        if (_isParsing) {} else {
+            data = data.replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+            _parseResponce(new QXmlStreamReader(data));
+        }
     } else {
         QNetworkRequest request(url);
         request.setHeader(QNetworkRequest::UserAgentHeader,

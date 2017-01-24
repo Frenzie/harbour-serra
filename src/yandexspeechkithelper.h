@@ -20,6 +20,7 @@ public:
     ~YandexSpeechKitHelper();
 
     Q_INVOKABLE void recognizeQuery(QString path_to_file, QString lang);
+    Q_INVOKABLE void parseQuery(QString queryText);
 
 public slots:
     void requestFinished(QNetworkReply *reply);
@@ -32,6 +33,7 @@ private:
     void _parseResponce(QXmlStreamReader *element);
 
     QNetworkAccessManager *_manager;
+    bool _isParsing = false;
 };
 
 #endif // YANDEXSPEECHKITHELPER_H

@@ -22,7 +22,8 @@ SOURCES += src/harbour-serra.cpp \
     src/yandexspeechkithelper.cpp \
     src/recorder.cpp \
     src/newshelper.cpp \
-    src/settingswrapper.cpp
+    src/settingswrapper.cpp \
+    src/weatherhelper.cpp
 
 OTHER_FILES += qml/harbour-serra.qml \
     qml/cover/CoverPage.qml \
@@ -57,5 +58,6 @@ HEADERS += \
     src/yandexspeechkithelper.h \
     src/recorder.h \
     src/newshelper.h \
-    src/settingswrapper.h
+    src/settingswrapper.h \
+    src/weatherhelper.h
 

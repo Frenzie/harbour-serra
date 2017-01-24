@@ -1,5 +1,6 @@
 import QtMultimedia 5.0
 import QtQuick 2.0
+import QtPositioning 5.3
 import Sailfish.Silica 1.0
 
 import com.jolla.settings.system 1.0
@@ -18,6 +19,20 @@ Page {
     property int _offset: 0
 
     Audio { id: audio }
+
+    PositionSource {
+        id: positionSource
+        active: true
+//        onPositionChanged: {
+//            if (position.coordinate.isValid) {
+//                if (measure(lat, lon, position.coordinate.latitude, position.coordinate.longitude) >= 5) {
+//                    lat = position.coordinate.latitude
+//                    lon = position.coordinate.longitude
+//                    mapView.source = buildMapQuery(lat, lon, 17)
+//                }
+//            } else console.log("Coordinates is not valid")
+//        }
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -132,6 +147,19 @@ Page {
     }
 
     Connections {
+        target: weatherHelper
+        onGotWeather: {
+            listView.headerItem.text = transliterate(answer, true)
+                var lang = "ru-RU"
+                audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" +
+                        listView.headerItem.text +
+                        "\"&format=mp3&lang=" + lang + "&speaker=jane&emotion=good&" +
+                        "key=9d7d557a-99dc-44b2-98c8-596cdf3c5dd3"
+                audio.play()
+        }
+    }
+
+    Connections {
         target: yandexSpeechKitHelper
         onGotResponce: {
             searchBox.searchQueryField.text = query
@@ -169,11 +197,17 @@ Page {
                 profileControl.ringerVolume = 0
                 profileControl.profile = "silent"
                 break
+            case "какая погода":
+                weatherHelper.getWeatherByCoords(positionSource.position.coordinate.latitude,
+                                                 positionSource.position.coordinate.longitude)
+                break;
             default:
                 if (query.indexOf("громкость") === 0 && query.indexOf("процентов") !== -1) {
                     var volumeLevel = parseInt(query.split(" ")[1])
                     profileControl.ringerVolume = volumeLevel
                     profileControl.profile = volumeLevel > 0 ? "general" : "silent"
+                } else if (query.indexOf("какая погода") === 0) {
+                    yandexSpeechKitHelper.parseQuery(query)
                 } else {
                     listView.model.clear()
                     var newsSearchRe = /^какие новости (о|об)/
