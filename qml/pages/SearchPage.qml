@@ -13,6 +13,10 @@ import "../views"
 Page {
     id: page
 
+    property string _query: ""
+    property bool _isNews: false
+    property int _offset: 0
+
     Audio { id: audio }
 
     SilicaFlickable {
@@ -36,6 +40,7 @@ Page {
             anchors.fill: parent
             anchors.bottomMargin: searchBox.height
             clip: true
+            model: ListModel { id: listModel }
 
             header: TextArea {
                 id: answerField
@@ -65,7 +70,7 @@ Page {
                         color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                         font.pixelSize: Theme.fontSizeMedium
                         truncationMode: TruncationMode.Fade
-                        text: model.modelData.title
+                        text: title
                     }
 
                     Label {
@@ -73,11 +78,18 @@ Page {
                         color: listItem.highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor
                         font.pixelSize: Theme.fontSizeSmall
                         truncationMode: TruncationMode.Fade
-                        text: decodeURI(model.modelData.url)
+                        text: decodeURI(url)
                     }
                 }
 
-                onClicked: Qt.openUrlExternally(decodeURI(model.modelData.url))
+                Component.onCompleted: {
+                    if (index === listModel.count-1) {
+                        _offset += 10
+                        googleSearchHelper.getSearchPage(_query, _isNews, _offset)
+                    }
+                }
+
+                onClicked: Qt.openUrlExternally(decodeURI(url))
             }
 
             VerticalScrollDecorator {}
@@ -88,7 +100,13 @@ Page {
             anchors.bottom: parent.bottom
             width: parent.width
 
-            onSearchStarted: listView.headerItem.text = ""
+            onSearchStarted: {
+                listView.model.clear()
+                _query = searchQueryField.text
+                _isNews = false
+                _offset = 0
+                listView.headerItem.text = ""
+            }
         }
     }
 
@@ -103,7 +121,12 @@ Page {
                 audio.play()
             }
         }
-        onGotSearchPage: listView.model = results
+        onGotSearchPage: {
+            for (var index in results) {
+                listView.model.append({ title: results[index].title,
+                                        url:   results[index].url })
+            }
+        }
     }
 
     Connections {
@@ -150,11 +173,18 @@ Page {
                     profileControl.ringerVolume = volumeLevel
                     profileControl.profile = volumeLevel > 0 ? "general" : "silent"
                 } else {
+                    listView.model.clear()
                     var newsSearchRe = /^какие новости (о|об)/
                     if (query.match(newsSearchRe)) {
-                        googleSearchHelper.getSearchPage(query.split(" ").slice(3).join(" "), true)
+                        _query = query.split(" ").slice(3).join(" ")
+                        _isNews = true
+                        _offset = 0
+                        googleSearchHelper.getSearchPage(_query, _isNews)
                     } else {
-                        googleSearchHelper.getSearchPage(query)
+                        _query = query
+                        _isNews = false
+                        _offset = 0
+                        googleSearchHelper.getSearchPage(_query)
                     }
                 }
             }

@@ -13,11 +13,11 @@ GoogleSearchHelper::~GoogleSearchHelper() {
 void GoogleSearchHelper::getSearchPage(QString query, bool isNews, int offset) {
     QString urlText = "https://www.google.com/search?q=" + query;
     if (isNews) urlText += "&tbm=nws";
-    if (offset > 0) urlText += "&start=" + offset;
+    if (offset > 0) urlText += QString("&start=%1").arg(offset);
     QUrl url(urlText);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::UserAgentHeader,
-                      "Mozilla/5.0 (Android; Mobile; rv:40.0) Gecko/40.0 Firefox/40.0");
+                      "Mozilla/5.0 (Android; Mobile; rv:50.0) Gecko/50.0 Firefox/50.0");
     _manager->get(request);
 }
 
