@@ -19,6 +19,12 @@ Page {
     property bool _isNews: false
     property int _offset: 0
 
+    BusyIndicator {
+        id: busyIndicator
+        anchors.centerIn: parent
+        size: BusyIndicatorSize.Large
+    }
+
     Audio { id: audio }
 
     PositionSource {
@@ -29,6 +35,8 @@ Page {
     BluetoothSwitcher { id: bluetoothSwitcher }
 
     FlashlightSwitcher { id: flashlight }
+
+    GpsSwitcher { id: gpsSwitcher }
 
     WiFiSwitcher { id: wifiSwitcher }
 
@@ -119,6 +127,7 @@ Page {
             width: parent.width
 
             onSearchStarted: {
+                busyIndicator.running = true
                 listView.model.clear()
                 _query = searchQueryField.text
                 _isNews = false
@@ -130,7 +139,8 @@ Page {
 
     Connections {
         target: commandsParser
-        onFinished: switch (commandCode) {
+        onFinished: {
+            switch (commandCode) {
                     case 1:
                         profileControl.ringerVolume = 0
                         profileControl.profile = "silent"
@@ -221,14 +231,21 @@ Page {
                     case 17:
                         if (bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
                         break;
+                    case 18:
+                        if (!gpsSwitcher.isOn) gpsSwitcher.switchGps()
+                        break;
+                    case 19:
+                        if (gpsSwitcher.isOn) gpsSwitcher.switchGps()
+                        break;
                     default:
-                        listView.model.clear()
-                        _query = query
-                        _isNews = false
-                        _offset = 0
-                        googleSearchHelper.getSearchPage(_query)
                         break
                     }
+            listView.model.clear()
+            _query = query
+            _isNews = false
+            _offset = 0
+            googleSearchHelper.getSearchPage(_query)
+        }
     }
 
     Connections {
@@ -245,6 +262,7 @@ Page {
             }
         }
         onGotSearchPage: {
+            busyIndicator.running = false
             for (var index in results) {
                 listView.model.append({ title: results[index].title,
                                         url:   results[index].url })

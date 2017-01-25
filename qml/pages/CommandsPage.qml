@@ -35,6 +35,8 @@ Page {
         ListElement { command: "выключи[ть] вспышку/фонарик"; type: 0 }
         ListElement { command: "включи[ть] bluetooth"; type: 0 }
         ListElement { command: "выключи[ть] bluetooth"; type: 0 }
+//        ListElement { command: "включи[ть] gps"; type: 0 }
+//        ListElement { command: "выключи[ть] gps"; type: 0 }
         ListElement { command: "выключи[ть] звук"; type: 0 }
         ListElement { command: "громкость на максимум"; type: 0 }
         ListElement { command: "постав[ь/ить] громкость на максимум"; type: 0 }
@@ -85,6 +87,8 @@ Page {
         ListElement { command: "turn off flashlight/torch"; type: 0 }
         ListElement { command: "turn on bluetooth"; type: 0 }
         ListElement { command: "turn off bluetooth"; type: 0 }
+//        ListElement { command: "turn on gps"; type: 0 }
+//        ListElement { command: "turn off gps"; type: 0 }
         ListElement { command: "turn off volume"; type: 0 }
         ListElement { command: "volume to maximum"; type: 0 }
         ListElement { command: "set volume to maximum"; type: 0 }
