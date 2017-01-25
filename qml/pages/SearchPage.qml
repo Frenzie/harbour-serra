@@ -26,6 +26,8 @@ Page {
         active: true
     }
 
+    FlashlightSwitcher { id: flashlight }
+
     WiFiSwitcher { id: wifiSwitcher }
 
     SilicaFlickable {
@@ -201,10 +203,16 @@ Page {
                         break
                     case 12:
                         if (!wifiSwitcher.isOn) wifiSwitcher.switchWifi()
-                        break;
+                        break
                     case 13:
                         if (wifiSwitcher.isOn) wifiSwitcher.switchWifi()
-                        break;
+                        break
+                    case 14:
+                        if (!flashlight.flashlightOn) flashlight.toggleFlashlight()
+                        break
+                    case 15:
+                        if (flashlight.flashlightOn) flashlight.toggleFlashlight()
+                        break
                     default:
                         listView.model.clear()
                         _query = query

@@ -22,6 +22,8 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^((постав(ь|(ить)))|(сдела(й|(ть)))|(установи(ть)?) )?громкость (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^включи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 12;
     else if (QRegularExpression("^выключи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 13;
+    else if (QRegularExpression("^включи(ть)? ((вспышку)|(фонарик))$").match(command).hasMatch()) return 14;
+    else if (QRegularExpression("^выключи(ть)? ((вспышку)|(фонарик))$").match(command).hasMatch()) return 15;
     else return 0;
 }
 
@@ -39,5 +41,7 @@ int CommandsParser::_parseEngCommand(QString command) {
     else if (QRegularExpression("^(set )?volume (to )?[0-9]{1,3} percent(s)?$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^turn( |-)?on wi( |-)?fi$").match(command).hasMatch()) return 12;
     else if (QRegularExpression("^turn( |-)?off wi( |-)?fi$").match(command).hasMatch()) return 13;
+    else if (QRegularExpression("^turn( |-)?on ((flashlight)|(torch))$").match(command).hasMatch()) return 14;
+    else if (QRegularExpression("^turn( |-)?off ((flashlight)|(torch))$").match(command).hasMatch()) return 15;
     else return 0;
 }
