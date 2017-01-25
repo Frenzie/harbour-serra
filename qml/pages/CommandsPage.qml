@@ -16,6 +16,7 @@ Page {
         ListElement { command: "[постав[ь|ить]|сдела[й|ть]|установи[ть]] громкость [на] <число> процент[ов|a]?" }
         ListElement { command: "(включи[ть]|выключи[ть]) wi-fi" }
         ListElement { command: "(включи[ть]|выключи[ть]) (вспышку|фонарик)" }
+        ListElement { command: "(включи[ть]|выключи[ть]) bluetooth" }
     }
 
     ListModel {
@@ -31,6 +32,7 @@ Page {
         ListElement { command: "[set] volume [to] <number> percent[s]" }
         ListElement { command: "turn (on|off) wi-fi" }
         ListElement { command: "turn (on|off) (flashlight|torch)" }
+        ListElement { command: "turn (on|off) bluetooth" }
     }
 
     SilicaListView {

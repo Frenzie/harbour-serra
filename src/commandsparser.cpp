@@ -24,6 +24,8 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^выключи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 13;
     else if (QRegularExpression("^включи(ть)? ((вспышку)|(фонарик))$").match(command).hasMatch()) return 14;
     else if (QRegularExpression("^выключи(ть)? ((вспышку)|(фонарик))$").match(command).hasMatch()) return 15;
+    else if (QRegularExpression("^включи(ть)? ((bluetooth)|(бл[ую]ту[зс]))$").match(command).hasMatch()) return 16;
+    else if (QRegularExpression("^выключи(ть)? ((bluetooth)|(бл[ую]ту[зс]))$").match(command).hasMatch()) return 17;
     else return 0;
 }
 
@@ -43,5 +45,7 @@ int CommandsParser::_parseEngCommand(QString command) {
     else if (QRegularExpression("^turn( |-)?off wi( |-)?fi$").match(command).hasMatch()) return 13;
     else if (QRegularExpression("^turn( |-)?on ((flashlight)|(torch))$").match(command).hasMatch()) return 14;
     else if (QRegularExpression("^turn( |-)?off ((flashlight)|(torch))$").match(command).hasMatch()) return 15;
+    else if (QRegularExpression("^turn( |-)?on bluetooth$").match(command).hasMatch()) return 16;
+    else if (QRegularExpression("^turn( |-)?off bluetooth$").match(command).hasMatch()) return 17;
     else return 0;
 }

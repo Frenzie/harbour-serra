@@ -53,7 +53,8 @@ DISTFILES += \
     qml/views/SearchBox.qml \
     qml/pages/CommandsPage.qml \
     qml/utils/WiFiSwitcher.qml \
-    qml/utils/FlashlightSwitcher.qml
+    qml/utils/FlashlightSwitcher.qml \
+    qml/utils/BluetoothSwitcher.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

@@ -26,6 +26,8 @@ Page {
         active: true
     }
 
+    BluetoothSwitcher { id: bluetoothSwitcher }
+
     FlashlightSwitcher { id: flashlight }
 
     WiFiSwitcher { id: wifiSwitcher }
@@ -213,6 +215,12 @@ Page {
                     case 15:
                         if (flashlight.flashlightOn) flashlight.toggleFlashlight()
                         break
+                    case 16:
+                        if (!bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
+                        break;
+                    case 17:
+                        if (bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
+                        break;
                     default:
                         listView.model.clear()
                         _query = query
