@@ -9,7 +9,7 @@ import org.nemomobile.systemsettings 1.0
 
 
 import "../views"
-//import "../../../jolla-settings/pages/networking"
+import "../utils"
 
 
 Page {
@@ -25,6 +25,8 @@ Page {
         id: positionSource
         active: true
     }
+
+    WiFiSwitcher { id: wifiSwitcher }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -122,27 +124,6 @@ Page {
         }
     }
 
-//    EnableSwitch {
-//        id: wifiSwicher
-
-//        function sw() {
-//            if (wifiTechnology.tethering) {
-//                        connectionAgent.stopTethering(true)
-//                    } else {
-//                        wifiTechnology.powered = !wifiTechnology.powered
-//                        if (wifiTechnology.powered) {
-//                            busyTimer.stop()
-//                        } else if (connDialogConfig.rise) {
-//                            busyTimer.restart()
-//                        }
-//                    }
-//        }
-//    }
-
-//    onStatusChanged: if (status === PageStatus.Active) {
-//                         wifiSwicher.sw()
-//                     }
-
     Connections {
         target: commandsParser
         onFinished: switch (commandCode) {
@@ -179,7 +160,7 @@ Page {
                     case 8:
                         listView.model.clear()
                         var queryParts = query.split(" ")
-                        var startIndex = queryParts[2] === "о" || queryParts[2] === "об" ? 3 : 2
+                        var startIndex = queryParts[2] === "о" || queryParts[2] === "об" || queryParts[2] === "about" ? 3 : 2
                         _query = query.split(" ").slice(startIndex).join(" ")
                         _isNews = true
                         _offset = 0
@@ -190,7 +171,24 @@ Page {
                                                          positionSource.position.coordinate.longitude)
                         break
                     case 10:
-                        yandexSpeechKitHelper.parseQuery(query)
+                        if (settings.value("lang") === "ru-RU") yandexSpeechKitHelper.parseQuery(query)
+                        else {
+                            var dayOffset = 0
+                            if (query.indexOf("day after tomorrow") !== -1) dayOffset = 2
+                            else if (query.indexOf("tomorrow") !== -1) dayOffset = 1
+                            var city = ""
+                            if (query.indexOf(" in ") !== -1) {
+                            var city = query.slice(query.indexOf(" in ")+4)
+                                if (dayOffset === 1) city = city.slice(0, city.indexOf(" tomorrow"))
+                                if (dayOffset === 2) city = city.slice(0, city.indexOf(" day after tomorrow"))
+                            }
+
+                            if (city !== "" && dayOffset !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), dayOffset)
+                            else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city))
+                            else if (dayOffset !== 0)
+                                weatherHelper.getWeatherByCoordsWithDate(positionSource.position.coordinate.latitude,
+                                                                         positionSource.position.coordinate.longitude, dayOffset)
+                        }
                         break;
                     case 11:
                         var queryParts = query.split(" ")
@@ -201,6 +199,12 @@ Page {
                         profileControl.ringerVolume = volumeLevel
                         profileControl.profile = volumeLevel > 0 ? "general" : "silent"
                         break
+                    case 12:
+                        if (!wifiSwitcher.isOn) wifiSwitcher.switchWifi()
+                        break;
+                    case 13:
+                        if (wifiSwitcher.isOn) wifiSwitcher.switchWifi()
+                        break;
                     default:
                         listView.model.clear()
                         _query = query
@@ -235,13 +239,13 @@ Page {
     Connections {
         target: weatherHelper
         onGotWeather: {
-            listView.headerItem.text = transliterate(answer, true)
-                var lang = "ru-RU"
-                audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" +
-                        listView.headerItem.text +
-                        "\"&format=mp3&lang=" + lang + "&speaker=jane&emotion=good&" +
-                        "key=9d7d557a-99dc-44b2-98c8-596cdf3c5dd3"
-                audio.play()
+            var lang = settings.value("lang")
+            listView.headerItem.text = transliterate(answer, lang === "ru-RU")
+            audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" +
+                    listView.headerItem.text +
+                    "\"&format=mp3&lang=" + lang + "&speaker=jane&emotion=good&" +
+                    "key=9d7d557a-99dc-44b2-98c8-596cdf3c5dd3"
+            audio.play()
         }
     }
 
@@ -255,8 +259,7 @@ Page {
                                                          positionSource.position.coordinate.longitude, day)
         }
         onGotResponce: {
-//            query = query.replace("после завтра", "послезавтра")
-            searchBox.searchQueryField.text = query.replace("после завтра", "послезавтра")
+            searchBox.searchQueryField.text = query.replace("после завтра", "послезавтра").toLowerCase()
             commandsParser.parseCommand(searchBox.searchQueryField.text, settings.value("lang"))
         }
     }
@@ -283,4 +286,6 @@ Page {
             call("showFrontViewfinder", undefined)
         }
     }
+
+    Component.onCompleted: weatherHelper.setLang(settings.value("lang"))
 }

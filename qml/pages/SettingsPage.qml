@@ -49,12 +49,18 @@ Page {
 
                     MenuItem {
                         text: qsTr("Russian")
-                        onClicked: settings.setValue("lang", "ru-RU")
+                        onClicked: {
+                            settings.setValue("lang", "ru-RU")
+                            weatherHelper.setLang(settings.value("lang"))
+                        }
                     }
 
                     MenuItem {
                         text: qsTr("English")
-                        onClicked: settings.setValue("lang", "en-US")
+                        onClicked: {
+                            settings.setValue("lang", "en-US")
+                            weatherHelper.setLang(settings.value("lang"))
+                        }
                     }
 
 //                    MenuItem {

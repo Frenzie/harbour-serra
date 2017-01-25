@@ -10,12 +10,16 @@ WeatherHelper::~WeatherHelper() {
     _manager = NULL;
 }
 
+void WeatherHelper::setLang(QString lang) {
+    _lang = lang;
+}
+
 void WeatherHelper::getWeatherByCoords(double lat, double lon) {
     QUrlQuery query;
     query.addQueryItem("lat", QString::number(lat));
     query.addQueryItem("lon", QString::number(lon));
     query.addQueryItem("units", "metric");
-    query.addQueryItem("lang", "ru");
+    query.addQueryItem("lang", _lang.left(2));
     query.addQueryItem("appid", "7b545fb22f8f624ed18b410c964d9c31");
     QUrl url("http://api.openweathermap.org/data/2.5/weather");
     url.setQuery(query);
@@ -26,7 +30,7 @@ void WeatherHelper::getWeatherByCityName(QString cityName) {
     QUrlQuery query;
     query.addQueryItem("q", cityName);
     query.addQueryItem("units", "metric");
-    query.addQueryItem("lang", "ru");
+    query.addQueryItem("lang", _lang.left(2));
     query.addQueryItem("appid", "7b545fb22f8f624ed18b410c964d9c31");
     QUrl url("http://api.openweathermap.org/data/2.5/weather");
     url.setQuery(query);
@@ -39,7 +43,7 @@ void WeatherHelper::getWeatherByCoordsWithDate(double lat, double lon, int dayOf
     query.addQueryItem("lat", QString::number(lat));
     query.addQueryItem("lon", QString::number(lon));
     query.addQueryItem("units", "metric");
-    query.addQueryItem("lang", "ru");
+    query.addQueryItem("lang", _lang.left(2));
     query.addQueryItem("appid", "7b545fb22f8f624ed18b410c964d9c31");
     QUrl url("http://api.openweathermap.org/data/2.5/forecast");
     url.setQuery(query);
@@ -51,7 +55,7 @@ void WeatherHelper::getWeatherByCityNameWithDate(QString cityName, int dayOffset
     QUrlQuery query;
     query.addQueryItem("q", cityName);
     query.addQueryItem("units", "metric");
-    query.addQueryItem("lang", "ru");
+    query.addQueryItem("lang", _lang.left(2));
     query.addQueryItem("appid", "7b545fb22f8f624ed18b410c964d9c31");
     QUrl url("http://api.openweathermap.org/data/2.5/forecast");
     url.setQuery(query);
@@ -59,20 +63,25 @@ void WeatherHelper::getWeatherByCityNameWithDate(QString cityName, int dayOffset
 }
 
 void WeatherHelper::requestFinished(QNetworkReply *reply) {
-    QString answer = QString("%1 %2 %3. Температура %4 по Цельсию. Ветер %5 м/с. Влажность %6\%");
+//    QString answer = QString("%1 %2 %3. Температура %4 по Цельсию. Ветер %5 м/с. Влажность %6\%");
+    QString answer = _lang == "ru-RU" ? _answerRus : _answerEng;
     QString data = reply->readAll();
     QJsonDocument jDoc = QJsonDocument::fromJson(data.toUtf8());
     QJsonObject jObj = jDoc.object();
     if (_dayOffset == 0) {
         QString cityName = jObj.value("name").toString();
         QString weatherDescription = jObj.value("weather").toArray().at(0).toObject().value("description").toString();
+        if (_lang == "en-US") weatherDescription = "is " + weatherDescription;
         int temp = round(jObj.value("main").toObject().value("temp").toDouble());
         int windSpeed = round(jObj.value("wind").toObject().value("speed").toDouble());
         int humidity = round(jObj.value("main").toObject().value("humidity").toDouble());
-        answer = answer.arg("В").arg(cityName).arg(weatherDescription).arg(temp).arg(windSpeed).arg(humidity);
+        answer = answer.arg(_lang == "ru-RU" ? _inRus : _inEng).arg(cityName)
+                .arg(weatherDescription).arg(temp).arg(windSpeed).arg(humidity);
     } else {
         QString cityName = jObj.value("city").toObject().value("name").toString();
-        answer = answer.arg(_dayOffset == 1 ? "Завтра в" : "Послезавтра в").arg(cityName);
+        answer = answer.arg(_dayOffset == 1 ?
+                                (_lang == "ru-RU" ? _tommorowRus : _tommorowEng) :
+                                (_lang == "ru-RU" ? _dayAfterTommorowRus : _dayAfterTommorowEng)).arg(cityName);
         int dateForSearch = QDateTime::currentDateTime().addDays(_dayOffset).toMSecsSinceEpoch() / 1000;
         int dateDelta = dateForSearch;
         QJsonArray list = jObj.value("list").toArray();
@@ -83,6 +92,7 @@ void WeatherHelper::requestFinished(QNetworkReply *reply) {
                 int temp = round(el.toObject().value("main").toObject().value("temp").toDouble());
                 int windSpeed = round(el.toObject().value("wind").toObject().value("speed").toDouble());
                 int humidity = round(el.toObject().value("main").toObject().value("humidity").toDouble());
+                if (_lang == "en-US") weatherDescription = "will be " + weatherDescription;
                 answer = answer.arg(weatherDescription).arg(temp).arg(windSpeed).arg(humidity);
                 break;
             } else dateDelta = abs(weatherDate - dateForSearch);

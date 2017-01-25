@@ -20,9 +20,24 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^(какая )?погода$").match(command).hasMatch()) return 9;
     else if (QRegularExpression("^(какая )?погода .*$").match(command).hasMatch()) return 10;
     else if (QRegularExpression("^((постав(ь|(ить)))|(сдела(й|(ть)))|(установи(ть)?) )?громкость (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^включи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 12;
+    else if (QRegularExpression("^выключи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 13;
     else return 0;
 }
 
 int CommandsParser::_parseEngCommand(QString command) {
-
+    if (QRegularExpression("^turn off volume$").match(command).hasMatch()) return 1;
+    else if (QRegularExpression("^(set )?volume to maximum$").match(command).hasMatch()) return 2;
+    else if (QRegularExpression("^increase volume$").match(command).hasMatch()) return 3;
+    else if (QRegularExpression("^decrease volume$").match(command).hasMatch()) return 4;
+    else if (QRegularExpression("^increase brightness$").match(command).hasMatch()) return 5;
+    else if (QRegularExpression("^decrease brightness$").match(command).hasMatch()) return 6;
+    else if (QRegularExpression("^((make)|(do)|(take)) (a)?selfie$").match(command).hasMatch()) return 7;
+    else if (QRegularExpression("^what(('|( i))?s)? news (about )?.*$").match(command).hasMatch()) return 8;
+    else if (QRegularExpression("^(what(('|( i))?s)? )?weather$").match(command).hasMatch()) return 9;
+    else if (QRegularExpression("^(what(('|( i))?s)? )?weather .*$").match(command).hasMatch()) return 10;
+    else if (QRegularExpression("^(set )?volume (to )?[0-9]{1,3} percent(s)?$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^turn( |-)?on wi( |-)?fi$").match(command).hasMatch()) return 12;
+    else if (QRegularExpression("^turn( |-)?off wi( |-)?fi$").match(command).hasMatch()) return 13;
+    else return 0;
 }

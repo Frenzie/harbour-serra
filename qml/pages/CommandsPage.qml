@@ -14,6 +14,7 @@ Page {
         ListElement { command: "[постав(ь|ить)|сдела(й|ть)] громкость на максимум" }
         ListElement { command: "выключи[ть] звук" }
         ListElement { command: "[постав[ь|ить]|сдела[й|ть]|установи[ть]] громкость [на] <число> процент[ов|a]?" }
+        ListElement { command: "(включить|выключить) wi-fi" }
     }
 
     ListModel {
@@ -27,6 +28,7 @@ Page {
         ListElement { command: "[set] volume to maximum" }
         ListElement { command: "turn off volume" }
         ListElement { command: "[set] volume [to] <number> percent[s]" }
+        ListElement { command: "turn (on|off) wi-fi" }
     }
 
     SilicaListView {
@@ -41,7 +43,9 @@ Page {
 
         delegate: Item {
             width: parent.width
-            height: commandText.lineCount == 1 ? Theme.itemSizeSmall : Theme.itemSizeMedium
+            height: commandText.lineCount == 1 ? Theme.itemSizeSmall :
+                                                 commandText.lineCount == 2 ? Theme.itemSizeMedium :
+                                                                              Theme.itemSizeLarge
 
             Label {
                 id: commandText
