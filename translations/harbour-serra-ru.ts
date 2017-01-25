@@ -22,22 +22,22 @@
 <context>
     <name>CommandsPage</name>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="37"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="39"/>
         <source>Commands list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="67"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="68"/>
         <source>Commands language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="85"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="86"/>
         <source>Russian</source>
         <translation type="unfinished">Русский</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="90"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="91"/>
         <source>English</source>
         <translation type="unfinished">Английский</translation>
     </message>
@@ -67,17 +67,17 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="44"/>
+        <location filename="../qml/pages/SearchPage.qml" line="35"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="49"/>
+        <location filename="../qml/pages/SearchPage.qml" line="40"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="54"/>
+        <location filename="../qml/pages/SearchPage.qml" line="45"/>
         <source>Commands list</source>
         <translation type="unfinished"></translation>
     </message>

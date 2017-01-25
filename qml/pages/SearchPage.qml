@@ -24,15 +24,6 @@ Page {
     PositionSource {
         id: positionSource
         active: true
-//        onPositionChanged: {
-//            if (position.coordinate.isValid) {
-//                if (measure(lat, lon, position.coordinate.latitude, position.coordinate.longitude) >= 5) {
-//                    lat = position.coordinate.latitude
-//                    lon = position.coordinate.longitude
-//                    mapView.source = buildMapQuery(lat, lon, 17)
-//                }
-//            } else console.log("Coordinates is not valid")
-//        }
     }
 
     SilicaFlickable {
@@ -153,6 +144,74 @@ Page {
 //                     }
 
     Connections {
+        target: commandsParser
+        onFinished: switch (commandCode) {
+                    case 1:
+                        profileControl.ringerVolume = 0
+                        profileControl.profile = "silent"
+                        break
+                    case 2:
+                        profileControl.ringerVolume = 100
+                        profileControl.profile = "general"
+                        break
+                    case 3:
+                        profileControl.ringerVolume += 10
+                        if (profileControl.ringerVolume > 100) profileControl.ringerVolume = 100
+                        profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
+                        break
+                    case 4:
+                        profileControl.ringerVolume -= 10
+                        if (profileControl.ringerVolume < 0) profileControl.ringerVolume = 0
+                        profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
+                        break
+                    case 5:
+                        displaySettings.brightness += Math.round(displaySettings.maximumBrightness / 10)
+                        if (displaySettings.brightness > displaySettings.maximumBrightness)
+                            displaySettings.brightness = displaySettings.maximumBrightness
+                        break
+                    case 6:
+                        displaySettings.brightness -= Math.round(displaySettings.maximumBrightness / 10)
+                        if (displaySettings.brightness < 1) displaySettings.brightness = 1
+                        break
+                    case 7:
+                        cameraDbus.takeSelfie()
+                        break
+                    case 8:
+                        listView.model.clear()
+                        var queryParts = query.split(" ")
+                        var startIndex = queryParts[2] === "о" || queryParts[2] === "об" ? 3 : 2
+                        _query = query.split(" ").slice(startIndex).join(" ")
+                        _isNews = true
+                        _offset = 0
+                        googleSearchHelper.getSearchPage(_query, _isNews)
+                        break
+                    case 9:
+                        weatherHelper.getWeatherByCoords(positionSource.position.coordinate.latitude,
+                                                         positionSource.position.coordinate.longitude)
+                        break
+                    case 10:
+                        yandexSpeechKitHelper.parseQuery(query)
+                        break;
+                    case 11:
+                        var queryParts = query.split(" ")
+                        var volumeLevel = 0
+                        if (queryParts.length === 3) parseInt(queryParts[1])
+                        else if (queryParts.length === 4) parseInt(queryParts[2])
+                        else if (queryParts.length === 5) parseInt(queryParts[3])
+                        profileControl.ringerVolume = volumeLevel
+                        profileControl.profile = volumeLevel > 0 ? "general" : "silent"
+                        break
+                    default:
+                        listView.model.clear()
+                        _query = query
+                        _isNews = false
+                        _offset = 0
+                        googleSearchHelper.getSearchPage(_query)
+                        break
+                    }
+    }
+
+    Connections {
         target: googleSearchHelper
         onGotAnswer: {
             listView.headerItem.text = answer
@@ -196,69 +255,9 @@ Page {
                                                          positionSource.position.coordinate.longitude, day)
         }
         onGotResponce: {
-            searchBox.searchQueryField.text = query
-            switch (query) {
-            case "увеличить яркость":
-                displaySettings.brightness += Math.round(displaySettings.maximumBrightness / 10)
-                if (displaySettings.brightness > displaySettings.maximumBrightness)
-                    displaySettings.brightness = displaySettings.maximumBrightness
-                break
-            case "уменьшить яркость":
-                displaySettings.brightness -= Math.round(displaySettings.maximumBrightness / 10)
-                if (displaySettings.brightness < 1) displaySettings.brightness = 1
-                break
-//            case "сделать фото": // TODO
-//                cameraDbus.takePhoto()
-//                break
-            case "сделать селфи":
-                cameraDbus.takeSelfie()
-                break
-            case "увеличить громкость":
-                profileControl.ringerVolume += 10
-                if (profileControl.ringerVolume > 100) profileControl.ringerVolume = 100
-                profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
-                break
-            case "уменьшить громкость":
-                profileControl.ringerVolume -= 10
-                if (profileControl.ringerVolume < 0) profileControl.ringerVolume = 0
-                profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
-                break
-            case "громкость на максимум":
-                profileControl.ringerVolume = 100
-                profileControl.profile = "general"
-                break
-            case "выключить звук":
-                profileControl.ringerVolume = 0
-                profileControl.profile = "silent"
-                break
-            case "какая погода":
-                weatherHelper.getWeatherByCoords(positionSource.position.coordinate.latitude,
-                                                 positionSource.position.coordinate.longitude)
-                break;
-            default:
-                if (query.indexOf("громкость") === 0 && query.indexOf("процентов") !== -1) {
-                    var volumeLevel = parseInt(query.split(" ")[1])
-                    profileControl.ringerVolume = volumeLevel
-                    profileControl.profile = volumeLevel > 0 ? "general" : "silent"
-                } else if (query.indexOf("какая погода") === 0) {
-                    query = query.replace("после завтра", "послезавтра")
-                    yandexSpeechKitHelper.parseQuery(query)
-                } else {
-                    listView.model.clear()
-                    var newsSearchRe = /^какие новости (о|об)/
-                    if (query.match(newsSearchRe)) {
-                        _query = query.split(" ").slice(3).join(" ")
-                        _isNews = true
-                        _offset = 0
-                        googleSearchHelper.getSearchPage(_query, _isNews)
-                    } else {
-                        _query = query
-                        _isNews = false
-                        _offset = 0
-                        googleSearchHelper.getSearchPage(_query)
-                    }
-                }
-            }
+//            query = query.replace("после завтра", "послезавтра")
+            searchBox.searchQueryField.text = query.replace("после завтра", "послезавтра")
+            commandsParser.parseCommand(searchBox.searchQueryField.text, settings.value("lang"))
         }
     }
 

@@ -38,6 +38,7 @@
 #include <QQuickView>
 #include <QQmlContext>
 
+#include "commandsparser.h"
 #include "googlesearchhelper.h"
 #include "recorder.h"
 #include "settingswrapper.h"
@@ -50,6 +51,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<QGuiApplication> application(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
+    QScopedPointer<CommandsParser> commandsParser(new CommandsParser(view.data()));
     QScopedPointer<GoogleSearchHelper> googleSearchHelper(new GoogleSearchHelper(view.data()));
     QScopedPointer<Recorder> recorder(new Recorder(view.data()));
     QScopedPointer<SettingsWrapper> settings(new SettingsWrapper(view.data()));
@@ -57,6 +59,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<YandexSearchHelper> yandexSearchHelper(new YandexSearchHelper(view.data()));
     QScopedPointer<YandexSpeechKitHelper> yandexSpeechKitHelper(new YandexSpeechKitHelper(view.data()));
 
+    view->rootContext()->setContextProperty("commandsParser", commandsParser.data());
     view->rootContext()->setContextProperty("googleSearchHelper", googleSearchHelper.data());
     view->rootContext()->setContextProperty("recorder", recorder.data());
     view->rootContext()->setContextProperty("settings", settings.data());

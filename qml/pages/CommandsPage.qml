@@ -8,11 +8,12 @@ Page {
 
         ListElement { command: "<поисковый-запрос>" }
         ListElement { command: "какие новости [о|об] <тема>" }
-        ListElement { command: "какая погода [[в] <город>] [завтра|послезавтра]" }
+        ListElement { command: "[какая] погода [[в] <город>] [завтра|послезавтра]" }
         ListElement { command: "сдела[й|ть] селфи" }
         ListElement { command: "(увеличи[ть]|уменьши[ть]) (яркость|громкость)" }
         ListElement { command: "[постав(ь|ить)|сдела(й|ть)] громкость на максимум" }
         ListElement { command: "выключи[ть] звук" }
+        ListElement { command: "[постав[ь|ить]|сдела[й|ть]|установи[ть]] громкость [на] <число> процент[ов|a]?" }
     }
 
     ListModel {
@@ -20,11 +21,12 @@ Page {
 
         ListElement { command: "<search-query>" }
         ListElement { command: "what['s| is] news [about] <theme>" }
-        ListElement { command: "what['s| is] weather [[in] <city>] [tommorow|[the] day after tomorrow]" }
+        ListElement { command: "[what['s| is]] weather [[in] <city>] [tommorow|[the] day after tomorrow]" }
         ListElement { command: "(make|do|take) [a] selfie" }
         ListElement { command: "(increase|decrease) (brightness|volume)" }
         ListElement { command: "[set] volume to maximum" }
         ListElement { command: "turn off volume" }
+        ListElement { command: "[set] volume [to] <number> percent[s]" }
     }
 
     SilicaListView {

@@ -23,7 +23,8 @@ SOURCES += src/harbour-serra.cpp \
     src/recorder.cpp \
     src/newshelper.cpp \
     src/settingswrapper.cpp \
-    src/weatherhelper.cpp
+    src/weatherhelper.cpp \
+    src/commandsparser.cpp
 
 OTHER_FILES += qml/harbour-serra.qml \
     qml/cover/CoverPage.qml \
@@ -60,5 +61,6 @@ HEADERS += \
     src/recorder.h \
     src/newshelper.h \
     src/settingswrapper.h \
-    src/weatherhelper.h
+    src/weatherhelper.h \
+    src/commandsparser.h
 
