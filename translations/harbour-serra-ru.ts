@@ -22,22 +22,22 @@
 <context>
     <name>CommandsPage</name>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="45"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="108"/>
         <source>Commands list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="76"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="139"/>
         <source>Commands language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="94"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="157"/>
         <source>Russian</source>
         <translation type="unfinished">Русский</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="99"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="162"/>
         <source>English</source>
         <translation type="unfinished">Английский</translation>
     </message>

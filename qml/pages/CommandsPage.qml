@@ -6,33 +6,96 @@ Page {
     ListModel {
         id: rusCommands
 
-        ListElement { command: "<поисковый-запрос>" }
-        ListElement { command: "какие новости [о|об] <тема>" }
-        ListElement { command: "[какая] погода [[в] <город>] [завтра|послезавтра]" }
-        ListElement { command: "сдела[й|ть] селфи" }
-        ListElement { command: "(увеличи[ть]|уменьши[ть]) (яркость|громкость)" }
-        ListElement { command: "[постав(ь|ить)|сдела(й|ть)] громкость на максимум" }
-        ListElement { command: "выключи[ть] звук" }
-        ListElement { command: "[постав[ь|ить]|сдела[й|ть]|установи[ть]] громкость [на] <число> процент[ов|a]?" }
-        ListElement { command: "(включи[ть]|выключи[ть]) wi-fi" }
-        ListElement { command: "(включи[ть]|выключи[ть]) (вспышку|фонарик)" }
-        ListElement { command: "(включи[ть]|выключи[ть]) bluetooth" }
+        ListElement { command: "Поиск в интернете"; type: 1 }
+        ListElement { command: "<поисковый-запрос>"; type: 0 }
+        ListElement { command: "какие новости <тема>"; type: 0 }
+        ListElement { command: "какие новости о/об <тема>"; type: 0 }
+
+        ListElement { command: "Погода"; type: 1 }
+        ListElement { command: "погода"; type: 0 }
+        ListElement { command: "какая погода"; type: 0 }
+        ListElement { command: "погода <город>"; type: 0 }
+        ListElement { command: "какая погода <город>"; type: 0 }
+        ListElement { command: "погода в <город>"; type: 0 }
+        ListElement { command: "какая погода в <город>"; type: 0 }
+        ListElement { command: "погода завтра/послезавтра"; type: 0 }
+        ListElement { command: "какая погода завтра/послезавтра"; type: 0 }
+        ListElement { command: "погода <город> завтра/послезавтра"; type: 0 }
+        ListElement { command: "какая погода <город> завтра/послезавтра"; type: 0 }
+        ListElement { command: "погода в <город> завтра/послезавтра"; type: 0 }
+        ListElement { command: "какая погода в <город> завтра/послезавтра"; type: 0 }
+
+        ListElement { command: "Мультимедиа"; type: 1 }
+        ListElement { command: "сдела[й/ть] селфи"; type: 0 }
+
+        ListElement { command: "Системные"; type: 1 }
+        ListElement { command: "включи[ть] wi-fi"; type: 0 }
+        ListElement { command: "выключи[ть] wi-fi"; type: 0 }
+        ListElement { command: "включи[ть] вспышку/фонарик"; type: 0 }
+        ListElement { command: "выключи[ть] вспышку/фонарик"; type: 0 }
+        ListElement { command: "включи[ть] bluetooth"; type: 0 }
+        ListElement { command: "выключи[ть] bluetooth"; type: 0 }
+        ListElement { command: "выключи[ть] звук"; type: 0 }
+        ListElement { command: "громкость на максимум"; type: 0 }
+        ListElement { command: "постав[ь/ить] громкость на максимум"; type: 0 }
+        ListElement { command: "сдела[й/ть] громкость на максимум"; type: 0 }
+        ListElement { command: "громкость <число> процент[ов/a]?"; type: 0 }
+        ListElement { command: "постав[ь/ить] громкость <число> процент[ов/a]?"; type: 0 }
+        ListElement { command: "сдела[й/ть] громкость <число> процент[ов/a]?"; type: 0 }
+        ListElement { command: "установи[ть] громкость <число> процент[ов/a]?"; type: 0 }
+        ListElement { command: "громкость на <число> процент[ов/a]?"; type: 0 }
+        ListElement { command: "постав[ь/ить] громкость на <число> процент[ов/a]?"; type: 0 }
+        ListElement { command: "сдела[й/ть] громкость на <число> процент[ов/a]?"; type: 0 }
+        ListElement { command: "установи[ть] громкость на <число> процент[ов/a]?"; type: 0 }
+        ListElement { command: "увелич[ь/ить] громкость"; type: 0 }
+        ListElement { command: "уменьш[ь/ить] громкость"; type: 0 }
+        ListElement { command: "увелич[ь/ить] яркость"; type: 0 }
+        ListElement { command: "уменьш[ь/ить] яркость"; type: 0 }
     }
 
     ListModel {
         id: engCommands
 
-        ListElement { command: "<search-query>" }
-        ListElement { command: "what['s| is] news [about] <theme>" }
-        ListElement { command: "[what['s| is]] weather [[in] <city>] [tommorow|[the] day after tomorrow]" }
-        ListElement { command: "(make|do|take) [a] selfie" }
-        ListElement { command: "(increase|decrease) (brightness|volume)" }
-        ListElement { command: "[set] volume to maximum" }
-        ListElement { command: "turn off volume" }
-        ListElement { command: "[set] volume [to] <number> percent[s]" }
-        ListElement { command: "turn (on|off) wi-fi" }
-        ListElement { command: "turn (on|off) (flashlight|torch)" }
-        ListElement { command: "turn (on|off) bluetooth" }
+        ListElement { command: "Search"; type: 1 }
+        ListElement { command: "<search-query>"; type: 0 }
+        ListElement { command: "what news <theme>"; type: 0 }
+        ListElement { command: "what news about <theme>"; type: 0 }
+
+        ListElement { command: "Weather"; type: 1 }
+        ListElement { command: "weather"; type: 0 }
+        ListElement { command: "what weather"; type: 0 }
+        ListElement { command: "weather <city>"; type: 0 }
+        ListElement { command: "what weather <city>"; type: 0 }
+        ListElement { command: "weather in <city>"; type: 0 }
+        ListElement { command: "what weather in <city>"; type: 0 }
+        ListElement { command: "weather [day after] tomorrow"; type: 0 }
+        ListElement { command: "what weather [day after] tomorrow"; type: 0 }
+        ListElement { command: "weather <city> [day after] tomorrow"; type: 0 }
+        ListElement { command: "what weather <city> [day after] tomorrow"; type: 0 }
+        ListElement { command: "weather in <city> [day after] tomorrow"; type: 0 }
+        ListElement { command: "what weather in <city>] [day after] tomorrow"; type: 0 }
+
+        ListElement { command: "Multimedia"; type: 1 }
+        ListElement { command: "take a selfie"; type: 0 }
+
+        ListElement { command: "System"; type: 1 }
+        ListElement { command: "turn on wi-fi"; type: 0 }
+        ListElement { command: "turn off wi-fi"; type: 0 }
+        ListElement { command: "turn on flashlight/torch"; type: 0 }
+        ListElement { command: "turn off flashlight/torch"; type: 0 }
+        ListElement { command: "turn on bluetooth"; type: 0 }
+        ListElement { command: "turn off bluetooth"; type: 0 }
+        ListElement { command: "turn off volume"; type: 0 }
+        ListElement { command: "volume to maximum"; type: 0 }
+        ListElement { command: "set volume to maximum"; type: 0 }
+        ListElement { command: "volume <number> percent[s]"; type: 0 }
+        ListElement { command: "volume to <number> percent[s]"; type: 0 }
+        ListElement { command: "set volume <number> percent[s]"; type: 0 }
+        ListElement { command: "set volume to <number> percent[s]"; type: 0 }
+        ListElement { command: "increase volume"; type: 0 }
+        ListElement { command: "decrease volume"; type: 0 }
+        ListElement { command: "increase brightness"; type: 0 }
+        ListElement { command: "decrease brightness"; type: 0 }
     }
 
     SilicaListView {
@@ -47,22 +110,22 @@ Page {
 
         delegate: Item {
             width: parent.width
-            height: commandText.lineCount == 1 ? Theme.itemSizeSmall :
-                                                 commandText.lineCount == 2 ? Theme.itemSizeMedium :
-                                                                              Theme.itemSizeLarge
+            height: type == 0 ? commandText.height + Theme.paddingMedium : commandSection.height
 
             Label {
                 id: commandText
                 anchors.centerIn: parent
                 width: parent.width - 2 * Theme.horizontalPageMargin
                 text: command
+                lineHeight: 0.8
                 wrapMode: Text.WordWrap
+                visible: type == 0
             }
 
-            Separator {
-                anchors.bottom: parent.bottom
-                width: parent.width
-                color: Theme.secondaryHighlightColor
+            SectionHeader {
+                id: commandSection
+                text: command
+                visible: type == 1
             }
         }
 

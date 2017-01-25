@@ -11,10 +11,10 @@ void CommandsParser::parseCommand(QString command, QString lang) {
 int CommandsParser::_parseRusCommand(QString command) {
     if (QRegularExpression("^выключи(ть)? звук$").match(command).hasMatch()) return 1;
     else if (QRegularExpression("^((постав(ь|(ить)))|(сдела(й|(ть))) )?громкость на максимум$").match(command).hasMatch()) return 2;
-    else if (QRegularExpression("^увеличи(ть)? громкость$").match(command).hasMatch()) return 3;
-    else if (QRegularExpression("^уменьши(ть)? громкость$").match(command).hasMatch()) return 4;
-    else if (QRegularExpression("^увеличи(ть)? яркость$").match(command).hasMatch()) return 5;
-    else if (QRegularExpression("^уменьши(ть)? яркость$").match(command).hasMatch()) return 6;
+    else if (QRegularExpression("^увелич(ь|(ить))? громкость$").match(command).hasMatch()) return 3;
+    else if (QRegularExpression("^уменьш(ь|(ить))? громкость$").match(command).hasMatch()) return 4;
+    else if (QRegularExpression("^увелич(ь|(ить))? яркость$").match(command).hasMatch()) return 5;
+    else if (QRegularExpression("^уменьш(ь|(ить))? яркость$").match(command).hasMatch()) return 6;
     else if (QRegularExpression("^сдела(й|(ть)) селфи$").match(command).hasMatch()) return 7;
     else if (QRegularExpression("^какие новости (о|(об) )?.*$").match(command).hasMatch()) return 8;
     else if (QRegularExpression("^(какая )?погода$").match(command).hasMatch()) return 9;
