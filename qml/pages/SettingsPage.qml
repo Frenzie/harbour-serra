@@ -36,10 +36,10 @@ Page {
                         return 0;
                     case "en-US":
                         return 1;
-                    case "tr-TR":
-                        return 2;
-                    case "uk-UK":
-                        return 3;
+//                    case "tr-TR":
+//                        return 2;
+//                    case "uk-UK":
+//                        return 3;
                     default:
                         return 0;
                     }
@@ -57,15 +57,15 @@ Page {
                         onClicked: settings.setValue("lang", "en-US")
                     }
 
-                    MenuItem {
-                        text: qsTr("Turkish")
-                        onClicked: settings.setValue("lang", "tr-TR")
-                    }
+//                    MenuItem {
+//                        text: qsTr("Turkish")
+//                        onClicked: settings.setValue("lang", "tr-TR")
+//                    }
 
-                    MenuItem {
-                        text: qsTr("Ukrainian")
-                        onClicked: settings.setValue("lang", "uk-UK")
-                    }
+//                    MenuItem {
+//                        text: qsTr("Ukrainian")
+//                        onClicked: settings.setValue("lang", "uk-UK")
+//                    }
                 }
             }
 

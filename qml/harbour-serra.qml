@@ -34,6 +34,7 @@ import "pages"
 
 ApplicationWindow
 {
+    id: root
     initialPage: Component { SearchPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All

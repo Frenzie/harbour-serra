@@ -17,6 +17,25 @@
     </message>
 </context>
 <context>
+    <name>CommandsPage</name>
+    <message>
+        <source>Commands list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>Recording...</source>
@@ -44,6 +63,10 @@
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Commands list</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -61,14 +84,6 @@
     </message>
     <message>
         <source>English</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Turkish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ukrainian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

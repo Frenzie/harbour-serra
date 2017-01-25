@@ -20,6 +20,29 @@
     </message>
 </context>
 <context>
+    <name>CommandsPage</name>
+    <message>
+        <location filename="../qml/pages/CommandsPage.qml" line="37"/>
+        <source>Commands list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CommandsPage.qml" line="67"/>
+        <source>Commands language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CommandsPage.qml" line="85"/>
+        <source>Russian</source>
+        <translation type="unfinished">Русский</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CommandsPage.qml" line="90"/>
+        <source>English</source>
+        <translation type="unfinished">Английский</translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <location filename="../qml/cover/CoverPage.qml" line="41"/>
@@ -44,14 +67,19 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="43"/>
+        <location filename="../qml/pages/SearchPage.qml" line="44"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="48"/>
+        <location filename="../qml/pages/SearchPage.qml" line="49"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="54"/>
+        <source>Commands list</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -80,16 +108,6 @@
         <location filename="../qml/pages/SettingsPage.qml" line="56"/>
         <source>English</source>
         <translation>Английский</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="61"/>
-        <source>Turkish</source>
-        <translation>Турецкий</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
-        <source>Ukrainian</source>
-        <translation>Украинский</translation>
     </message>
 </context>
 </TS>

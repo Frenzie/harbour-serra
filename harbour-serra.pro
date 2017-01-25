@@ -49,7 +49,8 @@ DISTFILES += \
     qml/pages/SearchPage.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/AboutPage.qml \
-    qml/views/SearchBox.qml
+    qml/views/SearchBox.qml \
+    qml/pages/CommandsPage.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

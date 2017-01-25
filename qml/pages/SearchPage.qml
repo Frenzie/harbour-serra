@@ -1,5 +1,5 @@
 import QtMultimedia 5.0
-import QtQuick 2.0
+import QtQuick 2.2
 import QtPositioning 5.3
 import Sailfish.Silica 1.0
 
@@ -9,6 +9,7 @@ import org.nemomobile.systemsettings 1.0
 
 
 import "../views"
+//import "../../../jolla-settings/pages/networking"
 
 
 Page {
@@ -47,6 +48,11 @@ Page {
             MenuItem {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
+
+            MenuItem {
+                text: qsTr("Commands list")
+                onClicked: pageStack.push(Qt.resolvedUrl("CommandsPage.qml"))
             }
         }
 
@@ -125,6 +131,27 @@ Page {
         }
     }
 
+//    EnableSwitch {
+//        id: wifiSwicher
+
+//        function sw() {
+//            if (wifiTechnology.tethering) {
+//                        connectionAgent.stopTethering(true)
+//                    } else {
+//                        wifiTechnology.powered = !wifiTechnology.powered
+//                        if (wifiTechnology.powered) {
+//                            busyTimer.stop()
+//                        } else if (connDialogConfig.rise) {
+//                            busyTimer.restart()
+//                        }
+//                    }
+//        }
+//    }
+
+//    onStatusChanged: if (status === PageStatus.Active) {
+//                         wifiSwicher.sw()
+//                     }
+
     Connections {
         target: googleSearchHelper
         onGotAnswer: {
@@ -180,9 +207,9 @@ Page {
                 displaySettings.brightness -= Math.round(displaySettings.maximumBrightness / 10)
                 if (displaySettings.brightness < 1) displaySettings.brightness = 1
                 break
-            case "сделать фото": // TODO
-                cameraDbus.takePhoto()
-                break
+//            case "сделать фото": // TODO
+//                cameraDbus.takePhoto()
+//                break
             case "сделать селфи":
                 cameraDbus.takeSelfie()
                 break
