@@ -14,49 +14,53 @@ void WeatherHelper::setLang(QString lang) {
     _lang = lang;
 }
 
-void WeatherHelper::getWeatherByCoords(double lat, double lon) {
+void WeatherHelper::getWeatherByCoords(double lat, double lon, QString key) {
+    if (key.isNull() || key.isEmpty()) key = "7b545fb22f8f624ed18b410c964d9c31";
     QUrlQuery query;
     query.addQueryItem("lat", QString::number(lat));
     query.addQueryItem("lon", QString::number(lon));
     query.addQueryItem("units", "metric");
     query.addQueryItem("lang", _lang.left(2));
-    query.addQueryItem("appid", "7b545fb22f8f624ed18b410c964d9c31");
+    query.addQueryItem("appid", key);
     QUrl url("http://api.openweathermap.org/data/2.5/weather");
     url.setQuery(query);
     _manager->get(QNetworkRequest(url));
 }
 
-void WeatherHelper::getWeatherByCityName(QString cityName) {
+void WeatherHelper::getWeatherByCityName(QString cityName, QString key) {
+    if (key.isNull() || key.isEmpty()) key = "7b545fb22f8f624ed18b410c964d9c31";
     QUrlQuery query;
     query.addQueryItem("q", cityName);
     query.addQueryItem("units", "metric");
     query.addQueryItem("lang", _lang.left(2));
-    query.addQueryItem("appid", "7b545fb22f8f624ed18b410c964d9c31");
+    query.addQueryItem("appid", key);
     QUrl url("http://api.openweathermap.org/data/2.5/weather");
     url.setQuery(query);
     _manager->get(QNetworkRequest(url));
 }
 
-void WeatherHelper::getWeatherByCoordsWithDate(double lat, double lon, int dayOffset) {
+void WeatherHelper::getWeatherByCoordsWithDate(double lat, double lon, int dayOffset, QString key) {
+    if (key.isNull() || key.isEmpty()) key = "7b545fb22f8f624ed18b410c964d9c31";
     _dayOffset = dayOffset;
     QUrlQuery query;
     query.addQueryItem("lat", QString::number(lat));
     query.addQueryItem("lon", QString::number(lon));
     query.addQueryItem("units", "metric");
     query.addQueryItem("lang", _lang.left(2));
-    query.addQueryItem("appid", "7b545fb22f8f624ed18b410c964d9c31");
+    query.addQueryItem("appid", key);
     QUrl url("http://api.openweathermap.org/data/2.5/forecast");
     url.setQuery(query);
     _manager->get(QNetworkRequest(url));
 }
 
-void WeatherHelper::getWeatherByCityNameWithDate(QString cityName, int dayOffset) {
+void WeatherHelper::getWeatherByCityNameWithDate(QString cityName, int dayOffset, QString key) {
+    if (key.isNull() || key.isEmpty()) key = "7b545fb22f8f624ed18b410c964d9c31";
     _dayOffset = dayOffset;
     QUrlQuery query;
     query.addQueryItem("q", cityName);
     query.addQueryItem("units", "metric");
     query.addQueryItem("lang", _lang.left(2));
-    query.addQueryItem("appid", "7b545fb22f8f624ed18b410c964d9c31");
+    query.addQueryItem("appid", key);
     QUrl url("http://api.openweathermap.org/data/2.5/forecast");
     url.setQuery(query);
     _manager->get(QNetworkRequest(url));

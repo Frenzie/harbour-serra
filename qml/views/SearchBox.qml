@@ -115,7 +115,7 @@ Column {
                     recorder.stopRecord()
                     var lang = settings.value("lang")
                     if (lang === "") lang = "ru-RU"
-                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang)
+                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang, settings.value("yandexskcKey"))
                     searchStarted()
                 } else {
                     isRecording = true

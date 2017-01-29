@@ -22,9 +22,9 @@ public:
     explicit YandexSpeechKitHelper(QObject *parent = 0);
     ~YandexSpeechKitHelper();
 
-    Q_INVOKABLE QString generateAnswer(QString text, QString lang);
-    Q_INVOKABLE void recognizeQuery(QString path_to_file, QString lang);
-    Q_INVOKABLE void parseQuery(QString queryText);
+    Q_INVOKABLE QString generateAnswer(QString text, QString lang, QString key);
+    Q_INVOKABLE void recognizeQuery(QString path_to_file, QString lang, QString key);
+    Q_INVOKABLE void parseQuery(QString queryText, QString key);
 
 public slots:
     void requestFinished(QNetworkReply *reply);

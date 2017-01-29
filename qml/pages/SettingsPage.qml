@@ -75,46 +75,45 @@ Page {
                 }
             }
 
-//            SectionHeader {
-//                text: qsTr("News settings")
-//            }
+            SectionHeader {
+                text: qsTr("API keys")
+            }
 
-//            ComboBox {
-//                width: parent.width
-//                label: qsTr("News language:")
-//                menu: ContextMenu {
+            TextField {
+                width: parent.width
+                text: settings.value("yandexskcKey")
+                placeholderText: "Yandex SpeechKit Cloud API key"
+                label: "Yandex SpeechKit Cloud API key"
+                onTextChanged: settings.setValue("yandexskcKey", text)
+            }
 
-//                    MenuItem {
-//                        text: qsTr("English")
-//                        onClicked: {}
-//                    }
+            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.WordWrap
+                linkColor: Theme.highlightColor
+                onLinkActivated: Qt.openUrlExternally(link)
+                text: qsTr("If you notice problems with speech recognition, you can get your personal key <a href=\"https://developer.tech.yandex.ru/\">here</a> and use it.")
+            }
 
-//                    MenuItem {
-//                        text: qsTr("German")
-//                        onClicked: {}
-//                    }
+            TextField {
+                width: parent.width
+                text: settings.value("weatherKey")
+                placeholderText: "Open Weather Map API key"
+                label: "Open Weather Map API key"
+                onTextChanged: settings.setValue("weatherKey", text)
+            }
 
-//                    MenuItem {
-//                        text: qsTr("French")
-//                        onClicked: {}
-//                    }
-
-//                    MenuItem {
-//                        text: qsTr("Italian")
-//                        onClicked: {}
-//                    }
-
-//                    MenuItem {
-//                        text: qsTr("Espaniol")
-//                        onClicked: {}
-//                    }
-
-//                    MenuItem {
-//                        text: qsTr("Portugalian")
-//                        onClicked: {}
-//                    }
-//                }
-//            }
+            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.WordWrap
+                linkColor: Theme.highlightColor
+                onLinkActivated: Qt.openUrlExternally(link)
+                text: qsTr("If you notice problems with getting weather information, you can get your personal key <a href=\"http://openweathermap.org/api\">here</a> and use it.")
+            }
         }
 
         VerticalScrollDecorator {}

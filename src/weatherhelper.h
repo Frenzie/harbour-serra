@@ -22,10 +22,10 @@ public:
 
     Q_INVOKABLE void setLang(QString lang);
 
-    Q_INVOKABLE void getWeatherByCoords(double lat, double lon);
-    Q_INVOKABLE void getWeatherByCityName(QString cityName);
-    Q_INVOKABLE void getWeatherByCoordsWithDate(double lat, double lon, int dayOffset);
-    Q_INVOKABLE void getWeatherByCityNameWithDate(QString cityName, int dayOffset);
+    Q_INVOKABLE void getWeatherByCoords(double lat, double lon, QString key);
+    Q_INVOKABLE void getWeatherByCityName(QString cityName, QString key);
+    Q_INVOKABLE void getWeatherByCoordsWithDate(double lat, double lon, int dayOffset, QString key);
+    Q_INVOKABLE void getWeatherByCityNameWithDate(QString cityName, int dayOffset, QString key);
 
 public slots:
     void requestFinished(QNetworkReply *reply);

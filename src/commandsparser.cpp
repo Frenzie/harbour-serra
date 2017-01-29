@@ -10,16 +10,21 @@ void CommandsParser::parseCommand(QString command, QString lang) {
 
 int CommandsParser::_parseRusCommand(QString command) {
     if (QRegularExpression("^выключи(ть)? звук$").match(command).hasMatch()) return 1;
-    else if (QRegularExpression("^((постав(ь|(ить)))|(сдела(й|(ть))) )?громкость на максимум$").match(command).hasMatch()) return 2;
-    else if (QRegularExpression("^увелич(ь|(ить))? громкость$").match(command).hasMatch()) return 3;
-    else if (QRegularExpression("^уменьш(ь|(ить))? громкость$").match(command).hasMatch()) return 4;
-    else if (QRegularExpression("^увелич(ь|(ить))? яркость$").match(command).hasMatch()) return 5;
-    else if (QRegularExpression("^уменьш(ь|(ить))? яркость$").match(command).hasMatch()) return 6;
+    else if (QRegularExpression("^громкость на максимум$").match(command).hasMatch()) return 2;
+    else if (QRegularExpression("^постав(ь|(ить)) громкость на максимум$").match(command).hasMatch()) return 2;
+    else if (QRegularExpression("^сдела(й|(ть)) громкость на максимум$").match(command).hasMatch()) return 2;
+    else if (QRegularExpression("^увелич(ь|(ить))? громкост(ь|и)$").match(command).hasMatch()) return 3;
+    else if (QRegularExpression("^уменьш(ь|(ить))? громкост(ь|и)$").match(command).hasMatch()) return 4;
+    else if (QRegularExpression("^увелич(ь|(ить))? яркост(ь|и)$").match(command).hasMatch()) return 5;
+    else if (QRegularExpression("^уменьш(ь|(ить))? яркост(ь|и)$").match(command).hasMatch()) return 6;
     else if (QRegularExpression("^сдела(й|(ть)) селфи$").match(command).hasMatch()) return 7;
     else if (QRegularExpression("^какие новости (о|(об) )?.*$").match(command).hasMatch()) return 8;
     else if (QRegularExpression("^(какая )?погода$").match(command).hasMatch()) return 9;
     else if (QRegularExpression("^(какая )?погода .*$").match(command).hasMatch()) return 10;
-    else if (QRegularExpression("^((постав(ь|(ить)))|(сдела(й|(ть)))|(установи(ть)?) )?громкость (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^установи(ть)? громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^сдела(й|(ть)) громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^постав(ь|(ить)) громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^включи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 12;
     else if (QRegularExpression("^выключи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 13;
     else if (QRegularExpression("^включи(ть)? ((вспышку)|(фонарик))$").match(command).hasMatch()) return 14;

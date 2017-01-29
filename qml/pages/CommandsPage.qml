@@ -14,14 +14,10 @@ Page {
         ListElement { command: "Погода"; type: 1 }
         ListElement { command: "погода"; type: 0 }
         ListElement { command: "какая погода"; type: 0 }
-        ListElement { command: "погода <город>"; type: 0 }
-        ListElement { command: "какая погода <город>"; type: 0 }
         ListElement { command: "погода в <город>"; type: 0 }
         ListElement { command: "какая погода в <город>"; type: 0 }
         ListElement { command: "погода завтра/послезавтра"; type: 0 }
         ListElement { command: "какая погода завтра/послезавтра"; type: 0 }
-        ListElement { command: "погода <город> завтра/послезавтра"; type: 0 }
-        ListElement { command: "какая погода <город> завтра/послезавтра"; type: 0 }
         ListElement { command: "погода в <город> завтра/послезавтра"; type: 0 }
         ListElement { command: "какая погода в <город> завтра/послезавтра"; type: 0 }
 
@@ -41,10 +37,6 @@ Page {
         ListElement { command: "громкость на максимум"; type: 0 }
         ListElement { command: "постав[ь/ить] громкость на максимум"; type: 0 }
         ListElement { command: "сдела[й/ть] громкость на максимум"; type: 0 }
-        ListElement { command: "громкость <число> процент[ов/a]?"; type: 0 }
-        ListElement { command: "постав[ь/ить] громкость <число> процент[ов/a]?"; type: 0 }
-        ListElement { command: "сдела[й/ть] громкость <число> процент[ов/a]?"; type: 0 }
-        ListElement { command: "установи[ть] громкость <число> процент[ов/a]?"; type: 0 }
         ListElement { command: "громкость на <число> процент[ов/a]?"; type: 0 }
         ListElement { command: "постав[ь/ить] громкость на <число> процент[ов/a]?"; type: 0 }
         ListElement { command: "сдела[й/ть] громкость на <число> процент[ов/a]?"; type: 0 }
@@ -66,14 +58,10 @@ Page {
         ListElement { command: "Weather"; type: 1 }
         ListElement { command: "weather"; type: 0 }
         ListElement { command: "what weather"; type: 0 }
-        ListElement { command: "weather <city>"; type: 0 }
-        ListElement { command: "what weather <city>"; type: 0 }
         ListElement { command: "weather in <city>"; type: 0 }
         ListElement { command: "what weather in <city>"; type: 0 }
         ListElement { command: "weather [day after] tomorrow"; type: 0 }
         ListElement { command: "what weather [day after] tomorrow"; type: 0 }
-        ListElement { command: "weather <city> [day after] tomorrow"; type: 0 }
-        ListElement { command: "what weather <city> [day after] tomorrow"; type: 0 }
         ListElement { command: "weather in <city> [day after] tomorrow"; type: 0 }
         ListElement { command: "what weather in <city>] [day after] tomorrow"; type: 0 }
 
@@ -92,9 +80,7 @@ Page {
         ListElement { command: "turn off volume"; type: 0 }
         ListElement { command: "volume to maximum"; type: 0 }
         ListElement { command: "set volume to maximum"; type: 0 }
-        ListElement { command: "volume <number> percent[s]"; type: 0 }
         ListElement { command: "volume to <number> percent[s]"; type: 0 }
-        ListElement { command: "set volume <number> percent[s]"; type: 0 }
         ListElement { command: "set volume to <number> percent[s]"; type: 0 }
         ListElement { command: "increase volume"; type: 0 }
         ListElement { command: "decrease volume"; type: 0 }

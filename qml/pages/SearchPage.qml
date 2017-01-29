@@ -143,6 +143,7 @@ Page {
         onFinished: {
             isWeather = false
             var isCommonRequest = true
+            console.log(commandCode)
             switch (commandCode) {
                     case 1:
                         profileControl.ringerVolume = 0
@@ -187,7 +188,8 @@ Page {
                     case 9:
                         isWeather = true
                         weatherHelper.getWeatherByCoords(positionSource.position.coordinate.latitude,
-                                                         positionSource.position.coordinate.longitude)
+                                                         positionSource.position.coordinate.longitude,
+                                                         settings.value("weatherKey"))
                         break
                     case 10:
                         isWeather = true
@@ -203,19 +205,19 @@ Page {
                                 if (dayOffset === 2) city = city.slice(0, city.indexOf(" day after tomorrow"))
                             }
 
-                            if (city !== "" && dayOffset !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), dayOffset)
-                            else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city))
+                            if (city !== "" && dayOffset !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), dayOffset, settings.value("weatherKey"))
+                            else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city), settings.value("weatherKey"))
                             else if (dayOffset !== 0)
                                 weatherHelper.getWeatherByCoordsWithDate(positionSource.position.coordinate.latitude,
-                                                                         positionSource.position.coordinate.longitude, dayOffset)
+                                                                         positionSource.position.coordinate.longitude, dayOffset, settings.value("weatherKey"))
                         }
                         break;
                     case 11:
                         var queryParts = query.split(" ")
                         var volumeLevel = 0
-                        if (queryParts.length === 3) parseInt(queryParts[1])
-                        else if (queryParts.length === 4) parseInt(queryParts[2])
-                        else if (queryParts.length === 5) parseInt(queryParts[3])
+                        if (queryParts.length === 3) volumeLevel = parseInt(queryParts[1])
+                        else if (queryParts.length === 4) volumeLevel = parseInt(queryParts[2])
+                        else if (queryParts.length === 5) volumeLevel = parseInt(queryParts[3])
                         profileControl.ringerVolume = volumeLevel
                         profileControl.profile = volumeLevel > 0 ? "general" : "silent"
                         break
@@ -264,7 +266,7 @@ Page {
                 if (searchBox.isVoiceSearch) {
                     var lang = settings.value("lang")
                     if (lang === "") lang = "ru-RU"
-                    audio.source = yandexSpeechKitHelper.generateAnswer(answer, lang)
+                    audio.source = yandexSpeechKitHelper.generateAnswer(answer, lang, settings.value("yandexskcKey"))
                     audio.play()
                 }
             }
@@ -283,7 +285,7 @@ Page {
         onGotWeather: {
             var lang = settings.value("lang")
             listView.headerItem.text = transliterate(answer, lang === "ru-RU")
-            audio.source = yandexSpeechKitHelper.generateAnswer(listView.headerItem.text, lang)
+            audio.source = yandexSpeechKitHelper.generateAnswer(listView.headerItem.text, lang, settings.value("yandexskcKey"))
             audio.play()
         }
     }
@@ -291,11 +293,12 @@ Page {
     Connections {
         target: yandexSpeechKitHelper
         onGotWeatherData: {
-            if (city !== "" && day !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), day)
-            else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city))
+            if (city !== "" && day !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), day, settings.value("weatherKey"))
+            else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city), settings.value("weatherKey"))
             else if (day !== 0)
                 weatherHelper.getWeatherByCoordsWithDate(positionSource.position.coordinate.latitude,
-                                                         positionSource.position.coordinate.longitude, day)
+                                                         positionSource.position.coordinate.longitude,
+                                                         day, settings.value("weatherKey"))
         }
         onGotResponce: {
             searchBox.searchQueryField.text = query.replace("после завтра", "послезавтра").toLowerCase()

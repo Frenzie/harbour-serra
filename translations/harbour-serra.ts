@@ -94,5 +94,17 @@
         <source>Search and commands language:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>API keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you notice problems with speech recognition, you can get your personal key &lt;a href=&quot;https://developer.tech.yandex.ru/&quot;&gt;here&lt;/a&gt; and use it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you notice problems with getting weather information, you can get your personal key &lt;a href=&quot;http://openweathermap.org/api&quot;&gt;here&lt;/a&gt; and use it.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
