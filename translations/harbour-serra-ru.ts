@@ -9,14 +9,19 @@
         <translation>О</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="53"/>
+        <location filename="../qml/pages/AboutPage.qml" line="47"/>
         <source>Homepage</source>
         <translation>Домашняя страница</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="60"/>
+        <location filename="../qml/pages/AboutPage.qml" line="54"/>
         <source>Donate</source>
         <translation>Пожертвование</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/AboutPage.qml" line="61"/>
+        <source>Data providers:</source>
+        <translation>Провайдеры данных:</translation>
     </message>
 </context>
 <context>

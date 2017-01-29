@@ -15,6 +15,10 @@
         <source>Donate</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Data providers:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommandsPage</name>

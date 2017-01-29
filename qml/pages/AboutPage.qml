@@ -32,7 +32,7 @@ Page {
             Label {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
-                text: "v0.1.0"
+                text: "v0.2.0"
             }
 
             Label {
@@ -40,12 +40,6 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 text: "© 2016 Petr Vytovtov"
             }
-
-//            Label {
-//                width: parent.width
-//                wrapMode: Text.WordWrap
-//                text: qsTr("The unofficial client for vk.com, distributed under the terms of the GNU GPLv3.")
-//            }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -61,12 +55,32 @@ Page {
                 onClicked: Qt.openUrlExternally("https://money.yandex.ru/to/410013326290845")
             }
 
-//            Button {
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                width: Theme.buttonWidthMedium
-//                text: qsTr("Source code")
-//                onClicked: Qt.openUrlExternally("https://github.com/osanwe/Kat")
-//            }
+            Label {
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+                text: qsTr("Data providers:")
+            }
+
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: Theme.buttonWidthMedium
+                text: "Yandex SpeechKit"
+                onClicked: Qt.openUrlExternally("https://tech.yandex.ru/speechkit/cloud/")
+            }
+
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: Theme.buttonWidthMedium
+                text: "Google Search"
+                onClicked: Qt.openUrlExternally("https://www.google.com/")
+            }
+
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: Theme.buttonWidthMedium
+                text: "Open Weather Map"
+                onClicked: Qt.openUrlExternally("http://openweathermap.org/")
+            }
         }
 
         VerticalScrollDecorator {}
