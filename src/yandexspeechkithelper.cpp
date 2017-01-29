@@ -10,6 +10,12 @@ YandexSpeechKitHelper::~YandexSpeechKitHelper() {
     _manager = NULL;
 }
 
+QString YandexSpeechKitHelper::generateAnswer(QString text, QString lang) {
+    return "https://tts.voicetech.yandex.net/generate?text=\"" + text +
+            "\"&format=mp3&lang=" + lang + "&speaker=jane&emotion=good&" +
+            "key=9d7d557a-99dc-44b2-98c8-596cdf3c5dd3";
+}
+
 void YandexSpeechKitHelper::recognizeQuery(QString path_to_file, QString lang) {
     _isParsing = false;
     QFile *file = new QFile(path_to_file);

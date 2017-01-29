@@ -18,6 +18,7 @@ Page {
     property string _query: ""
     property bool _isNews: false
     property int _offset: 0
+    property bool isWeather: false
 
     BusyIndicator {
         id: busyIndicator
@@ -140,6 +141,8 @@ Page {
     Connections {
         target: commandsParser
         onFinished: {
+            isWeather = false
+            var isCommonRequest = true
             switch (commandCode) {
                     case 1:
                         profileControl.ringerVolume = 0
@@ -172,6 +175,7 @@ Page {
                         cameraDbus.takeSelfie()
                         break
                     case 8:
+                        isCommonRequest = false
                         listView.model.clear()
                         var queryParts = query.split(" ")
                         var startIndex = queryParts[2] === "о" || queryParts[2] === "об" || queryParts[2] === "about" ? 3 : 2
@@ -181,10 +185,12 @@ Page {
                         googleSearchHelper.getSearchPage(_query, _isNews)
                         break
                     case 9:
+                        isWeather = true
                         weatherHelper.getWeatherByCoords(positionSource.position.coordinate.latitude,
                                                          positionSource.position.coordinate.longitude)
                         break
                     case 10:
+                        isWeather = true
                         if (settings.value("lang") === "ru-RU") yandexSpeechKitHelper.parseQuery(query)
                         else {
                             var dayOffset = 0
@@ -240,25 +246,27 @@ Page {
                     default:
                         break
                     }
-            listView.model.clear()
-            _query = query
-            _isNews = false
-            _offset = 0
-            googleSearchHelper.getSearchPage(_query)
+            if (isCommonRequest) {
+                listView.model.clear()
+                _query = query
+                _isNews = false
+                _offset = 0
+                googleSearchHelper.getSearchPage(_query)
+            }
         }
     }
 
     Connections {
         target: googleSearchHelper
         onGotAnswer: {
-            listView.headerItem.text = answer
-            if (searchBox.isVoiceSearch) {
-                var lang = settings.value("lang")
-                if (lang === "") lang = "ru-RU"
-                audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" + answer +
-                        "\"&format=mp3&lang=" + lang + "&speaker=jane&emotion=good&" +
-                        "key=9d7d557a-99dc-44b2-98c8-596cdf3c5dd3"
-                audio.play()
+            if (!isWeather) {
+                listView.headerItem.text = answer
+                if (searchBox.isVoiceSearch) {
+                    var lang = settings.value("lang")
+                    if (lang === "") lang = "ru-RU"
+                    audio.source = yandexSpeechKitHelper.generateAnswer(answer, lang)
+                    audio.play()
+                }
             }
         }
         onGotSearchPage: {
@@ -275,10 +283,7 @@ Page {
         onGotWeather: {
             var lang = settings.value("lang")
             listView.headerItem.text = transliterate(answer, lang === "ru-RU")
-            audio.source = "https://tts.voicetech.yandex.net/generate?text=\"" +
-                    listView.headerItem.text +
-                    "\"&format=mp3&lang=" + lang + "&speaker=jane&emotion=good&" +
-                    "key=9d7d557a-99dc-44b2-98c8-596cdf3c5dd3"
+            audio.source = yandexSpeechKitHelper.generateAnswer(listView.headerItem.text, lang)
             audio.play()
         }
     }
