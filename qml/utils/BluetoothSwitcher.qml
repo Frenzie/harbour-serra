@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Sailfish.Bluetooth 1.0
-import MeeGo.Connman 0.2
+;import Sailfish.Bluetooth 1.0
+;import MeeGo.Connman 0.2
 
 Item {
     id: container

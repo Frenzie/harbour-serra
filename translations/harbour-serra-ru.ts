@@ -86,6 +86,11 @@
         <source>Commands list</source>
         <translation>Список команд</translation>
     </message>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="86"/>
+        <source>Load more</source>
+        <translation>Дальше</translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>

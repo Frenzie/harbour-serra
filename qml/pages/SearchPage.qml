@@ -1,11 +1,11 @@
 import QtMultimedia 5.0
 import QtQuick 2.2
-import QtPositioning 5.3
+import QtPositioning 5.2
 import Sailfish.Silica 1.0
 
-import com.jolla.settings.system 1.0
 import org.nemomobile.dbus 2.0
-import org.nemomobile.systemsettings 1.0
+;import com.jolla.settings.system 1.0
+;import org.nemomobile.systemsettings 1.0
 
 
 import "../views"
@@ -79,6 +79,17 @@ Page {
                 labelVisible: false
             }
 
+            footer: Button {
+                visible: listView.model.count > 0
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width / 3 * 2
+                text: qsTr("Load more")
+                onClicked: {
+                    _offset += 10
+                    googleSearchHelper.getSearchPage(_query, _isNews, _offset)
+                }
+            }
+
             delegate: BackgroundItem {
                 id: listItem
                 width: parent.width
@@ -106,13 +117,6 @@ Page {
                         font.pixelSize: Theme.fontSizeSmall
                         truncationMode: TruncationMode.Fade
                         text: decodeURI(url)
-                    }
-                }
-
-                Component.onCompleted: {
-                    if (index === listModel.count-1) {
-                        _offset += 10
-                        googleSearchHelper.getSearchPage(_query, _isNews, _offset)
                     }
                 }
 

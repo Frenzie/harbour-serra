@@ -71,6 +71,10 @@
         <source>Commands list</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Load more</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
