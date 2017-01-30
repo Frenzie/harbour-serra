@@ -28,7 +28,7 @@ void YandexSpeechKitHelper::recognizeQuery(QString path_to_file, QString lang, Q
         query.addQueryItem("lang", lang);
         QUrl url("https://asr.yandex.net/asr_xml");
         url.setQuery(query);
-        qDebug() << url;
+//        qDebug() << url;
         QNetworkRequest request(url);
         request.setHeader(QNetworkRequest::ContentTypeHeader, "audio/x-wav");
         request.setHeader(QNetworkRequest::ContentLengthHeader, file->size());
@@ -47,6 +47,7 @@ void YandexSpeechKitHelper::parseQuery(QString queryText, QString key) {
     query.addQueryItem("topic", "Date,GeoAddr");
     QUrl url("https://vins-markup.voicetech.yandex.net/markup/0.x/");
     url.setQuery(query);
+//    qDebug() << url;
     QNetworkRequest request(url);
     _manager->get(request);
 }
@@ -55,7 +56,7 @@ void YandexSpeechKitHelper::requestFinished(QNetworkReply *reply) {
     QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
     if (url.isEmpty()) {
         QString data = reply->readAll();
-        qDebug() << data;
+//        qDebug() << data;
         qDebug() << reply->errorString();
         if (_isParsing) {
             QJsonDocument jDoc = QJsonDocument::fromJson(data.toUtf8());

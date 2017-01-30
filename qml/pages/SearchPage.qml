@@ -147,7 +147,7 @@ Page {
         onFinished: {
             isWeather = false
             var isCommonRequest = true
-            console.log(commandCode)
+//            console.log("Command --> ", commandCode)
             switch (commandCode) {
                     case 1:
                         profileControl.ringerVolume = 0
@@ -297,6 +297,7 @@ Page {
     Connections {
         target: yandexSpeechKitHelper
         onGotWeatherData: {
+//            console.log("onGotWeatherData --> ", city, day)
             if (city !== "" && day !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), day, settings.value("weatherKey"))
             else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city), settings.value("weatherKey"))
             else if (day !== 0)
@@ -305,6 +306,7 @@ Page {
                                                          day, settings.value("weatherKey"))
         }
         onGotResponce: {
+//            console.log("onGotResponce --> ", query)
             searchBox.searchQueryField.text = query.replace("после завтра", "послезавтра").toLowerCase()
             commandsParser.parseCommand(searchBox.searchQueryField.text, settings.value("lang"))
         }

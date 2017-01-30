@@ -4,7 +4,8 @@ CommandsParser::CommandsParser(QObject *parent) : QObject(parent)
 {}
 
 void CommandsParser::parseCommand(QString command, QString lang) {
-    if (lang == "ru-RU") emit finished(_parseRusCommand(command), command);
+//    qDebug() << lang;
+    if (lang.isNull() || lang.isEmpty() || lang == "ru-RU") emit finished(_parseRusCommand(command), command);
     else if (lang == "en-US") emit finished(_parseEngCommand(command), command);
 }
 

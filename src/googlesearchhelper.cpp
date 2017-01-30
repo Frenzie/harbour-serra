@@ -38,7 +38,7 @@ void GoogleSearchHelper::requestFinished(QNetworkReply *reply) {
             QString resultText = result.captured(0);
             resultText = resultText.replace(QRegularExpression("<b.*?>"), "");
             resultText = resultText.replace(QRegularExpression("</b>"), "");
-            qDebug() << resultText;
+//            qDebug() << resultText;
             SearchResultObject *searchResult = _parseSearchResult(new QXmlStreamReader(resultText));
             if (!searchResult->title().isEmpty() && !searchResult->url().isEmpty())
                 _searchResults.append(searchResult);

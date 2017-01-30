@@ -24,6 +24,7 @@ void WeatherHelper::getWeatherByCoords(double lat, double lon, QString key) {
     query.addQueryItem("appid", key);
     QUrl url("http://api.openweathermap.org/data/2.5/weather");
     url.setQuery(query);
+//    qDebug() << url;
     _manager->get(QNetworkRequest(url));
 }
 
@@ -36,6 +37,7 @@ void WeatherHelper::getWeatherByCityName(QString cityName, QString key) {
     query.addQueryItem("appid", key);
     QUrl url("http://api.openweathermap.org/data/2.5/weather");
     url.setQuery(query);
+//    qDebug() << url;
     _manager->get(QNetworkRequest(url));
 }
 
@@ -50,6 +52,7 @@ void WeatherHelper::getWeatherByCoordsWithDate(double lat, double lon, int dayOf
     query.addQueryItem("appid", key);
     QUrl url("http://api.openweathermap.org/data/2.5/forecast");
     url.setQuery(query);
+//    qDebug() << url;
     _manager->get(QNetworkRequest(url));
 }
 
@@ -63,6 +66,7 @@ void WeatherHelper::getWeatherByCityNameWithDate(QString cityName, int dayOffset
     query.addQueryItem("appid", key);
     QUrl url("http://api.openweathermap.org/data/2.5/forecast");
     url.setQuery(query);
+//    qDebug() << url;
     _manager->get(QNetworkRequest(url));
 }
 
@@ -70,6 +74,7 @@ void WeatherHelper::requestFinished(QNetworkReply *reply) {
 //    QString answer = QString("%1 %2 %3. Температура %4 по Цельсию. Ветер %5 м/с. Влажность %6\%");
     QString answer = _lang == "ru-RU" ? _answerRus : _answerEng;
     QString data = reply->readAll();
+//    qDebug() << data;
     QJsonDocument jDoc = QJsonDocument::fromJson(data.toUtf8());
     QJsonObject jObj = jDoc.object();
     if (_dayOffset == 0) {

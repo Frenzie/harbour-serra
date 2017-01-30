@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QRegularExpression>
+#include <QDebug>
 
 class CommandsParser : public QObject
 {
