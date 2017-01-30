@@ -109,7 +109,13 @@ Column {
                     hints.model.clear()
                     searchQuery.focus = false
                     searchQuery.text = ""
-                } /*else if (isRecording) {
+                } else {
+                    isRecording = true
+                    recorder.startRecord()
+                    recordTimer.start()
+                    recordStarted()
+                }
+                /*else if (isRecording) {
                     isRecording = false
                     isVoiceSearch = true
                     recorder.stopRecord()
@@ -124,25 +130,25 @@ Column {
                 }*/
             }
 
-            onPressed: {
-                if (!searchQuery.focus) {
-                    isRecording = true
-                    recorder.startRecord()
-                    recordStarted()
-                }
-            }
+//            onPressed: {
+//                if (!searchQuery.focus) {
+//                    isRecording = true
+//                    recorder.startRecord()
+//                    recordStarted()
+//                }
+//            }
 
-            onReleased: {
-                if (!searchQuery.focus) {
-                    isRecording = false
-                    isVoiceSearch = true
-                    recorder.stopRecord()
-                    var lang = settings.value("lang")
-                    if (lang === "") lang = "ru-RU"
-                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang, settings.value("yandexskcKey"))
-                    searchStarted()
-                }
-            }
+//            onReleased: {
+//                if (!searchQuery.focus) {
+//                    isRecording = false
+//                    isVoiceSearch = true
+//                    recorder.stopRecord()
+//                    var lang = settings.value("lang")
+//                    if (lang === "") lang = "ru-RU"
+//                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang, settings.value("yandexskcKey"))
+//                    searchStarted()
+//                }
+//            }
         }
     }
 
@@ -160,5 +166,14 @@ Column {
     Connections {
         target: googleSearchHelper
         onGotSearchPage: hints.model.clear()
+    }
+
+    Connections {
+        target: root
+        onRecognitionStarted: {
+            isRecording = false
+            isVoiceSearch = true
+            searchStarted()
+        }
     }
 }
