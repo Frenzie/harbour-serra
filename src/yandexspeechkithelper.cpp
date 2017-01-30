@@ -55,7 +55,8 @@ void YandexSpeechKitHelper::requestFinished(QNetworkReply *reply) {
     QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
     if (url.isEmpty()) {
         QString data = reply->readAll();
-//        qDebug() << data;
+        qDebug() << data;
+        qDebug() << reply->errorString();
         if (_isParsing) {
             QJsonDocument jDoc = QJsonDocument::fromJson(data.toUtf8());
             QJsonArray date = jDoc.object().value("Date").toArray();

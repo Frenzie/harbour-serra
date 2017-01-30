@@ -48,15 +48,20 @@ CoverBackground {
             iconSource: isRecording ? "image://theme/icon-cover-search" :
                                       "image://theme/icon-cover-unmute"
             onTriggered: {
-                if (isRecording) {
-                    recorder.stopRecord()
-                    var lang = settings.value("lang")
-                    if (!lang) lang = "ru-RU"
-                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang, settings.value("yandexskcKey"))
-                    window.activate()
-                } else recorder.startRecord()
-                isRecording = !isRecording
+                if (!isRecording) {
+                    isRecording = true
+                    recorder.startRecord()
+                    recordTimer.start()
+                }
             }
+        }
+    }
+
+    Connections {
+        target: root
+        onRecognitionStarted: {
+            isRecording = false
+            window.activate()
         }
     }
 }

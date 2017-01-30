@@ -197,7 +197,7 @@ Page {
                         break
                     case 10:
                         isWeather = true
-                        if (settings.value("lang") === "ru-RU") yandexSpeechKitHelper.parseQuery(query)
+                        if (settings.value("lang") === "ru-RU") yandexSpeechKitHelper.parseQuery(query, settings.value("yandexskcKey"))
                         else {
                             var dayOffset = 0
                             if (query.indexOf("day after tomorrow") !== -1) dayOffset = 2
