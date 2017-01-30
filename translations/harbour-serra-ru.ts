@@ -120,17 +120,27 @@
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="80"/>
+        <source>Tap-and-talk mode</source>
+        <translation>Нажми и говори</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="81"/>
+        <source>If this is active your voice command can be as long as long you hold button on the main screen. Otherwise standard time for voice commands is 6 seconds.</source>
+        <translation>Если активно, то запись голосовой команды длится пока вы удерживаете кнопку на главном экране. Иначе используется стандартное время записи 6 секунд.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="86"/>
         <source>API keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="97"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="104"/>
         <source>If you notice problems with speech recognition, you can get your personal key &lt;a href=&quot;https://developer.tech.yandex.ru/&quot;&gt;here&lt;/a&gt; and use it.</source>
         <translation>При наличии проблем с распознаванием речи, вы можете получить персональный ключ &lt;a href=&quot;https://developer.tech.yandex.ru/&quot;&gt;здесь&lt;/a&gt; и использовать его.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="115"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="122"/>
         <source>If you notice problems with getting weather information, you can get your personal key &lt;a href=&quot;http://openweathermap.org/api&quot;&gt;here&lt;/a&gt; and use it.</source>
         <translation>При наличии проблем с получением информации о погоде, вы можете получить персональный ключ &lt;a href=&quot;http://openweathermap.org/api&quot;&gt;здесь&lt;/a&gt; и использовать его.</translation>
     </message>

@@ -2,10 +2,10 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Column {
-    id: root
 
     property alias searchQueryField: searchQuery
     property alias searchQueryButton: searchButton
+    property bool isRecording: false
     property bool isVoiceSearch: false
 
     signal recordStarted()
@@ -91,8 +91,6 @@ Column {
         IconButton {
             id: searchButton
 
-            property bool isRecording: false
-
             anchors.right: parent.right
             anchors.rightMargin: Theme.horizontalPageMargin
             anchors.verticalCenter: parent.verticalCenter
@@ -109,13 +107,24 @@ Column {
                     hints.model.clear()
                     searchQuery.focus = false
                     searchQuery.text = ""
-                } else {
+                } else if (settings.value("tapandtalk") === "false") {
                     isRecording = true
                     recorder.startRecord()
                     recordTimer.start()
                     recordStarted()
                 }
-                /*else if (isRecording) {
+            }
+
+            onPressed: {
+                if (!searchQuery.focus && settings.value("tapandtalk") === "true") {
+                    isRecording = true
+                    recorder.startRecord()
+                    recordStarted()
+                }
+            }
+
+            onReleased: {
+                if (!searchQuery.focus && settings.value("tapandtalk") === "true") {
                     isRecording = false
                     isVoiceSearch = true
                     recorder.stopRecord()
@@ -123,32 +132,8 @@ Column {
                     if (lang === "") lang = "ru-RU"
                     yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang, settings.value("yandexskcKey"))
                     searchStarted()
-                } else {
-                    isRecording = true
-                    recorder.startRecord()
-                    recordStarted()
-                }*/
+                }
             }
-
-//            onPressed: {
-//                if (!searchQuery.focus) {
-//                    isRecording = true
-//                    recorder.startRecord()
-//                    recordStarted()
-//                }
-//            }
-
-//            onReleased: {
-//                if (!searchQuery.focus) {
-//                    isRecording = false
-//                    isVoiceSearch = true
-//                    recorder.stopRecord()
-//                    var lang = settings.value("lang")
-//                    if (lang === "") lang = "ru-RU"
-//                    yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang, settings.value("yandexskcKey"))
-//                    searchStarted()
-//                }
-//            }
         }
     }
 

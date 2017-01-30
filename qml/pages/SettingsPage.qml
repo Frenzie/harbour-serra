@@ -75,6 +75,13 @@ Page {
                 }
             }
 
+            TextSwitch {
+                checked: settings.value("tapandtalk") === "true"
+                text: qsTr("Tap-and-talk mode")
+                description: qsTr("If this is active your voice command can be as long as long you hold button on the main screen. Otherwise standard time for voice commands is 6 seconds.")
+                onCheckedChanged: settings.setValue("tapandtalk", checked ? "true" : "false")
+            }
+
             SectionHeader {
                 text: qsTr("API keys")
             }

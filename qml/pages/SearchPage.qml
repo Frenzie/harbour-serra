@@ -333,5 +333,9 @@ Page {
         }
     }
 
-    Component.onCompleted: weatherHelper.setLang(settings.value("lang"))
+    Component.onCompleted: {
+        weatherHelper.setLang(settings.value("lang"))
+        var tapAndTalkMode = settings.value("tapandtalk")
+        if (tapAndTalkMode === "") settings.setValue("tapandtalk", "false")
+    }
 }
