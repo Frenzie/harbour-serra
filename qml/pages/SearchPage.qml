@@ -336,6 +336,15 @@ Page {
     }
 
     Component.onCompleted: {
+        if (settings.value("lang") === "") {
+            if (localeString === "en-US" || localeString === "ru-RU") {
+                settings.setValue("lang", localeString)
+            } else {
+                settings.setValue("lang", "ru-RU")
+            }
+            notification.previewBody = qsTr("Commands language is set to ") + settings.value("lang")
+            notification.publish()
+        }
         weatherHelper.setLang(settings.value("lang"))
         var tapAndTalkMode = settings.value("tapandtalk")
         if (tapAndTalkMode === "") settings.setValue("tapandtalk", "false")

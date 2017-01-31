@@ -38,6 +38,8 @@
 #include <QQuickView>
 #include <QQmlContext>
 
+#include <QFile>
+
 #include "commandsparser.h"
 #include "googlesearchhelper.h"
 #include "recorder.h"
@@ -48,6 +50,16 @@
 
 
 int main(int argc, char *argv[]) {
+    QFile localeFile("/var/lib/environment/nemo/locale.conf");
+    QString localeName = "";
+    if (localeFile.open(QIODevice::ReadOnly)) {
+        QStringList lines = QString(localeFile.readAll()).split("LANG=");
+        localeName = lines[1].left(5).replace("_", "-");
+        if (localeName.startsWith("en-")) localeName = localeName.left(3) + "US";
+        localeFile.close();
+    }
+    qDebug() << localeName;
+
     QScopedPointer<QGuiApplication> application(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
@@ -66,6 +78,7 @@ int main(int argc, char *argv[]) {
     view->rootContext()->setContextProperty("weatherHelper", weatherHelper.data());
     view->rootContext()->setContextProperty("yandexSearchHelper", yandexSearchHelper.data());
     view->rootContext()->setContextProperty("yandexSpeechKitHelper", yandexSpeechKitHelper.data());
+    view->rootContext()->setContextProperty("localeString", localeName);
 
     view->setSource(SailfishApp::pathTo("qml/harbour-serra.qml"));
     view->show();

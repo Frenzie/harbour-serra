@@ -96,6 +96,7 @@ Column {
             anchors.verticalCenter: parent.verticalCenter
             width: Theme.iconSizeLarge
             height: Theme.iconSizeLarge
+            preventStealing: true
             icon.source: {
                 if (searchQuery.focus) return "image://theme/icon-m-dismiss"
                 else if (isRecording) return "image://theme/icon-m-search"

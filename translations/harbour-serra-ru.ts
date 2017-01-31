@@ -91,6 +91,11 @@
         <source>Load more</source>
         <translation>Дальше</translation>
     </message>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="345"/>
+        <source>Commands language is set to </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>

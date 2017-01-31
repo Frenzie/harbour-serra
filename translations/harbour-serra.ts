@@ -75,6 +75,10 @@
         <source>Load more</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Commands language is set to </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
