@@ -92,9 +92,9 @@
         <translation>Дальше</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="345"/>
+        <location filename="../qml/pages/SearchPage.qml" line="383"/>
         <source>Commands language is set to </source>
-        <translation type="unfinished"></translation>
+        <translation>Язык команд установлен на </translation>
     </message>
 </context>
 <context>

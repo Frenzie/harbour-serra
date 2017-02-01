@@ -147,37 +147,53 @@ Page {
         onFinished: {
             isWeather = false
             var isCommonRequest = true
+            var lang = settings.value("lang")
+            var answer = ""
 //            console.log("Command --> ", commandCode)
             switch (commandCode) {
                     case 1:
                         profileControl.ringerVolume = 0
                         profileControl.profile = "silent"
+                        if (lang === "en-US") answer = "Volume is set to 0"
+                        else answer = "Звук выключен"
                         break
                     case 2:
                         profileControl.ringerVolume = 100
                         profileControl.profile = "general"
+                        if (lang === "en-US") answer = "Volume is set to maximum"
+                        else answer = "Громкость на максимуме"
                         break
                     case 3:
                         profileControl.ringerVolume += 10
                         if (profileControl.ringerVolume > 100) profileControl.ringerVolume = 100
                         profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
+                        if (lang === "en-US") answer = "Volume is increased by 10%"
+                        else answer = "Громкость увеличена на 10%"
                         break
                     case 4:
                         profileControl.ringerVolume -= 10
                         if (profileControl.ringerVolume < 0) profileControl.ringerVolume = 0
                         profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
+                        if (lang === "en-US") answer = "Volume is decreased by 10%"
+                        else answer = "Громкость уменьшена на 10%"
                         break
                     case 5:
                         displaySettings.brightness += Math.round(displaySettings.maximumBrightness / 10)
                         if (displaySettings.brightness > displaySettings.maximumBrightness)
                             displaySettings.brightness = displaySettings.maximumBrightness
+                        if (lang === "en-US") answer = "Brightness is inceased by 10%"
+                        else answer = "Яркость увеличена на 10%"
                         break
                     case 6:
                         displaySettings.brightness -= Math.round(displaySettings.maximumBrightness / 10)
                         if (displaySettings.brightness < 1) displaySettings.brightness = 1
+                        if (lang === "en-US") answer = "Brightness is decreased by 10%"
+                        else answer = "Яркость уменьшена на 10%"
                         break
                     case 7:
                         cameraDbus.takeSelfie()
+                        if (lang === "en-US") answer = "Opening the camera"
+                        else answer = "Открываю камеру"
                         break
                     case 8:
                         isCommonRequest = false
@@ -224,30 +240,48 @@ Page {
                         else if (queryParts.length === 5) volumeLevel = parseInt(queryParts[3])
                         profileControl.ringerVolume = volumeLevel
                         profileControl.profile = volumeLevel > 0 ? "general" : "silent"
+                        if (lang === "en-US") answer = "Volume is set to " + profileControl.ringerVolume + "%"
+                        else answer = "Громкость установлена на " + profileControl.ringerVolume + "%"
                         break
                     case 12:
                         if (!wifiSwitcher.isOn) wifiSwitcher.switchWifi()
+                        if (lang === "en-US") answer = "Wi-Fi is on"
+                        else answer = "Wi-Fi включен"
                         break
                     case 13:
                         if (wifiSwitcher.isOn) wifiSwitcher.switchWifi()
+                        if (lang === "en-US") answer = "Wi-Fi is off"
+                        else answer = "Wi-Fi выключен"
                         break
                     case 14:
                         if (!flashlight.flashlightOn) flashlight.toggleFlashlight()
+                        if (lang === "en-US") answer = "Flashlight is on"
+                        else answer = "Вспышка включена"
                         break
                     case 15:
                         if (flashlight.flashlightOn) flashlight.toggleFlashlight()
+                        if (lang === "en-US") answer = "Flashlight is off"
+                        else answer = "Вспышка выключена"
                         break
                     case 16:
                         if (!bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
+                        if (lang === "en-US") answer = "Bluetooth is on"
+                        else answer = "Bluetooth включен"
                         break;
                     case 17:
                         if (bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
+                        if (lang === "en-US") answer = "Bluetooth is off"
+                        else answer = "Bluetooth выключен"
                         break;
                     case 18:
                         if (!gpsSwitcher.isOn) gpsSwitcher.switchGps()
+                        if (lang === "en-US") answer = "GPS is on"
+                        else answer = "GPS включен"
                         break;
                     case 19:
                         if (gpsSwitcher.isOn) gpsSwitcher.switchGps()
+                        if (lang === "en-US") answer = "GPS is off"
+                        else answer = "GPS выключен"
                         break;
                     default:
                         break
@@ -258,6 +292,10 @@ Page {
                 _isNews = false
                 _offset = 0
                 googleSearchHelper.getSearchPage(_query)
+            }
+            if (answer !== "") {
+                audio.source = yandexSpeechKitHelper.generateAnswer(answer, lang, settings.value("yandexskcKey"))
+                audio.play()
             }
         }
     }
