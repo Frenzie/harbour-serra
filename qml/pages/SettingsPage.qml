@@ -82,6 +82,13 @@ Page {
                 onCheckedChanged: settings.setValue("tapandtalk", checked ? "true" : "false")
             }
 
+            TextSwitch {
+                checked: settings.value("donotopen") === "true"
+                text: qsTr("Do not open for simple commands")
+                description: qsTr("If this is active the window will not be activated when you interact with app cover.")
+                onCheckedChanged: settings.setValue("donotopen", checked ? "true" : "false")
+            }
+
             SectionHeader {
                 text: qsTr("API keys")
             }

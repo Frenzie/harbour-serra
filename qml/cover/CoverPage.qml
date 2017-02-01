@@ -61,7 +61,7 @@ CoverBackground {
         target: root
         onRecognitionStarted: {
             isRecording = false
-            window.activate()
+            if (settings.value("donotopen") === "false" || !isSimpleCommand) window.activate()
         }
     }
 }

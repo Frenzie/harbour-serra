@@ -26,8 +26,8 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^установи(ть)? громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^сдела(й|(ть)) громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^постав(ь|(ить)) громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
-    else if (QRegularExpression("^включи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 12;
-    else if (QRegularExpression("^выключи(ть)? ((wi( |-)?fi)|(вай фай))$").match(command).hasMatch()) return 13;
+    else if (QRegularExpression("^включи(ть)? ((wi( |-)?fi)|(вай( |-)?фай))$").match(command).hasMatch()) return 12;
+    else if (QRegularExpression("^выключи(ть)? ((wi( |-)?fi)|(вай( |-)?фай))$").match(command).hasMatch()) return 13;
     else if (QRegularExpression("^включи(ть)? ((вспышку)|(фонарик))$").match(command).hasMatch()) return 14;
     else if (QRegularExpression("^выключи(ть)? ((вспышку)|(фонарик))$").match(command).hasMatch()) return 15;
     else if (QRegularExpression("^включи(ть)? ((bluetooth)|(бл[ую]ту[зс]))$").match(command).hasMatch()) return 16;

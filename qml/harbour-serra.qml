@@ -41,6 +41,8 @@ ApplicationWindow
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
 
+    property bool isSimpleCommand: true
+
     signal recognitionStarted()
 
     function transliterate(text, engToRus) {

@@ -122,5 +122,13 @@
         <source>If this is active your voice command can be as long as long you hold button on the main screen. Otherwise standard time for voice commands is 6 seconds.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Do not open for simple commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this is active the window will not be activated when you interact with app cover.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

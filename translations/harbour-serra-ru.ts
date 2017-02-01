@@ -92,7 +92,7 @@
         <translation>Дальше</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="383"/>
+        <location filename="../qml/pages/SearchPage.qml" line="403"/>
         <source>Commands language is set to </source>
         <translation>Язык команд установлен на </translation>
     </message>
@@ -135,17 +135,27 @@
         <translation>Если активно, то запись голосовой команды длится пока вы удерживаете кнопку на главном экране. Иначе используется стандартное время записи 6 секунд.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="86"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="87"/>
+        <source>Do not open for simple commands</source>
+        <translation>Не открывать для простых команд</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="88"/>
+        <source>If this is active the window will not be activated when you interact with app cover.</source>
+        <translation>Если активно, то приложение не будет разворачиваться при взаимодействии с обложкой.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="93"/>
         <source>API keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="104"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="111"/>
         <source>If you notice problems with speech recognition, you can get your personal key &lt;a href=&quot;https://developer.tech.yandex.ru/&quot;&gt;here&lt;/a&gt; and use it.</source>
         <translation>При наличии проблем с распознаванием речи, вы можете получить персональный ключ &lt;a href=&quot;https://developer.tech.yandex.ru/&quot;&gt;здесь&lt;/a&gt; и использовать его.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="122"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="129"/>
         <source>If you notice problems with getting weather information, you can get your personal key &lt;a href=&quot;http://openweathermap.org/api&quot;&gt;here&lt;/a&gt; and use it.</source>
         <translation>При наличии проблем с получением информации о погоде, вы можете получить персональный ключ &lt;a href=&quot;http://openweathermap.org/api&quot;&gt;здесь&lt;/a&gt; и использовать его.</translation>
     </message>
