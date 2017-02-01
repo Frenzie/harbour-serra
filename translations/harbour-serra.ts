@@ -51,6 +51,29 @@
     </message>
 </context>
 <context>
+    <name>CustomCommandsPage</name>
+    <message>
+        <source>User commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Command text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sh-command/file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchBox</name>
     <message>
         <source>Search query</source>

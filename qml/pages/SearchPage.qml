@@ -366,7 +366,15 @@ Page {
         onGotResponce: {
 //            console.log("onGotResponce --> ", query)
             searchBox.searchQueryField.text = query.replace("после завтра", "послезавтра").toLowerCase()
-            commandsParser.parseCommand(searchBox.searchQueryField.text, settings.value("lang"))
+            var customCommand = settings.command(searchBox.searchQueryField.text)
+            if (customCommand !== "") {
+                var lang = settings.value("lang")
+                var runningAnswer = lang === "en-US" ? "Running" : "Выполняю"
+                audio.source = yandexSpeechKitHelper.generateAnswer(runningAnswer, lang, settings.value("yandexskcKey"))
+                audio.play()
+                scriptRunner.runScript(customCommand)
+                busyIndicator.running = false
+            } else commandsParser.parseCommand(searchBox.searchQueryField.text, settings.value("lang"))
         }
     }
 

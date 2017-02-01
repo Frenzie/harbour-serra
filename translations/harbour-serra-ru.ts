@@ -61,6 +61,36 @@
     </message>
 </context>
 <context>
+    <name>CustomCommandsPage</name>
+    <message>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="12"/>
+        <source>User commands</source>
+        <translation>Пользовательские команды</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="45"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="70"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="71"/>
+        <source>Command text</source>
+        <translation>Текст команды</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="77"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="78"/>
+        <source>Sh-command/file</source>
+        <translation>Sh-команда/файл</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="84"/>
+        <source>Add command</source>
+        <translation>Добавить команду</translation>
+    </message>
+</context>
+<context>
     <name>SearchBox</name>
     <message>
         <location filename="../qml/views/SearchBox.qml" line="76"/>
@@ -92,7 +122,7 @@
         <translation>Дальше</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="403"/>
+        <location filename="../qml/pages/SearchPage.qml" line="411"/>
         <source>Commands language is set to </source>
         <translation>Язык команд установлен на </translation>
     </message>

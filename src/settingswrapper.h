@@ -6,6 +6,8 @@
 #include <QStandardPaths>
 #include <QString>
 
+#include "commanditem.h"
+
 #include <QDebug>
 
 class SettingsWrapper : public QObject
@@ -19,8 +21,14 @@ public:
     Q_INVOKABLE void setValue(QString key, QString value);
     Q_INVOKABLE QString value(QString key);
 
+    Q_INVOKABLE QVariant getAllCommads();
+    Q_INVOKABLE void removeCommand(QString key);
+    Q_INVOKABLE void setCommand(QString key, QString value);
+    Q_INVOKABLE QString command(QString key);
+
 private:
     QSettings *_settings;
+    QSettings *_commands;
 };
 
 #endif // SETTINGSWRAPPER_H

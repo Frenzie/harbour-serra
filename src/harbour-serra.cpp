@@ -43,6 +43,7 @@
 #include "commandsparser.h"
 #include "googlesearchhelper.h"
 #include "recorder.h"
+#include "scriptrunner.h"
 #include "settingswrapper.h"
 #include "weatherhelper.h"
 #include "yandexsearchhelper.h"
@@ -66,6 +67,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<CommandsParser> commandsParser(new CommandsParser(view.data()));
     QScopedPointer<GoogleSearchHelper> googleSearchHelper(new GoogleSearchHelper(view.data()));
     QScopedPointer<Recorder> recorder(new Recorder(view.data()));
+    QScopedPointer<ScriptRunner> scriptRunner(new ScriptRunner(view.data()));
     QScopedPointer<SettingsWrapper> settings(new SettingsWrapper(view.data()));
     QScopedPointer<WeatherHelper> weatherHelper(new WeatherHelper(view.data()));
     QScopedPointer<YandexSearchHelper> yandexSearchHelper(new YandexSearchHelper(view.data()));
@@ -74,6 +76,7 @@ int main(int argc, char *argv[]) {
     view->rootContext()->setContextProperty("commandsParser", commandsParser.data());
     view->rootContext()->setContextProperty("googleSearchHelper", googleSearchHelper.data());
     view->rootContext()->setContextProperty("recorder", recorder.data());
+    view->rootContext()->setContextProperty("scriptRunner", scriptRunner.data());
     view->rootContext()->setContextProperty("settings", settings.data());
     view->rootContext()->setContextProperty("weatherHelper", weatherHelper.data());
     view->rootContext()->setContextProperty("yandexSearchHelper", yandexSearchHelper.data());

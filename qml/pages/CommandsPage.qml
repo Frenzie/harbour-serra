@@ -171,4 +171,7 @@ Page {
             }
         }
     }
+
+    onStatusChanged: if (status === PageStatus.Active)
+                         pageStack.pushAttached(Qt.resolvedUrl("CustomCommandsPage.qml"))
 }

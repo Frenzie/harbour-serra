@@ -24,7 +24,9 @@ SOURCES += src/harbour-serra.cpp \
     src/newshelper.cpp \
     src/settingswrapper.cpp \
     src/weatherhelper.cpp \
-    src/commandsparser.cpp
+    src/commandsparser.cpp \
+    src/commanditem.cpp \
+    src/scriptrunner.cpp
 
 OTHER_FILES += qml/harbour-serra.qml \
     qml/cover/CoverPage.qml \
@@ -55,7 +57,8 @@ DISTFILES += \
     qml/utils/WiFiSwitcher.qml \
     qml/utils/FlashlightSwitcher.qml \
     qml/utils/BluetoothSwitcher.qml \
-    qml/utils/GpsSwitcher.qml
+    qml/utils/GpsSwitcher.qml \
+    qml/pages/CustomCommandsPage.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \
@@ -66,5 +69,7 @@ HEADERS += \
     src/newshelper.h \
     src/settingswrapper.h \
     src/weatherhelper.h \
-    src/commandsparser.h
+    src/commandsparser.h \
+    src/commanditem.h \
+    src/scriptrunner.h
 
