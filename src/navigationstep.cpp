@@ -41,3 +41,12 @@ double NavigationStep::endLat() const {
 double NavigationStep::endLng() const {
     return _endLng;
 }
+
+bool NavigationStep::isCurrent() const {
+    return _isCurrent;
+}
+
+void NavigationStep::setIsCurrent(bool isCurrent) {
+    _isCurrent = isCurrent;
+    emit isCurrentChanged(_isCurrent);
+}

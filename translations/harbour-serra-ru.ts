@@ -110,27 +110,27 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="54"/>
+        <location filename="../qml/pages/SearchPage.qml" line="45"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="59"/>
+        <location filename="../qml/pages/SearchPage.qml" line="50"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="64"/>
+        <location filename="../qml/pages/SearchPage.qml" line="55"/>
         <source>Commands list</source>
         <translation>Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="90"/>
+        <location filename="../qml/pages/SearchPage.qml" line="81"/>
         <source>Load more</source>
         <translation>Дальше</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="448"/>
+        <location filename="../qml/pages/SearchPage.qml" line="442"/>
         <source>Commands language is set to </source>
         <translation>Язык команд установлен на </translation>
     </message>

@@ -1,6 +1,4 @@
-import QtMultimedia 5.0
 import QtQuick 2.2
-import QtPositioning 5.2
 import Sailfish.Silica 1.0
 
 import org.nemomobile.dbus 2.0
@@ -28,13 +26,6 @@ Page {
         id: busyIndicator
         anchors.centerIn: parent
         size: BusyIndicatorSize.Large
-    }
-
-    Audio { id: audio }
-
-    PositionSource {
-        id: positionSource
-        active: true
     }
 
     BluetoothSwitcher { id: bluetoothSwitcher }
@@ -351,7 +342,10 @@ Page {
             audio.source = yandexSpeechKitHelper.generateAnswer(answer, lang, settings.value("yandexskcKey"))
             audio.play()
         }
-        onGotPath: pageStack.push(Qt.resolvedUrl("NavigationPage.qml"), { "path": path })
+        onGotPath: {
+            busyIndicator.running = false
+            pageStack.push(Qt.resolvedUrl("NavigationPage.qml"), { "path": path })
+        }
     }
 
     Connections {

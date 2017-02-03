@@ -13,6 +13,7 @@ class NavigationStep : public QObject
     Q_PROPERTY(double startLng READ startLng CONSTANT)
     Q_PROPERTY(double endLat READ endLat CONSTANT)
     Q_PROPERTY(double endLng READ endLng CONSTANT)
+    Q_PROPERTY(bool isCurrent READ isCurrent WRITE setIsCurrent NOTIFY isCurrentChanged)
 
 public:
     explicit NavigationStep(QObject *parent = 0);
@@ -27,6 +28,12 @@ public:
     double endLat() const;
     double endLng() const;
 
+    bool isCurrent() const;
+    void setIsCurrent(bool isCurrent);
+
+signals:
+    void isCurrentChanged(bool isCurrent);
+
 private:
     QString _text;
     QString _distance;
@@ -35,6 +42,7 @@ private:
     double _startLng;
     double _endLat;
     double _endLng;
+    bool _isCurrent = false;
 };
 
 #endif // NAVIGATIONSTEP_H

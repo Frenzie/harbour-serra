@@ -28,7 +28,9 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+import QtMultimedia 5.0
 import QtQuick 2.0
+import QtPositioning 5.2
 import Sailfish.Silica 1.0
 import org.nemomobile.notifications 1.0
 import "pages"
@@ -53,6 +55,14 @@ ApplicationWindow
             text = text.split(engToRus ? eng[x].toUpperCase() : rus[x].toUpperCase()).join(engToRus ? rus[x].toUpperCase() : eng[x].toUpperCase());
         }
         return text;
+    }
+
+    Audio { id: audio }
+
+    PositionSource {
+        id: positionSource
+        updateInterval: 1000
+        active: true
     }
 
     Timer {
