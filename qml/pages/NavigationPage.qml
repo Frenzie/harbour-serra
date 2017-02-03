@@ -97,7 +97,7 @@ Page {
                 var t3 = Math.sin(a1) * Math.sin(b1)
                 var tt = Math.acos(t1 + t2 + t3)
                 var l = 6367444.6571225 * tt
-                path[index].isCurrent = l <= 5
+                if (!path[index].isCurrent) path[index].isCurrent = l <= 5
             }
         }
     }
