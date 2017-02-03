@@ -21,6 +21,9 @@ Page {
         ListElement { command: "погода в <город> завтра/послезавтра"; type: 0 }
         ListElement { command: "какая погода в <город> завтра/послезавтра"; type: 0 }
 
+        ListElement { command: "Навигация"; type: 1 }
+        ListElement { command: "как доехать до <место/адрес>"; type: 0 }
+
         ListElement { command: "Мультимедиа"; type: 1 }
         ListElement { command: "сдела[й/ть] селфи"; type: 0 }
 
@@ -64,6 +67,9 @@ Page {
         ListElement { command: "what weather [day after] tomorrow"; type: 0 }
         ListElement { command: "weather in <city> [day after] tomorrow"; type: 0 }
         ListElement { command: "what weather in <city>] [day after] tomorrow"; type: 0 }
+
+        ListElement { command: "Navigation"; type: 1 }
+        ListElement { command: "navigate to <place/address>"; type: 0 }
 
         ListElement { command: "Multimedia"; type: 1 }
         ListElement { command: "take a selfie"; type: 0 }

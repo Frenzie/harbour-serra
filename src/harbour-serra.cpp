@@ -41,6 +41,7 @@
 #include <QFile>
 
 #include "commandsparser.h"
+#include "googlemapshelper.h"
 #include "googlesearchhelper.h"
 #include "recorder.h"
 #include "scriptrunner.h"
@@ -65,6 +66,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
     QScopedPointer<CommandsParser> commandsParser(new CommandsParser(view.data()));
+    QScopedPointer<GoogleMapsHelper> googleMapsHelper(new GoogleMapsHelper(view.data()));
     QScopedPointer<GoogleSearchHelper> googleSearchHelper(new GoogleSearchHelper(view.data()));
     QScopedPointer<Recorder> recorder(new Recorder(view.data()));
     QScopedPointer<ScriptRunner> scriptRunner(new ScriptRunner(view.data()));
@@ -74,6 +76,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<YandexSpeechKitHelper> yandexSpeechKitHelper(new YandexSpeechKitHelper(view.data()));
 
     view->rootContext()->setContextProperty("commandsParser", commandsParser.data());
+    view->rootContext()->setContextProperty("googleMapsHelper", googleMapsHelper.data());
     view->rootContext()->setContextProperty("googleSearchHelper", googleSearchHelper.data());
     view->rootContext()->setContextProperty("recorder", recorder.data());
     view->rootContext()->setContextProperty("scriptRunner", scriptRunner.data());

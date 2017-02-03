@@ -20,6 +20,10 @@ Page {
     property int _offset: 0
     property bool isWeather: false
 
+    property bool isNavigation: false
+    property string start: ""
+    property string finish: ""
+
     BusyIndicator {
         id: busyIndicator
         anchors.centerIn: parent
@@ -133,11 +137,11 @@ Page {
 
             onSearchStarted: {
                 busyIndicator.running = true
-                listView.model.clear()
                 _query = searchQueryField.text
-                _isNews = false
-                _offset = 0
-                listView.headerItem.text = ""
+//                listView.model.clear()
+//                _isNews = false
+//                _offset = 0
+//                listView.headerItem.text = ""
             }
         }
     }
@@ -210,6 +214,7 @@ Page {
                         _query = query.split(" ").slice(startIndex).join(" ")
                         _isNews = true
                         _offset = 0
+                        listView.headerItem.text = ""
                         googleSearchHelper.getSearchPage(_query, _isNews)
                         isSimpleCommand = false
                         break
@@ -302,6 +307,22 @@ Page {
                         else answer = "GPS выключен"
                         isSimpleCommand = true
                         break;
+                    case 20:
+                        var offset = 2
+                        if (settings.value("lang") === "ru-RU") offset = 3
+                        start = positionSource.position.coordinate.latitude + "," + positionSource.position.coordinate.longitude
+                        finish = query.split(" ").slice(offset).join("+")
+                        googleMapsHelper.getDistance(start, finish, settings.value("lang"), "")
+                        isNavigation = true
+                        isSimpleCommand = false
+                        break;
+                    case 21:
+                        if (isNavigation) {
+                            googleMapsHelper.getDirection(start, finish, settings.value("lang"), "")
+                            isCommonRequest = false
+                            isNavigation = false
+                        }
+                        break;
                     default:
                         isSimpleCommand = false
                         break
@@ -311,6 +332,7 @@ Page {
                 _query = query
                 _isNews = false
                 _offset = 0
+                listView.headerItem.text = ""
                 googleSearchHelper.getSearchPage(_query)
             }
             if (answer !== "") {
@@ -318,6 +340,18 @@ Page {
                 audio.play()
             }
         }
+    }
+
+    Connections {
+        target: googleMapsHelper
+        onGotResponce: {
+            listView.headerItem.text = answer
+            var lang = settings.value("lang")
+            if (lang === "") lang = "ru-RU"
+            audio.source = yandexSpeechKitHelper.generateAnswer(answer, lang, settings.value("yandexskcKey"))
+            audio.play()
+        }
+        onGotPath: pageStack.push(Qt.resolvedUrl("NavigationPage.qml"), { "path": path })
     }
 
     Connections {
@@ -355,13 +389,16 @@ Page {
     Connections {
         target: yandexSpeechKitHelper
         onGotWeatherData: {
-//            console.log("onGotWeatherData --> ", city, day)
-            if (city !== "" && day !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), day, settings.value("weatherKey"))
-            else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city), settings.value("weatherKey"))
-            else if (day !== 0)
-                weatherHelper.getWeatherByCoordsWithDate(positionSource.position.coordinate.latitude,
-                                                         positionSource.position.coordinate.longitude,
-                                                         day, settings.value("weatherKey"))
+            if (isWeather) {
+                if (city !== "" && day !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), day, settings.value("weatherKey"))
+                else if (city !== "") weatherHelper.getWeatherByCityName(transliterate(city), settings.value("weatherKey"))
+                else if (day !== 0)
+                    weatherHelper.getWeatherByCoordsWithDate(positionSource.position.coordinate.latitude,
+                                                             positionSource.position.coordinate.longitude,
+                                                             day, settings.value("weatherKey"))
+            } else {
+                console.log("onGotWeatherData --> ", city)
+            }
         }
         onGotResponce: {
 //            console.log("onGotResponce --> ", query)

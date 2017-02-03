@@ -27,22 +27,22 @@
 <context>
     <name>CommandsPage</name>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="98"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="104"/>
         <source>Commands list</source>
         <translation>Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="129"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="135"/>
         <source>Commands language:</source>
         <translation>Язык команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="147"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="153"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="152"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="158"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
@@ -91,6 +91,14 @@
     </message>
 </context>
 <context>
+    <name>NavigationPage</name>
+    <message>
+        <location filename="../qml/pages/NavigationPage.qml" line="13"/>
+        <source>Path</source>
+        <translation>Маршрут</translation>
+    </message>
+</context>
+<context>
     <name>SearchBox</name>
     <message>
         <location filename="../qml/views/SearchBox.qml" line="76"/>
@@ -102,27 +110,27 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="50"/>
+        <location filename="../qml/pages/SearchPage.qml" line="54"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="55"/>
+        <location filename="../qml/pages/SearchPage.qml" line="59"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="60"/>
+        <location filename="../qml/pages/SearchPage.qml" line="64"/>
         <source>Commands list</source>
         <translation>Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="86"/>
+        <location filename="../qml/pages/SearchPage.qml" line="90"/>
         <source>Load more</source>
         <translation>Дальше</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="411"/>
+        <location filename="../qml/pages/SearchPage.qml" line="448"/>
         <source>Commands language is set to </source>
         <translation>Язык команд установлен на </translation>
     </message>

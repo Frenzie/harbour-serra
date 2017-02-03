@@ -74,6 +74,13 @@
     </message>
 </context>
 <context>
+    <name>NavigationPage</name>
+    <message>
+        <source>Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchBox</name>
     <message>
         <source>Search query</source>
