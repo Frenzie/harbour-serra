@@ -30,7 +30,7 @@ void YandexSpeechKitHelper::recognizeQuery(QString path_to_file, QString lang, Q
         url.setQuery(query);
 //        qDebug() << url;
         QNetworkRequest request(url);
-        request.setHeader(QNetworkRequest::ContentTypeHeader, "audio/x-wav");
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "audio/x-speex");
         request.setHeader(QNetworkRequest::ContentLengthHeader, file->size());
         _manager->post(request, file->readAll());
         file->close();

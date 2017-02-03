@@ -1,10 +1,10 @@
 #include "recorder.h"
 
 Recorder::Recorder(QObject *parent) : QObject(parent) {
-    _settings.setCodec("audio/PCM");
+    _settings.setCodec("audio/speex");
     _settings.setQuality(QMultimedia::NormalQuality);
     _audioRecorder.setEncodingSettings(_settings);
-    _audioRecorder.setContainerFormat("wav");
+    _audioRecorder.setContainerFormat("ogg");
 }
 
 void Recorder::startRecord() {
