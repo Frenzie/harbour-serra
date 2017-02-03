@@ -81,6 +81,13 @@ Page {
                 text: "Open Weather Map"
                 onClicked: Qt.openUrlExternally("http://openweathermap.org/")
             }
+
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: Theme.buttonWidthMedium
+                text: "Google Maps"
+                onClicked: Qt.openUrlExternally("https://developers.google.com/maps/web-services/")
+            }
         }
 
         VerticalScrollDecorator {}
