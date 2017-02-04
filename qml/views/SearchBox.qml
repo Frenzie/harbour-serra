@@ -113,7 +113,6 @@ Column {
                     isRecording = true
                     recorder.startRecord()
                     recordTimer.start()
-                    feedback.start()
                     recordStarted()
                 }
             }
@@ -123,7 +122,6 @@ Column {
                     audio.stop()
                     isRecording = true
                     recorder.startRecord()
-                    feedback.start()
                     recordStarted()
                 }
             }
@@ -136,7 +134,6 @@ Column {
                     var lang = settings.value("lang")
                     if (lang === "") lang = "ru-RU"
                     yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang, settings.value("yandexskcKey"))
-                    feedback.start()
                     searchStarted()
                 }
             }
@@ -164,7 +161,6 @@ Column {
         onRecognitionStarted: {
             isRecording = false
             isVoiceSearch = true
-            feedback.start()
             searchStarted()
         }
     }

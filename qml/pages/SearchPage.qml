@@ -126,8 +126,9 @@ Page {
             anchors.bottom: parent.bottom
             width: parent.width
 
+            onRecordStarted: busyIndicator.running = true
+
             onSearchStarted: {
-                busyIndicator.running = true
                 _query = searchQueryField.text
                 listView.model.clear()
                 _isNews = false
