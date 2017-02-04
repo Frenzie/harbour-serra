@@ -109,17 +109,21 @@ Column {
                     searchQuery.focus = false
                     searchQuery.text = ""
                 } else if (settings.value("tapandtalk") === "false") {
+                    audio.stop()
                     isRecording = true
                     recorder.startRecord()
                     recordTimer.start()
+                    feedback.start()
                     recordStarted()
                 }
             }
 
             onPressed: {
                 if (!searchQuery.focus && settings.value("tapandtalk") === "true") {
+                    audio.stop()
                     isRecording = true
                     recorder.startRecord()
+                    feedback.start()
                     recordStarted()
                 }
             }
@@ -132,6 +136,7 @@ Column {
                     var lang = settings.value("lang")
                     if (lang === "") lang = "ru-RU"
                     yandexSpeechKitHelper.recognizeQuery(recorder.getActualLocation(), lang, settings.value("yandexskcKey"))
+                    feedback.start()
                     searchStarted()
                 }
             }
@@ -159,6 +164,7 @@ Column {
         onRecognitionStarted: {
             isRecording = false
             isVoiceSearch = true
+            feedback.start()
             searchStarted()
         }
     }

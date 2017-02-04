@@ -129,10 +129,10 @@ Page {
             onSearchStarted: {
                 busyIndicator.running = true
                 _query = searchQueryField.text
-//                listView.model.clear()
-//                _isNews = false
-//                _offset = 0
-//                listView.headerItem.text = ""
+                listView.model.clear()
+                _isNews = false
+                _offset = 0
+                listView.headerItem.text = ""
             }
         }
     }
