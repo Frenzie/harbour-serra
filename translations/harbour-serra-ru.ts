@@ -130,7 +130,7 @@
         <translation>Дальше</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="442"/>
+        <location filename="../qml/pages/SearchPage.qml" line="426"/>
         <source>Commands language is set to </source>
         <translation>Язык команд установлен на </translation>
     </message>

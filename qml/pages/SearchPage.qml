@@ -141,6 +141,7 @@ Page {
         target: commandsParser
         onFinished: {
             isWeather = false
+            isSimpleCommand = true
             var isCommonRequest = true
             var lang = settings.value("lang")
             var answer = ""
@@ -151,14 +152,12 @@ Page {
                         profileControl.profile = "silent"
                         if (lang === "en-US") answer = "Volume is set to 0"
                         else answer = "Звук выключен"
-                        isSimpleCommand = true
                         break
                     case 2:
                         profileControl.ringerVolume = 100
                         profileControl.profile = "general"
                         if (lang === "en-US") answer = "Volume is set to maximum"
                         else answer = "Громкость на максимуме"
-                        isSimpleCommand = true
                         break
                     case 3:
                         profileControl.ringerVolume += 10
@@ -166,7 +165,6 @@ Page {
                         profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
                         if (lang === "en-US") answer = "Volume is increased by 10%"
                         else answer = "Громкость увеличена на 10%"
-                        isSimpleCommand = true
                         break
                     case 4:
                         profileControl.ringerVolume -= 10
@@ -174,7 +172,6 @@ Page {
                         profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
                         if (lang === "en-US") answer = "Volume is decreased by 10%"
                         else answer = "Громкость уменьшена на 10%"
-                        isSimpleCommand = true
                         break
                     case 5:
                         displaySettings.brightness += Math.round(displaySettings.maximumBrightness / 10)
@@ -182,20 +179,17 @@ Page {
                             displaySettings.brightness = displaySettings.maximumBrightness
                         if (lang === "en-US") answer = "Brightness is inceased by 10%"
                         else answer = "Яркость увеличена на 10%"
-                        isSimpleCommand = true
                         break
                     case 6:
                         displaySettings.brightness -= Math.round(displaySettings.maximumBrightness / 10)
                         if (displaySettings.brightness < 1) displaySettings.brightness = 1
                         if (lang === "en-US") answer = "Brightness is decreased by 10%"
                         else answer = "Яркость уменьшена на 10%"
-                        isSimpleCommand = true
                         break
                     case 7:
                         cameraDbus.takeSelfie()
                         if (lang === "en-US") answer = "Opening the camera"
                         else answer = "Открываю камеру"
-                        isSimpleCommand = true
                         break
                     case 8:
                         isCommonRequest = false
@@ -214,7 +208,6 @@ Page {
                         weatherHelper.getWeatherByCoords(positionSource.position.coordinate.latitude,
                                                          positionSource.position.coordinate.longitude,
                                                          settings.value("weatherKey"))
-                        isSimpleCommand = true
                         break
                     case 10:
                         isWeather = true
@@ -236,7 +229,6 @@ Page {
                                 weatherHelper.getWeatherByCoordsWithDate(positionSource.position.coordinate.latitude,
                                                                          positionSource.position.coordinate.longitude, dayOffset, settings.value("weatherKey"))
                         }
-                        isSimpleCommand = true
                         break;
                     case 11:
                         var queryParts = query.split(" ")
@@ -248,55 +240,46 @@ Page {
                         profileControl.profile = volumeLevel > 0 ? "general" : "silent"
                         if (lang === "en-US") answer = "Volume is set to " + profileControl.ringerVolume + "%"
                         else answer = "Громкость установлена на " + profileControl.ringerVolume + "%"
-                        isSimpleCommand = true
                         break
                     case 12:
                         if (!wifiSwitcher.isOn) wifiSwitcher.switchWifi()
                         if (lang === "en-US") answer = "Wi-Fi is on"
                         else answer = "Wi-Fi включен"
-                        isSimpleCommand = true
                         break
                     case 13:
                         if (wifiSwitcher.isOn) wifiSwitcher.switchWifi()
                         if (lang === "en-US") answer = "Wi-Fi is off"
                         else answer = "Wi-Fi выключен"
-                        isSimpleCommand = true
                         break
                     case 14:
                         if (!flashlight.flashlightOn) flashlight.toggleFlashlight()
                         if (lang === "en-US") answer = "Flashlight is on"
                         else answer = "Вспышка включена"
-                        isSimpleCommand = true
                         break
                     case 15:
                         if (flashlight.flashlightOn) flashlight.toggleFlashlight()
                         if (lang === "en-US") answer = "Flashlight is off"
                         else answer = "Вспышка выключена"
-                        isSimpleCommand = true
                         break
                     case 16:
                         if (!bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
                         if (lang === "en-US") answer = "Bluetooth is on"
                         else answer = "Bluetooth включен"
-                        isSimpleCommand = true
                         break;
                     case 17:
                         if (bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
                         if (lang === "en-US") answer = "Bluetooth is off"
                         else answer = "Bluetooth выключен"
-                        isSimpleCommand = true
                         break;
                     case 18:
                         if (!gpsSwitcher.isOn) gpsSwitcher.switchGps()
                         if (lang === "en-US") answer = "GPS is on"
                         else answer = "GPS включен"
-                        isSimpleCommand = true
                         break;
                     case 19:
                         if (gpsSwitcher.isOn) gpsSwitcher.switchGps()
                         if (lang === "en-US") answer = "GPS is off"
                         else answer = "GPS выключен"
-                        isSimpleCommand = true
                         break;
                     case 20:
                         var offset = 2
@@ -318,6 +301,7 @@ Page {
                         isSimpleCommand = false
                         break
                     }
+            recognitionFinished()
             if (isCommonRequest) {
                 listView.model.clear()
                 _query = query

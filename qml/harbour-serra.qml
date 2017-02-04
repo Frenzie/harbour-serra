@@ -46,6 +46,7 @@ ApplicationWindow
     property bool isSimpleCommand: true
 
     signal recognitionStarted()
+    signal recognitionFinished()
 
     function transliterate(text, engToRus) {
         var rus = "щ   ш  ч  ц  ю  я  ё  ж  ъ  ы  э  а б в г д е з и й к л м н о п р с т у ф х ь".split(/ +/g),

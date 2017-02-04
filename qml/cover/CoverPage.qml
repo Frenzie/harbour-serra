@@ -59,9 +59,7 @@ CoverBackground {
 
     Connections {
         target: root
-        onRecognitionStarted: {
-            isRecording = false
-            if (settings.value("donotopen") === "false" || !isSimpleCommand) window.activate()
-        }
+        onRecognitionStarted: isRecording = false
+        onRecognitionFinished: if (settings.value("donotopen") === "false" || !isSimpleCommand) window.activate()
     }
 }
