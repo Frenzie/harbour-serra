@@ -10,9 +10,11 @@ GoogleSearchHelper::~GoogleSearchHelper() {
     _manager = NULL;
 }
 
-void GoogleSearchHelper::getSearchPage(QString query, bool isNews, int offset) {
+void GoogleSearchHelper::getSearchPage(QString query, bool isNews, bool isImages, int offset) {
     QString urlText = "https://www.google.com/search?q=" + query;
     if (isNews) urlText += "&tbm=nws";
+    else if (isImages) urlText += "&tbm=isch";
+    _isImages = isImages;
     if (offset > 0) urlText += QString("&start=%1").arg(offset);
     QUrl url(urlText);
     QNetworkRequest request(url);
@@ -31,19 +33,28 @@ void GoogleSearchHelper::requestFinished(QNetworkReply *reply) {
         if (!answer.captured(0).isEmpty()) emit gotAnswer(_parseAnswer(answer.captured(0)));
 
         _searchResults.clear();
-        QRegularExpression resultRe("<div class=\"g\">.*?</div>");
+        _imagesResult.clear();
+        QRegularExpression resultRe(_isImages ? "ct=.*?;" : "<div class=\"g\">.*?</div>");
+//        QRegularExpression resultRe("ct=.*?;");
         QRegularExpressionMatchIterator resultsIterator = resultRe.globalMatch(data);
         while (resultsIterator.hasNext()) {
             QRegularExpressionMatch result = resultsIterator.next();
             QString resultText = result.captured(0);
-            resultText = resultText.replace(QRegularExpression("<b.*?>"), "");
-            resultText = resultText.replace(QRegularExpression("</b>"), "");
+            /*resultText = resultText.replace(QRegularExpression("<b.*?>"), "");
+            resultText = resultText.replace(QRegularExpression("</b>"), "");*/
+            resultText = resultText.replace(QRegularExpression(_isImages ? "^.*?\\\\x3d" : "<b.*?>"), "");
+            resultText = resultText.replace(QRegularExpression(_isImages ? "\\\\.*$" : "</b>"), "");
 //            qDebug() << resultText;
-            SearchResultObject *searchResult = _parseSearchResult(new QXmlStreamReader(resultText));
-            if (!searchResult->title().isEmpty() && !searchResult->url().isEmpty())
-                _searchResults.append(searchResult);
+            if (_isImages) {
+                if (resultText.startsWith("http")) _imagesResult.append(resultText);
+            } else {
+                SearchResultObject *searchResult = _parseSearchResult(new QXmlStreamReader(resultText));
+                if (!searchResult->title().isEmpty() && !searchResult->url().isEmpty())
+                    _searchResults.append(searchResult);
+            }
         }
-        emit gotSearchPage(QVariant::fromValue(_searchResults));
+        if (_isImages) gotImages(_imagesResult);
+        else emit gotSearchPage(QVariant::fromValue(_searchResults));
     } else {
         QNetworkRequest request(url);
         request.setHeader(QNetworkRequest::UserAgentHeader,

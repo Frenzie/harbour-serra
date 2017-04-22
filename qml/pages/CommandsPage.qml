@@ -10,6 +10,8 @@ Page {
         ListElement { command: "<поисковый-запрос>"; type: 0 }
         ListElement { command: "какие новости <тема>"; type: 0 }
         ListElement { command: "какие новости о/об <тема>"; type: 0 }
+        ListElement { command: "фотографии <тема>"; type: 0 }
+        ListElement { command: "картинки <тема>"; type: 0 }
 
         ListElement { command: "Погода"; type: 1 }
         ListElement { command: "погода"; type: 0 }
@@ -57,6 +59,8 @@ Page {
         ListElement { command: "<search-query>"; type: 0 }
         ListElement { command: "what news <theme>"; type: 0 }
         ListElement { command: "what news about <theme>"; type: 0 }
+        ListElement { command: "photos <theme>"; type: 0 }
+        ListElement { command: "images <theme>"; type: 0 }
 
         ListElement { command: "Weather"; type: 1 }
         ListElement { command: "weather"; type: 0 }

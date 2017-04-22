@@ -57,6 +57,30 @@ Page {
             }
         }
 
+        SilicaGridView {
+            id: gridView
+            anchors.fill: parent
+            anchors.bottomMargin: searchBox.height
+            clip: true
+            visible: false
+
+            cellWidth: width / 3
+            cellHeight: cellWidth
+
+            delegate: Image {
+                width: parent.width / 3
+                height: width
+                fillMode: Image.PreserveAspectCrop
+                source: modelData
+                onStatusChanged: if (status == Image.Error) {
+                                     fillMode = Image.Pad
+                                     source = "image://theme/icon-m-dismiss"
+                                 }
+            }
+
+            VerticalScrollDecorator {}
+        }
+
         SilicaListView {
             id: listView
             anchors.fill: parent
@@ -81,7 +105,7 @@ Page {
                 text: qsTr("Load more")
                 onClicked: {
                     _offset += 10
-                    googleSearchHelper.getSearchPage(_query, _isNews, _offset)
+                    googleSearchHelper.getSearchPage(_query, _isNews, false, _offset)
                 }
             }
 
@@ -298,6 +322,10 @@ Page {
                             isNavigation = false
                         }
                         break;
+                    case 22:
+                        isSimpleCommand = false
+                        isCommonRequest = false
+                        googleSearchHelper.getSearchPage(query.split(" ").slice(1).join(" "), false, true)
                     default:
                         isSimpleCommand = false
                         break
@@ -348,10 +376,19 @@ Page {
         }
         onGotSearchPage: {
             busyIndicator.running = false
+            gridView.visible = false
+            listView.visible = true
             for (var index in results) {
                 listView.model.append({ title: results[index].title,
                                         url:   results[index].url })
             }
+        }
+        onGotImages: {
+            busyIndicator.running = false
+            gridView.visible = true
+            listView.visible = false
+            gridView.model = images
+//            console.log(images)
         }
     }
 

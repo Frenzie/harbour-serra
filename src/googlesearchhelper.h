@@ -18,7 +18,7 @@ public:
     explicit GoogleSearchHelper(QObject *parent = 0);
     ~GoogleSearchHelper();
 
-    Q_INVOKABLE void getSearchPage(QString query, bool isNews = false, int offset = 0);
+    Q_INVOKABLE void getSearchPage(QString query, bool isNews = false, bool isImages = false, int offset = 0);
 
 public slots:
     void requestFinished(QNetworkReply *reply);
@@ -26,6 +26,7 @@ public slots:
 signals:
     void gotAnswer(QString answer);
     void gotSearchPage(QVariant results);
+    void gotImages(QStringList images);
 
 private:
 //    void _parseWebPage(QXmlStreamReader *element);
@@ -34,6 +35,8 @@ private:
 
     QNetworkAccessManager *_manager;
     QList<QObject*> _searchResults;
+    QStringList _imagesResult;
+    bool _isImages = false;
 };
 
 #endif // GOOGLESEARCHHELPER_H

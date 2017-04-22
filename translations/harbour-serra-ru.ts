@@ -27,22 +27,22 @@
 <context>
     <name>CommandsPage</name>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="104"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="108"/>
         <source>Commands list</source>
         <translation>Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="135"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="139"/>
         <source>Commands language:</source>
         <translation>Язык команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="153"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="157"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="158"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="162"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
@@ -125,12 +125,12 @@
         <translation>Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="81"/>
+        <location filename="../qml/pages/SearchPage.qml" line="105"/>
         <source>Load more</source>
         <translation>Дальше</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="427"/>
+        <location filename="../qml/pages/SearchPage.qml" line="464"/>
         <source>Commands language is set to </source>
         <translation>Язык команд установлен на </translation>
     </message>
