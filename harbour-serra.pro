@@ -61,7 +61,8 @@ DISTFILES += \
     qml/utils/BluetoothSwitcher.qml \
     qml/utils/GpsSwitcher.qml \
     qml/pages/CustomCommandsPage.qml \
-    qml/pages/NavigationPage.qml
+    qml/pages/NavigationPage.qml \
+    qml/pages/ImageViewPage.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

@@ -112,27 +112,27 @@
     <message>
         <location filename="../qml/pages/SearchPage.qml" line="45"/>
         <source>About</source>
-        <translation>О программе</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SearchPage.qml" line="50"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation type="unfinished">Настройки</translation>
     </message>
     <message>
         <location filename="../qml/pages/SearchPage.qml" line="55"/>
         <source>Commands list</source>
-        <translation>Список команд</translation>
+        <translation type="unfinished">Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="105"/>
+        <location filename="../qml/pages/SearchPage.qml" line="112"/>
         <source>Load more</source>
-        <translation>Дальше</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="464"/>
+        <location filename="../qml/pages/SearchPage.qml" line="471"/>
         <source>Commands language is set to </source>
-        <translation>Язык команд установлен на </translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -68,6 +68,7 @@ Page {
             cellHeight: cellWidth
 
             delegate: Image {
+                id: imageItem
                 width: parent.width / 3
                 height: width
                 fillMode: Image.PreserveAspectCrop
@@ -76,6 +77,12 @@ Page {
                                      fillMode = Image.Pad
                                      source = "image://theme/icon-m-dismiss"
                                  }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: if (imageItem.source !== "image://theme/icon-m-dismiss")
+                                   pageStack.push(Qt.resolvedUrl("ImageViewPage.qml"), { _url: modelData })
+                }
             }
 
             VerticalScrollDecorator {}
