@@ -27,22 +27,22 @@
 <context>
     <name>CommandsPage</name>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="108"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="110"/>
         <source>Commands list</source>
         <translation>Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="139"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="141"/>
         <source>Commands language:</source>
         <translation>Язык команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="157"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="159"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="162"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="164"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
@@ -125,12 +125,17 @@
         <translation type="unfinished">Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="112"/>
+        <location filename="../qml/pages/SearchPage.qml" line="99"/>
+        <source>Choose the number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="137"/>
         <source>Load more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="471"/>
+        <location filename="../qml/pages/SearchPage.qml" line="528"/>
         <source>Commands language is set to </source>
         <translation type="unfinished"></translation>
     </message>

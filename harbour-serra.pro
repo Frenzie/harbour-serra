@@ -13,7 +13,7 @@
 TARGET = harbour-serra
 
 CONFIG += sailfishapp
-QT += multimedia dbus
+QT += multimedia dbus sql
 
 SOURCES += src/harbour-serra.cpp \
     src/yandexsearchhelper.cpp \
@@ -28,7 +28,9 @@ SOURCES += src/harbour-serra.cpp \
     src/commanditem.cpp \
     src/scriptrunner.cpp \
     src/googlemapshelper.cpp \
-    src/navigationstep.cpp
+    src/navigationstep.cpp \
+    src/vkstream.cpp \
+    src/contactshelper.cpp
 
 OTHER_FILES += qml/harbour-serra.qml \
     qml/cover/CoverPage.qml \
@@ -77,5 +79,7 @@ HEADERS += \
     src/commanditem.h \
     src/scriptrunner.h \
     src/googlemapshelper.h \
-    src/navigationstep.h
+    src/navigationstep.h \
+    src/vkstream.h \
+    src/contactshelper.h
 

@@ -37,6 +37,7 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^как ((про)|(до))?ехать до .*$").match(command).hasMatch()) return 20;
     else if (QRegularExpression("^начать$").match(command).hasMatch()) return 21;
     else if (QRegularExpression("^((фотографии)|(картинки)) .*$").match(command).hasMatch()) return 22;
+    else if (QRegularExpression("^позвони(ть)? .*$").match(command).hasMatch()) return 23;
     else return 0;
 }
 
@@ -63,5 +64,6 @@ int CommandsParser::_parseEngCommand(QString command) {
     else if (QRegularExpression("^navigate to .*$").match(command).hasMatch()) return 20;
     else if (QRegularExpression("^start$").match(command).hasMatch()) return 21;
     else if (QRegularExpression("^((photos)|(images)) .*$").match(command).hasMatch()) return 22;
+    else if (QRegularExpression("^call .*$").match(command).hasMatch()) return 23;
     else return 0;
 }

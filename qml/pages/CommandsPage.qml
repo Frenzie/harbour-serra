@@ -50,6 +50,7 @@ Page {
         ListElement { command: "уменьш[ь/ить] громкость"; type: 0 }
         ListElement { command: "увелич[ь/ить] яркость"; type: 0 }
         ListElement { command: "уменьш[ь/ить] яркость"; type: 0 }
+        ListElement { command: "позвони <имя>"; type: 0 }
     }
 
     ListModel {
@@ -96,6 +97,7 @@ Page {
         ListElement { command: "decrease volume"; type: 0 }
         ListElement { command: "increase brightness"; type: 0 }
         ListElement { command: "decrease brightness"; type: 0 }
+        ListElement { command: "call <name>"; type: 0 }
     }
 
     SilicaListView {

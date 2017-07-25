@@ -89,6 +89,31 @@ Page {
         }
 
         SilicaListView {
+            id: numbersListView
+            anchors.fill: parent
+            anchors.bottomMargin: searchBox.height
+            clip: true
+            visible: false
+
+            header: PageHeader {
+                title: qsTr("Choose the number")
+            }
+
+            delegate: BackgroundItem {
+                width: parent.width
+                height: Theme.itemSizeMedium
+
+                Label {
+                    width: parent.width - 2 * Theme.horizontalPageMargin
+                    anchors.centerIn: parent
+                    text: numbersListView.model[index]
+                }
+
+                onClicked: voicecall.dialNumber(numbersListView.model[index])
+            }
+        }
+
+        SilicaListView {
             id: listView
             anchors.fill: parent
             anchors.bottomMargin: searchBox.height
@@ -333,6 +358,14 @@ Page {
                         isSimpleCommand = false
                         isCommonRequest = false
                         googleSearchHelper.getSearchPage(query.split(" ").slice(1).join(" "), false, true)
+                        break
+                    case 23:
+                        isCommonRequest = false
+                        var name = query.split(" ").slice(1).join(" ")
+                        if (settings.value("lang") === "ru-RU")
+                            yandexSpeechKitHelper.parseName(name, settings.value("yandexskcKey"))
+                        else voicecall.dial(contactsHelper.getPhoneNumbers(name))
+                        break
                     default:
                         isSimpleCommand = false
                         break
@@ -411,6 +444,7 @@ Page {
 
     Connections {
         target: yandexSpeechKitHelper
+        onGotNames: voicecall.dial(contactsHelper.getPhoneNumbers(names))
         onGotWeatherData: {
             if (isWeather) {
                 if (city !== "" && day !== 0) weatherHelper.getWeatherByCityNameWithDate(transliterate(city), day, settings.value("weatherKey"))
@@ -458,6 +492,29 @@ Page {
 
         function takeSelfie() {
             call("showFrontViewfinder", undefined)
+        }
+    }
+
+    DBusInterface {
+        id: voicecall
+        service: "com.jolla.voicecall.ui"
+        path: "/"
+        iface: "com.jolla.voicecall.ui"
+
+        function dial(numbers) {
+            busyIndicator.running = false
+            if (numbers.length === 1) call('dial', numbers[0])
+            else if (numbers.length > 1) {
+                numbersListView.model = numbers
+                numbersListView.visible = true
+                listView.visible = false
+            }
+        }
+
+        function dialNumber(number) {
+            numbersListView.visible = false
+            listView.visible = true
+            call('dial', number)
         }
     }
 

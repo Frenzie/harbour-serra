@@ -19,6 +19,7 @@ QString YandexSpeechKitHelper::generateAnswer(QString text, QString lang, QStrin
 void YandexSpeechKitHelper::recognizeQuery(QString path_to_file, QString lang, QString key) {
     if (key.isNull() || key.isEmpty()) key = "9d7d557a-99dc-44b2-98c8-596cdf3c5dd3";
     _isParsing = false;
+    _isName = false;
     QFile *file = new QFile(path_to_file);
     if (file->open(QIODevice::ReadOnly)) {
         QUrlQuery query;
@@ -52,6 +53,19 @@ void YandexSpeechKitHelper::parseQuery(QString queryText, QString key) {
     _manager->get(request);
 }
 
+void YandexSpeechKitHelper::parseName(QString name, QString key) {
+    if (key.isNull() || key.isEmpty()) key = "9d7d557a-99dc-44b2-98c8-596cdf3c5dd3";
+    _isName = true;
+    QUrlQuery query;
+    query.addQueryItem("key", key);
+    query.addQueryItem("text", name);
+    query.addQueryItem("topic", "Name");
+    QUrl url("https://vins-markup.voicetech.yandex.net/markup/0.x/");
+    url.setQuery(query);
+    QNetworkRequest request(url);
+    _manager->get(request);
+}
+
 void YandexSpeechKitHelper::requestFinished(QNetworkReply *reply) {
     QUrl url = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
     if (url.isEmpty()) {
@@ -65,6 +79,24 @@ void YandexSpeechKitHelper::requestFinished(QNetworkReply *reply) {
             QJsonArray geoAddr = jDoc.object().value("GeoAddr").toArray().at(0).toObject().value("Fields").toArray();
             QString cityName = geoAddr.at(0).toObject().value("Name").toString();
             emit gotWeatherData(cityName, dayOffset);
+        } if (_isName) {
+            QStringList result;
+            QJsonObject jObj = QJsonDocument::fromJson(data.toUtf8()).object();
+            /*if (jObj.contains("Fio")) {
+                //
+            } else*/ if (jObj.contains("Morph")) {
+                QJsonArray morphs = jObj.value("Morph").toArray();
+                foreach (QJsonValue val1, morphs) {
+                    int length = result.size();
+                    if (length == 0) foreach (QJsonValue val2, val1.toObject().value("Lemmas").toArray()) result.append(val2.toObject().value("Text").toString());
+                    else for (int counter = 0; counter < length; ++counter) {
+                        QString name = result.takeFirst();
+                        foreach (QJsonValue val2, val1.toObject().value("Lemmas").toArray())
+                            result.append(name + " " + val2.toObject().value("Text").toString());
+                    }
+                }
+            } else result.append(jObj.value("OriginalRequest").toString());
+            emit gotNames(result);
         } else {
             data = data.replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
             _parseResponce(new QXmlStreamReader(data));
