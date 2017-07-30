@@ -19,6 +19,11 @@
         <translation>Пожертвование</translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="95"/>
+        <source>Thanks for icon</source>
+        <translation>За иконку спасибо</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="61"/>
         <source>Data providers:</source>
         <translation>Провайдеры данных:</translation>

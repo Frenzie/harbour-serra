@@ -88,6 +88,12 @@ Page {
                 text: "Google Maps"
                 onClicked: Qt.openUrlExternally("https://developers.google.com/maps/web-services/")
             }
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                text: qsTr("Thanks for icon") + ":<br>R. Sabirov."
+            }
         }
 
         VerticalScrollDecorator {}

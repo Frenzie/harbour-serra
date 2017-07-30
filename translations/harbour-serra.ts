@@ -19,6 +19,10 @@
         <source>Data providers:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Thanks for icon</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommandsPage</name>

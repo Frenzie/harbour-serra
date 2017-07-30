@@ -50,7 +50,7 @@ Page {
         ListElement { command: "уменьш[ь/ить] громкость"; type: 0 }
         ListElement { command: "увелич[ь/ить] яркость"; type: 0 }
         ListElement { command: "уменьш[ь/ить] яркость"; type: 0 }
-        ListElement { command: "позвони <имя>"; type: 0 }
+        ListElement { command: "позвони[ть] <имя>"; type: 0 }
     }
 
     ListModel {
