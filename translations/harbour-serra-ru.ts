@@ -19,7 +19,7 @@
         <translation>Пожертвование</translation>
     </message>
     <message>
-        <location filename="../qml/pages/AboutPage.qml" line="95"/>
+        <location filename="../qml/pages/AboutPage.qml" line="97"/>
         <source>Thanks for icon</source>
         <translation>За иконку спасибо</translation>
     </message>
@@ -115,32 +115,37 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="45"/>
+        <location filename="../qml/pages/SearchPage.qml" line="51"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="50"/>
+        <location filename="../qml/pages/SearchPage.qml" line="56"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="55"/>
+        <location filename="../qml/pages/SearchPage.qml" line="61"/>
         <source>Commands list</source>
         <translation type="unfinished">Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="99"/>
+        <location filename="../qml/pages/SearchPage.qml" line="94"/>
+        <source>Create ambience</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SearchPage.qml" line="119"/>
         <source>Choose the number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="137"/>
+        <location filename="../qml/pages/SearchPage.qml" line="157"/>
         <source>Load more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="528"/>
+        <location filename="../qml/pages/SearchPage.qml" line="539"/>
         <source>Commands language is set to </source>
         <translation type="unfinished"></translation>
     </message>

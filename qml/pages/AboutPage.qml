@@ -32,7 +32,7 @@ Page {
             Label {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
-                text: "v0.3.1"
+                text: "v0.4.1"
             }
 
             Label {
@@ -91,8 +91,11 @@ Page {
 
             Label {
                 width: parent.width
+                linkColor: Theme.highlightColor
+                onLinkActivated: Qt.openUrlExternally(link)
                 wrapMode: Text.WordWrap
-                text: qsTr("Thanks for icon") + ":<br>R. Sabirov."
+                text: qsTr("Thanks for icon") + ":<br>" +
+                        "<a href=\"https://www.facebook.com/profile.php?id=100012217500017\">Ruslan Sabirov.</a>"
             }
         }
 

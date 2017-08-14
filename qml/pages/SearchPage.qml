@@ -28,11 +28,17 @@ Page {
         size: BusyIndicatorSize.Large
     }
 
-    BluetoothSwitcher { id: bluetoothSwitcher }
+    AmbienceControl { id: ambienceControl } // experimental
+
+    BluetoothControl { id: bluetoothControl }
+
+    BrightnessContol { id: brightnessContol }
 
     FlashlightSwitcher { id: flashlight }
 
-    GpsSwitcher { id: gpsSwitcher }
+    FlightControl { id: flightControl }
+
+    VolumeControl { id: volumeControl }
 
     WiFiSwitcher { id: wifiSwitcher }
 
@@ -67,21 +73,35 @@ Page {
             cellWidth: width / 3
             cellHeight: cellWidth
 
-            delegate: Image {
-                id: imageItem
+            delegate: ListItem {
                 width: parent.width / 3
                 height: width
-                fillMode: Image.PreserveAspectCrop
-                source: modelData
-                onStatusChanged: if (status == Image.Error) {
-                                     fillMode = Image.Pad
-                                     source = "image://theme/icon-m-dismiss"
-                                 }
 
-                MouseArea {
+                Image {
+                    id: imageItem
                     anchors.fill: parent
-                    onClicked: if (imageItem.source !== "image://theme/icon-m-dismiss")
-                                   pageStack.push(Qt.resolvedUrl("ImageViewPage.qml"), { _url: modelData })
+                    fillMode: Image.PreserveAspectCrop
+                    source: modelData
+                    onStatusChanged: if (status == Image.Error) {
+                                         fillMode = Image.Pad
+                                         source = "image://theme/icon-m-dismiss"
+                                     }
+                }
+
+                menu: ContextMenu {
+
+                    MenuItem {
+                        text: qsTr("Create ambience")
+                        onClicked: {
+                            if (imageItem.source !== "image://theme/icon-m-dismiss")
+                                ambienceControl.createAmbience(modelData);
+                        }
+                    }
+                }
+
+                onClicked: {
+                    if (imageItem.source !== "image://theme/icon-m-dismiss")
+                        pageStack.push(Qt.resolvedUrl("ImageViewPage.qml"), { _url: modelData });
                 }
             }
 
@@ -205,41 +225,32 @@ Page {
 //            console.log("Command --> ", commandCode)
             switch (commandCode) {
                     case 1:
-                        profileControl.ringerVolume = 0
-                        profileControl.profile = "silent"
+                        volumeControl.setMinimumVolume()
                         if (lang === "en-US") answer = "Volume is set to 0"
                         else answer = "Звук выключен"
                         break
                     case 2:
-                        profileControl.ringerVolume = 100
-                        profileControl.profile = "general"
+                        volumeControl.setMaximumVolume()
                         if (lang === "en-US") answer = "Volume is set to maximum"
                         else answer = "Громкость на максимуме"
                         break
                     case 3:
-                        profileControl.ringerVolume += 10
-                        if (profileControl.ringerVolume > 100) profileControl.ringerVolume = 100
-                        profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
+                        volumeControl.increaseVolume(10)
                         if (lang === "en-US") answer = "Volume is increased by 10%"
                         else answer = "Громкость увеличена на 10%"
                         break
                     case 4:
-                        profileControl.ringerVolume -= 10
-                        if (profileControl.ringerVolume < 0) profileControl.ringerVolume = 0
-                        profileControl.profile = profileControl.ringerVolume > 0 ? "general" : "silent"
+                        volumeControl.decreaseVolume(10)
                         if (lang === "en-US") answer = "Volume is decreased by 10%"
                         else answer = "Громкость уменьшена на 10%"
                         break
                     case 5:
-                        displaySettings.brightness += Math.round(displaySettings.maximumBrightness / 10)
-                        if (displaySettings.brightness > displaySettings.maximumBrightness)
-                            displaySettings.brightness = displaySettings.maximumBrightness
+                        brightnessContol.increaseBrightness(10)
                         if (lang === "en-US") answer = "Brightness is inceased by 10%"
                         else answer = "Яркость увеличена на 10%"
                         break
                     case 6:
-                        displaySettings.brightness -= Math.round(displaySettings.maximumBrightness / 10)
-                        if (displaySettings.brightness < 1) displaySettings.brightness = 1
+                        brightnessContol.decreaseBrightness(10)
                         if (lang === "en-US") answer = "Brightness is decreased by 10%"
                         else answer = "Яркость уменьшена на 10%"
                         break
@@ -289,14 +300,15 @@ Page {
                         break;
                     case 11:
                         var queryParts = query.split(" ")
+                        var lastPart = queryParts[queryParts.length-1]
                         var volumeLevel = 0
-                        if (queryParts.length === 3) volumeLevel = parseInt(queryParts[1])
+                        if (lastPart[lastPart.length-1] === "%") volumeLevel = parseInt(lastPart.slice(0, -1))
+                        else if (queryParts.length === 3) volumeLevel = parseInt(queryParts[1])
                         else if (queryParts.length === 4) volumeLevel = parseInt(queryParts[2])
                         else if (queryParts.length === 5) volumeLevel = parseInt(queryParts[3])
-                        profileControl.ringerVolume = volumeLevel
-                        profileControl.profile = volumeLevel > 0 ? "general" : "silent"
-                        if (lang === "en-US") answer = "Volume is set to " + profileControl.ringerVolume + "%"
-                        else answer = "Громкость установлена на " + profileControl.ringerVolume + "%"
+                        volumeControl.setVolume(volumeLevel)
+                        if (lang === "en-US") answer = "Volume is set to " + volumeLevel + "%"
+                        else answer = "Громкость установлена на " + volumeLevel + "%"
                         break
                     case 12:
                         if (!wifiSwitcher.isOn) wifiSwitcher.switchWifi()
@@ -319,25 +331,25 @@ Page {
                         else answer = "Вспышка выключена"
                         break
                     case 16:
-                        if (!bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
+                        bluetoothControl.turnOnBluetooth()
                         if (lang === "en-US") answer = "Bluetooth is on"
                         else answer = "Bluetooth включен"
                         break;
                     case 17:
-                        if (bluetoothSwitcher.isOn) bluetoothSwitcher.switchBt()
+                        bluetoothControl.turnOffBluetooth()
                         if (lang === "en-US") answer = "Bluetooth is off"
                         else answer = "Bluetooth выключен"
                         break;
-                    case 18:
-                        if (!gpsSwitcher.isOn) gpsSwitcher.switchGps()
-                        if (lang === "en-US") answer = "GPS is on"
-                        else answer = "GPS включен"
-                        break;
-                    case 19:
-                        if (gpsSwitcher.isOn) gpsSwitcher.switchGps()
-                        if (lang === "en-US") answer = "GPS is off"
-                        else answer = "GPS выключен"
-                        break;
+//                    case 18:
+//                        if (!gpsSwitcher.isOn) gpsSwitcher.switchGps()
+//                        if (lang === "en-US") answer = "GPS is on"
+//                        else answer = "GPS включен"
+//                        break;
+//                    case 19:
+//                        if (gpsSwitcher.isOn) gpsSwitcher.switchGps()
+//                        if (lang === "en-US") answer = "GPS is off"
+//                        else answer = "GPS выключен"
+//                        break;
                     case 20:
                         var offset = 2
                         if (settings.value("lang") === "ru-RU") offset = 3
@@ -365,6 +377,9 @@ Page {
                         if (settings.value("lang") === "ru-RU")
                             yandexSpeechKitHelper.parseName(name, settings.value("yandexskcKey"))
                         else voicecall.dial(contactsHelper.getPhoneNumbers(name))
+                        break
+                    case 24:
+                        flightControl.turnOnFlightMode()
                         break
                     default:
                         isSimpleCommand = false
@@ -418,6 +433,7 @@ Page {
             busyIndicator.running = false
             gridView.visible = false
             listView.visible = true
+            numbersListView.visible = false
             for (var index in results) {
                 listView.model.append({ title: results[index].title,
                                         url:   results[index].url })
@@ -427,6 +443,7 @@ Page {
             busyIndicator.running = false
             gridView.visible = true
             listView.visible = false
+            numbersListView.visible = false
             gridView.model = images
 //            console.log(images)
         }
@@ -472,14 +489,6 @@ Page {
         }
     }
 
-    DisplaySettings {
-        id: displaySettings
-    }
-
-    ProfileControl {
-        id: profileControl
-    }
-
     DBusInterface {
         id: cameraDbus
         iface: "com.jolla.camera.ui"
@@ -507,12 +516,14 @@ Page {
             else if (numbers.length > 1) {
                 numbersListView.model = numbers
                 numbersListView.visible = true
+                gridView.visible = false
                 listView.visible = false
             }
         }
 
         function dialNumber(number) {
             numbersListView.visible = false
+            gridView.visible = false
             listView.visible = true
             call('dial', number)
         }

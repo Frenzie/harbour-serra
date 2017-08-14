@@ -26,6 +26,10 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^установи(ть)? громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^сдела(й|(ть)) громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^постав(ь|(ить)) громкост(ь|и) (на )?[0-9]{1,3} процент((ов)|a)?$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^громкост(ь|и) (на )?[0-9]{1,3}%$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^установи(ть)? громкост(ь|и) (на )?[0-9]{1,3}%$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^сдела(й|(ть)) громкост(ь|и) (на )?[0-9]{1,3}%$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^постав(ь|(ить)) громкост(ь|и) (на )?[0-9]{1,3}%$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^включи(ть)? ((wi( |-)?fi)|(вай( |-)?фай))$").match(command).hasMatch()) return 12;
     else if (QRegularExpression("^выключи(ть)? ((wi( |-)?fi)|(вай( |-)?фай))$").match(command).hasMatch()) return 13;
     else if (QRegularExpression("^включи(ть)? ((вспышку)|(фонарик))$").match(command).hasMatch()) return 14;
@@ -38,6 +42,7 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^начать$").match(command).hasMatch()) return 21;
     else if (QRegularExpression("^((фотографии)|(картинки)) .*$").match(command).hasMatch()) return 22;
     else if (QRegularExpression("^позвони(ть)? .*$").match(command).hasMatch()) return 23;
+    else if (QRegularExpression("^включи(ть)? режим в самолете$").match(command).hasMatch()) return 24;
     else return 0;
 }
 
@@ -53,6 +58,7 @@ int CommandsParser::_parseEngCommand(QString command) {
     else if (QRegularExpression("^(what(('|( i))?s)? )?weather$").match(command).hasMatch()) return 9;
     else if (QRegularExpression("^(what(('|( i))?s)? )?weather .*$").match(command).hasMatch()) return 10;
     else if (QRegularExpression("^(set )?volume (to )?[0-9]{1,3} percent(s)?$").match(command).hasMatch()) return 11;
+    else if (QRegularExpression("^(set )?volume (to )?[0-9]{1,3}%$").match(command).hasMatch()) return 11;
     else if (QRegularExpression("^turn( |-)?on wi( |-)?fi$").match(command).hasMatch()) return 12;
     else if (QRegularExpression("^turn( |-)?off wi( |-)?fi$").match(command).hasMatch()) return 13;
     else if (QRegularExpression("^turn( |-)?on ((flash( |-)?light)|(torch))$").match(command).hasMatch()) return 14;
@@ -65,5 +71,6 @@ int CommandsParser::_parseEngCommand(QString command) {
     else if (QRegularExpression("^start$").match(command).hasMatch()) return 21;
     else if (QRegularExpression("^((photos)|(images)) .*$").match(command).hasMatch()) return 22;
     else if (QRegularExpression("^call .*$").match(command).hasMatch()) return 23;
+    else if (QRegularExpression("^turn( |-)?on flight( |-)?mode$").match(command).hasMatch()) return 24;
     else return 0;
 }

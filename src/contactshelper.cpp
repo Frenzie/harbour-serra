@@ -2,7 +2,8 @@
 
 ContactsHelper::ContactsHelper(QObject *parent) : QObject(parent) {
     _sdb = QSqlDatabase::addDatabase("QSQLITE");
-    _sdb.setDatabaseName("/home/nemo/.local/share/system/Contacts/qtcontacts-sqlite/contacts.db");
+    _sdb.setDatabaseName(QString("%1/.local/share/system/Contacts/qtcontacts-sqlite/contacts.db")
+                         .arg(QDir::homePath()));
 }
 
 QStringList ContactsHelper::getPhoneNumbers(const QString &name) {

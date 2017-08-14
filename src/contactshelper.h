@@ -1,7 +1,7 @@
 #ifndef CONTACTSHELPER_H
 #define CONTACTSHELPER_H
 
-#include <QStandardPaths>
+#include <QDir>
 #include <QObject>
 #include <QtSql>
 

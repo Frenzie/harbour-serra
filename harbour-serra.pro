@@ -60,11 +60,14 @@ DISTFILES += \
     qml/pages/CommandsPage.qml \
     qml/utils/WiFiSwitcher.qml \
     qml/utils/FlashlightSwitcher.qml \
-    qml/utils/BluetoothSwitcher.qml \
-    qml/utils/GpsSwitcher.qml \
     qml/pages/CustomCommandsPage.qml \
     qml/pages/NavigationPage.qml \
-    qml/pages/ImageViewPage.qml
+    qml/pages/ImageViewPage.qml \
+    qml/utils/BrightnessContol.qml \
+    qml/utils/VolumeControl.qml \
+    qml/utils/FlightControl.qml \
+    qml/utils/BluetoothControl.qml \
+    qml/utils/AmbienceControl.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

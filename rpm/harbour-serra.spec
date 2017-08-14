@@ -13,8 +13,8 @@ Name:       harbour-serra
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    My Sailfish OS Application
-Version:    0.3.1
-Release:    9
+Version:    0.4.1
+Release:    11
 Group:      Qt/Qt
 License:    GNU GPLv3
 URL:        http://example.org/

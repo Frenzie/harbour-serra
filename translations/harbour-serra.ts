@@ -117,6 +117,10 @@
         <source>Choose the number</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Create ambience</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
