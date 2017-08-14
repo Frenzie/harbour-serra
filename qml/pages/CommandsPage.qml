@@ -53,6 +53,8 @@ Page {
         ListElement { command: "Системные"; type: 1 }
         ListElement { command: "включи[ть] wi-fi"; type: 0 }
         ListElement { command: "выключи[ть] wi-fi"; type: 0 }
+        ListElement { command: "включи[ть] точку доступа"; type: 0 }
+        ListElement { command: "выключи[ть] точку доступа"; type: 0 }
         ListElement { command: "включи[ть] вспышку/фонарик"; type: 0 }
         ListElement { command: "выключи[ть] вспышку/фонарик"; type: 0 }
         ListElement { command: "включи[ть] bluetooth"; type: 0 }
@@ -71,6 +73,10 @@ Page {
         ListElement { command: "уменьш[ь/ить] громкость"; type: 0 }
         ListElement { command: "увелич[ь/ить] яркость"; type: 0 }
         ListElement { command: "уменьш[ь/ить] яркость"; type: 0 }
+        ListElement { command: "автоматическая яркость"; type: 0 }
+        ListElement { command: "постав[ь/ить] нормальный/обычный шрифт"; type: 0 }
+        ListElement { command: "постав[ь/ить] большой шрифт"; type: 0 }
+        ListElement { command: "постав[ь/ить] огромный шрифт"; type: 0 }
         ListElement { command: "позвони[ть] <имя>"; type: 0 }
     }
 
@@ -103,6 +109,8 @@ Page {
         ListElement { command: "System"; type: 1 }
         ListElement { command: "turn on wi-fi"; type: 0 }
         ListElement { command: "turn off wi-fi"; type: 0 }
+        ListElement { command: "turn on tethering"; type: 0 }
+        ListElement { command: "turn off tethering"; type: 0 }
         ListElement { command: "turn on flashlight/torch"; type: 0 }
         ListElement { command: "turn off flashlight/torch"; type: 0 }
         ListElement { command: "turn on bluetooth"; type: 0 }
@@ -118,6 +126,10 @@ Page {
         ListElement { command: "decrease volume"; type: 0 }
         ListElement { command: "increase brightness"; type: 0 }
         ListElement { command: "decrease brightness"; type: 0 }
+        ListElement { command: "auto brightness"; type: 0 }
+        ListElement { command: "set standard/common font size"; type: 0 }
+        ListElement { command: "set large font size"; type: 0 }
+        ListElement { command: "set huge font size"; type: 0 }
         ListElement { command: "call <name>"; type: 0 }
     }
 
