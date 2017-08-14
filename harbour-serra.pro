@@ -68,7 +68,8 @@ DISTFILES += \
     qml/utils/FlightControl.qml \
     qml/utils/BluetoothControl.qml \
     qml/utils/AmbienceControl.qml \
-    qml/utils/FontContol.qml
+    qml/utils/FontContol.qml \
+    qml/utils/TetheringControl.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

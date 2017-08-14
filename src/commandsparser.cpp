@@ -47,6 +47,8 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^(постав(ь|(ить)) )?((нормальный)|(обычный)) шрифт$").match(command).hasMatch()) return 26;
     else if (QRegularExpression("^(постав(ь|(ить)) )?большой шрифт$").match(command).hasMatch()) return 27;
     else if (QRegularExpression("^(постав(ь|(ить)) )?огромный шрифт$").match(command).hasMatch()) return 28;
+    else if (QRegularExpression("^включи(ть)? точку доступа$").match(command).hasMatch()) return 29;
+    else if (QRegularExpression("^выключи(ть)? точку доступа$").match(command).hasMatch()) return 30;
     else return 0;
 }
 
@@ -80,5 +82,7 @@ int CommandsParser::_parseEngCommand(QString command) {
     else if (QRegularExpression("^(set )?((standard)|(common)) font( |-)?size$").match(command).hasMatch()) return 26;
     else if (QRegularExpression("^(set )?large font( |-)?size$").match(command).hasMatch()) return 27;
     else if (QRegularExpression("^(set )?huge font( |-)?size$").match(command).hasMatch()) return 28;
+    else if (QRegularExpression("^turn( |-)?on tethering$").match(command).hasMatch()) return 29;
+    else if (QRegularExpression("^turn( |-)?off tethering$").match(command).hasMatch()) return 30;
     else return 0;
 }

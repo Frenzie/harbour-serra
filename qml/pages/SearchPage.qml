@@ -40,6 +40,8 @@ Page {
 
     FontContol { id: fontControl }
 
+    TetheringControl { id: tetheringControl }
+
     VolumeControl { id: volumeControl }
 
     WiFiSwitcher { id: wifiSwitcher }
@@ -396,6 +398,12 @@ Page {
                         break;
                     case 28:
                         fontControl.setHugeFontSize();
+                        break;
+                    case 29:
+                        tetheringControl.turnOnTethering();
+                        break;
+                    case 30:
+                        tetheringControl.turnOffTethering();
                         break;
                     default:
                         isSimpleCommand = false;
