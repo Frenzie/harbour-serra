@@ -8,9 +8,10 @@ Item {
      * @param: value -- the brightness level from 1 (min) to maximumBrightness (max).
      */
     function setBrightness(value) {
-        if (value <= 1) setMinimumBrightness()
-        else if (value >= displaySettings.maximumBrightness) setMaximumBrightness()
-        else displaySettings.brightness = value
+        disableAutoBrightness();
+        if (value <= 1) setMinimumBrightness();
+        else if (value >= displaySettings.maximumBrightness) setMaximumBrightness();
+        else displaySettings.brightness = value;
     }
 
     /* Increasing brightness level by percents.
@@ -30,13 +31,39 @@ Item {
     /* Setting brightness to minimum level.
      */
     function setMinimumBrightness() {
+        disableAutoBrightness();
         displaySettings.brightness = 1
     }
 
     /* Setting brightness to maximum level.
      */
     function setMaximumBrightness() {
+        disableAutoBrightness();
         displaySettings.brightness = displaySettings.maximumBrightness
+    }
+
+    /* Enabling auto brightness.
+     */
+    function enableAutoBrightness() {
+        displaySettings.autoBrightnessEnabled = true;
+        displaySettings.ambientLightSensorEnabled = true;
+    }
+
+    /* Disabling auto brightness.
+     */
+    function disableAutoBrightness() {
+        displaySettings.autoBrightnessEnabled = false
+    }
+
+    /* Switching auto brightness.
+     */
+    function switchAutoBrightness() {
+        if (displaySettings.autoBrightnessEnabled && displaySettings.ambientLightSensorEnabled) {
+            displaySettings.autoBrightnessEnabled = false;
+        } else {
+            displaySettings.autoBrightnessEnabled = true;
+            displaySettings.ambientLightSensorEnabled = true;
+        }
     }
 
     /* Calculating the absolute value to changing brightness.

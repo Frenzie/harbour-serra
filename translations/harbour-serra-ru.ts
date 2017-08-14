@@ -145,7 +145,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="539"/>
+        <location filename="../qml/pages/SearchPage.qml" line="544"/>
         <source>Commands language is set to </source>
         <translation type="unfinished"></translation>
     </message>

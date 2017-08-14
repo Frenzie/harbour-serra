@@ -361,42 +361,47 @@ Page {
                         break;
                     case 21:
                         if (isNavigation) {
-                            googleMapsHelper.getDirection(start, finish, settings.value("lang"), "")
-                            isCommonRequest = false
-                            isNavigation = false
+                            googleMapsHelper.getDirection(start, finish, settings.value("lang"), "");
+                            isCommonRequest = false;
+                            isNavigation = false;
                         }
                         break;
                     case 22:
-                        isSimpleCommand = false
-                        isCommonRequest = false
-                        googleSearchHelper.getSearchPage(query.split(" ").slice(1).join(" "), false, true)
-                        break
+                        isSimpleCommand = false;
+                        isCommonRequest = false;
+                        googleSearchHelper.getSearchPage(query.split(" ").slice(1).join(" "), false, true);
+                        break;
                     case 23:
-                        isCommonRequest = false
-                        var name = query.split(" ").slice(1).join(" ")
+                        isCommonRequest = false;
+                        var name = query.split(" ").slice(1).join(" ");
                         if (settings.value("lang") === "ru-RU")
-                            yandexSpeechKitHelper.parseName(name, settings.value("yandexskcKey"))
-                        else voicecall.dial(contactsHelper.getPhoneNumbers(name))
-                        break
+                            yandexSpeechKitHelper.parseName(name, settings.value("yandexskcKey"));
+                        else voicecall.dial(contactsHelper.getPhoneNumbers(name));
+                        break;
                     case 24:
-                        flightControl.turnOnFlightMode()
-                        break
+                        flightControl.turnOnFlightMode();
+                        break;
+                    case 25:
+                        brightnessContol.enableAutoBrightness();
+                        if (lang === "en-US") answer = "Auto brightness is enables";
+                        else answer = "Автоматическая яркость актифирована";
+                        break;
                     default:
-                        isSimpleCommand = false
-                        break
+                        isSimpleCommand = false;
+                        break;
                     }
-            recognitionFinished()
+            recognitionFinished();
             if (isCommonRequest) {
-                listView.model.clear()
-                _query = query
-                _isNews = false
-                _offset = 0
-                listView.headerItem.text = ""
-                googleSearchHelper.getSearchPage(_query)
+                listView.model.clear();
+                _query = query;
+                _isNews = false;
+                _offset = 0;
+                listView.headerItem.text = "";
+                googleSearchHelper.getSearchPage(_query);
             }
             if (answer !== "") {
-                audio.source = yandexSpeechKitHelper.generateAnswer(answer, lang, settings.value("yandexskcKey"))
-                audio.play()
+                audio.source = yandexSpeechKitHelper.generateAnswer(answer, lang, settings.value("yandexskcKey"));
+                audio.play();
             }
         }
     }
