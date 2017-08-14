@@ -38,6 +38,8 @@ Page {
 
     FlightControl { id: flightControl }
 
+    FontContol { id: fontControl }
+
     VolumeControl { id: volumeControl }
 
     WiFiSwitcher { id: wifiSwitcher }
@@ -385,6 +387,15 @@ Page {
                         brightnessContol.enableAutoBrightness();
                         if (lang === "en-US") answer = "Auto brightness is enables";
                         else answer = "Автоматическая яркость актифирована";
+                        break;
+                    case 26:
+                        fontControl.setNormalFontSize();
+                        break;
+                    case 27:
+                        fontControl.setLargeFontSize();
+                        break;
+                    case 28:
+                        fontControl.setHugeFontSize();
                         break;
                     default:
                         isSimpleCommand = false;

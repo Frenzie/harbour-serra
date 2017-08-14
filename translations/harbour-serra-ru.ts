@@ -115,37 +115,37 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="51"/>
+        <location filename="../qml/pages/SearchPage.qml" line="53"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="56"/>
+        <location filename="../qml/pages/SearchPage.qml" line="58"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="61"/>
+        <location filename="../qml/pages/SearchPage.qml" line="63"/>
         <source>Commands list</source>
         <translation type="unfinished">Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="94"/>
+        <location filename="../qml/pages/SearchPage.qml" line="96"/>
         <source>Create ambience</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="119"/>
+        <location filename="../qml/pages/SearchPage.qml" line="121"/>
         <source>Choose the number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="157"/>
+        <location filename="../qml/pages/SearchPage.qml" line="159"/>
         <source>Load more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="544"/>
+        <location filename="../qml/pages/SearchPage.qml" line="555"/>
         <source>Commands language is set to </source>
         <translation type="unfinished"></translation>
     </message>

@@ -67,7 +67,8 @@ DISTFILES += \
     qml/utils/VolumeControl.qml \
     qml/utils/FlightControl.qml \
     qml/utils/BluetoothControl.qml \
-    qml/utils/AmbienceControl.qml
+    qml/utils/AmbienceControl.qml \
+    qml/utils/FontContol.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

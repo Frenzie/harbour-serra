@@ -44,6 +44,9 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^позвони(ть)? .*$").match(command).hasMatch()) return 23;
     else if (QRegularExpression("^включи(ть)? режим в самолете$").match(command).hasMatch()) return 24;
     else if (QRegularExpression("^авто(матическая )?яркость$").match(command).hasMatch()) return 25;
+    else if (QRegularExpression("^(постав(ь|(ить)) )?((нормальный)|(обычный)) шрифт$").match(command).hasMatch()) return 26;
+    else if (QRegularExpression("^(постав(ь|(ить)) )?большой шрифт$").match(command).hasMatch()) return 27;
+    else if (QRegularExpression("^(постав(ь|(ить)) )?огромный шрифт$").match(command).hasMatch()) return 28;
     else return 0;
 }
 
@@ -74,5 +77,8 @@ int CommandsParser::_parseEngCommand(QString command) {
     else if (QRegularExpression("^call .*$").match(command).hasMatch()) return 23;
     else if (QRegularExpression("^turn( |-)?on flight( |-)?mode$").match(command).hasMatch()) return 24;
     else if (QRegularExpression("^auto( )?brightness$").match(command).hasMatch()) return 25;
+    else if (QRegularExpression("^(set )?((standard)|(common)) font( |-)?size$").match(command).hasMatch()) return 26;
+    else if (QRegularExpression("^(set )?large font( |-)?size$").match(command).hasMatch()) return 27;
+    else if (QRegularExpression("^(set )?huge font( |-)?size$").match(command).hasMatch()) return 28;
     else return 0;
 }
