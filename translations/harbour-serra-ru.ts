@@ -81,24 +81,24 @@
         <translation>Пользовательские команды</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="66"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="70"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="91"/>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="92"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="95"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="96"/>
         <source>Command text</source>
         <translation>Текст команды</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="103"/>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="104"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="107"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="108"/>
         <source>Sh-command/file</source>
         <translation>Sh-команда/файл</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="124"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="128"/>
         <source>Add command</source>
         <translation>Добавить команду</translation>
     </message>

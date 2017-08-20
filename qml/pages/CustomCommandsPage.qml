@@ -35,8 +35,11 @@ Page {
 
         delegate: ListItem {
             width: parent.width
+            height: commandData.height + 2 * Theme.paddingSmall + commandMenu.height
 
             Column {
+                id: commandData
+                anchors.centerIn: parent
                 width: parent.width
                 spacing: Theme.paddingSmall
 
@@ -61,6 +64,7 @@ Page {
             }
 
             menu: ContextMenu {
+                id: commandMenu
 
                 MenuItem {
                     text: qsTr("Remove")
