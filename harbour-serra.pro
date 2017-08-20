@@ -30,7 +30,8 @@ SOURCES += src/harbour-serra.cpp \
     src/googlemapshelper.cpp \
     src/navigationstep.cpp \
     src/vkstream.cpp \
-    src/contactshelper.cpp
+    src/contactshelper.cpp \
+    src/applicationslistmodel.cpp
 
 OTHER_FILES += qml/harbour-serra.qml \
     qml/cover/CoverPage.qml \
@@ -69,7 +70,8 @@ DISTFILES += \
     qml/utils/BluetoothControl.qml \
     qml/utils/AmbienceControl.qml \
     qml/utils/FontContol.qml \
-    qml/utils/TetheringControl.qml
+    qml/utils/TetheringControl.qml \
+    qml/pages/ChoosingAppPage.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \
@@ -86,5 +88,6 @@ HEADERS += \
     src/googlemapshelper.h \
     src/navigationstep.h \
     src/vkstream.h \
-    src/contactshelper.h
+    src/contactshelper.h \
+    src/applicationslistmodel.h
 

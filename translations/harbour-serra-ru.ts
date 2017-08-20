@@ -30,6 +30,14 @@
     </message>
 </context>
 <context>
+    <name>ChoosingAppPage</name>
+    <message>
+        <location filename="../qml/pages/ChoosingAppPage.qml" line="16"/>
+        <source>Installed applications</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CommandsPage</name>
     <message>
         <location filename="../qml/pages/CommandsPage.qml" line="143"/>
@@ -84,13 +92,13 @@
         <translation>Текст команды</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="98"/>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="99"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="103"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="104"/>
         <source>Sh-command/file</source>
         <translation>Sh-команда/файл</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="105"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="124"/>
         <source>Add command</source>
         <translation>Добавить команду</translation>
     </message>

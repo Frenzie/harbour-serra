@@ -25,6 +25,13 @@
     </message>
 </context>
 <context>
+    <name>ChoosingAppPage</name>
+    <message>
+        <source>Installed applications</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CommandsPage</name>
     <message>
         <source>Commands list</source>
