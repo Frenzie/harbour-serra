@@ -72,7 +72,8 @@ DISTFILES += \
     qml/utils/FontContol.qml \
     qml/utils/TetheringControl.qml \
     qml/pages/ChoosingAppPage.qml \
-    qml/utils/CalendarControl.qml
+    qml/utils/CalendarControl.qml \
+    qml/utils/CameraControl.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

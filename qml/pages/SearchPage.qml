@@ -57,6 +57,8 @@ Page {
 
     CalendarControl { id: calendarControl }
 
+    CameraControl { id: cameraControl }
+
     FlashlightSwitcher { id: flashlight }
 
     FlightControl { id: flightControl }
@@ -282,7 +284,7 @@ Page {
                         else answer = "Яркость уменьшена на 10%"
                         break
                     case 7:
-                        cameraDbus.takeSelfie()
+                        cameraControl.activateFrontCamera()
                         if (lang === "en-US") answer = "Opening the camera"
                         else answer = "Открываю камеру"
                         break
@@ -536,21 +538,6 @@ Page {
                 scriptRunner.runScript(customCommand)
                 busyIndicator.running = false
             } else commandsParser.parseCommand(searchBox.searchQueryField.text, settings.value("lang"))
-        }
-    }
-
-    DBusInterface {
-        id: cameraDbus
-        iface: "com.jolla.camera.ui"
-        service: "com.jolla.camera"
-        path: "/"
-
-        function takePhoto() {
-            call("showViewfinder", undefined)
-        }
-
-        function takeSelfie() {
-            call("showFrontViewfinder", undefined)
         }
     }
 
