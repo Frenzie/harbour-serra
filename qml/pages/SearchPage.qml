@@ -55,6 +55,8 @@ Page {
 
     BrightnessContol { id: brightnessContol }
 
+    CalendarControl { id: calendarControl }
+
     FlashlightSwitcher { id: flashlight }
 
     FlightControl { id: flightControl }
@@ -425,6 +427,9 @@ Page {
                         break;
                     case 30:
                         tetheringControl.turnOffTethering();
+                        break;
+                    case 31:
+                        calendarControl.showAgenda();
                         break;
                     default:
                         isSimpleCommand = false;

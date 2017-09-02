@@ -47,6 +47,9 @@ Page {
         ListElement { command: "Навигация"; type: 1 }
         ListElement { command: "как доехать до <место/адрес>"; type: 0 }
 
+        ListElement { command: "Офис"; type: 1 }
+        ListElement { command: "покажи расписание"; type: 0 }
+
         ListElement { command: "Мультимедиа"; type: 1 }
         ListElement { command: "сдела[й/ть] селфи"; type: 0 }
 
@@ -102,6 +105,9 @@ Page {
 
         ListElement { command: "Navigation"; type: 1 }
         ListElement { command: "navigate to <place/address>"; type: 0 }
+
+        ListElement { command: "Office"; type: 1 }
+        ListElement { command: "show agenda"; type: 0 }
 
         ListElement { command: "Multimedia"; type: 1 }
         ListElement { command: "take a selfie"; type: 0 }
