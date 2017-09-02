@@ -59,13 +59,15 @@ Page {
 
     CameraControl { id: cameraControl }
 
-    FlashlightSwitcher { id: flashlight }
+    FlashlightControl { id: flashlightControl }
 
     FlightControl { id: flightControl }
 
     FontContol { id: fontControl }
 
     NotesControl { id: notesControl }
+
+    SettingsControl { id: settingsControl }
 
     TetheringControl { id: tetheringControl }
 
@@ -352,12 +354,12 @@ Page {
                         else answer = "Wi-Fi выключен"
                         break
                     case 14:
-                        if (!flashlight.flashlightOn) flashlight.toggleFlashlight()
+                        if (!flashlightControl.flashlightOn) flashlightControl.toggleFlashlight()
                         if (lang === "en-US") answer = "Flashlight is on"
                         else answer = "Вспышка включена"
                         break
                     case 15:
-                        if (flashlight.flashlightOn) flashlight.toggleFlashlight()
+                        if (flashlightControl.flashlightOn) flashlightControl.toggleFlashlight()
                         if (lang === "en-US") answer = "Flashlight is off"
                         else answer = "Вспышка выключена"
                         break
@@ -437,6 +439,9 @@ Page {
                         break;
                     case 32:
                         notesControl.createEmptyNote();
+                        break;
+                    case 33:
+                        settingsControl.showSettings();
                         break;
                     default:
                         isSimpleCommand = false;

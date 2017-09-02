@@ -72,6 +72,7 @@ int CommandsParser::_parseRusCommand(QString command) {
     else if (QRegularExpression("^выключи(ть)? точку доступа$").match(command).hasMatch()) return 30;
     else if (QRegularExpression("^покажи расписани[еи]$").match(command).hasMatch()) return 31;
     else if (QRegularExpression("^созда(й|(ть)) заметк[ауи]$").match(command).hasMatch()) return 32;
+    else if (QRegularExpression("^откр((ыть)|(ой)) настройк[ауи]$").match(command).hasMatch()) return 33;
     else return 0;
 }
 
@@ -109,5 +110,6 @@ int CommandsParser::_parseEngCommand(QString command) {
     else if (QRegularExpression("^turn( |-)?off tethering$").match(command).hasMatch()) return 30;
     else if (QRegularExpression("^show agenda$").match(command).hasMatch()) return 31;
     else if (QRegularExpression("^create ((a )|(the ))?note(s)?$").match(command).hasMatch()) return 32;
+    else if (QRegularExpression("^open setting(s)?$").match(command).hasMatch()) return 33;
     else return 0;
 }

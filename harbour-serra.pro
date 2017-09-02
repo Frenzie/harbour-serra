@@ -60,7 +60,6 @@ DISTFILES += \
     qml/views/SearchBox.qml \
     qml/pages/CommandsPage.qml \
     qml/utils/WiFiSwitcher.qml \
-    qml/utils/FlashlightSwitcher.qml \
     qml/pages/CustomCommandsPage.qml \
     qml/pages/NavigationPage.qml \
     qml/pages/ImageViewPage.qml \
@@ -74,7 +73,9 @@ DISTFILES += \
     qml/pages/ChoosingAppPage.qml \
     qml/utils/CalendarControl.qml \
     qml/utils/CameraControl.qml \
-    qml/utils/NotesControl.qml
+    qml/utils/NotesControl.qml \
+    qml/utils/SettingsControl.qml \
+    qml/utils/FlashlightControl.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

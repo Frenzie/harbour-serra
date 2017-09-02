@@ -48,6 +48,7 @@ Page {
         ListElement { command: "как доехать до <место/адрес>"; type: 0 }
 
         ListElement { command: "Офис"; type: 1 }
+        ListElement { command: "позвони[ть] <имя>"; type: 0 }
         ListElement { command: "создай заметку"; type: 0 }
         ListElement { command: "покажи расписание"; type: 0 }
 
@@ -55,6 +56,7 @@ Page {
         ListElement { command: "сдела[й/ть] селфи"; type: 0 }
 
         ListElement { command: "Системные"; type: 1 }
+        ListElement { command: "открой настройки"; type: 0 }
         ListElement { command: "включи[ть] wi-fi"; type: 0 }
         ListElement { command: "выключи[ть] wi-fi"; type: 0 }
         ListElement { command: "включи[ть] точку доступа"; type: 0 }
@@ -81,7 +83,6 @@ Page {
         ListElement { command: "постав[ь/ить] нормальный/обычный шрифт"; type: 0 }
         ListElement { command: "постав[ь/ить] большой шрифт"; type: 0 }
         ListElement { command: "постав[ь/ить] огромный шрифт"; type: 0 }
-        ListElement { command: "позвони[ть] <имя>"; type: 0 }
     }
 
     ListModel {
@@ -108,6 +109,7 @@ Page {
         ListElement { command: "navigate to <place/address>"; type: 0 }
 
         ListElement { command: "Office"; type: 1 }
+        ListElement { command: "call <name>"; type: 0 }
         ListElement { command: "create a note"; type: 0 }
         ListElement { command: "show agenda"; type: 0 }
 
@@ -115,6 +117,7 @@ Page {
         ListElement { command: "take a selfie"; type: 0 }
 
         ListElement { command: "System"; type: 1 }
+        ListElement { command: "open settings"; type: 0 }
         ListElement { command: "turn on wi-fi"; type: 0 }
         ListElement { command: "turn off wi-fi"; type: 0 }
         ListElement { command: "turn on tethering"; type: 0 }
@@ -138,7 +141,6 @@ Page {
         ListElement { command: "set standard/common font size"; type: 0 }
         ListElement { command: "set large font size"; type: 0 }
         ListElement { command: "set huge font size"; type: 0 }
-        ListElement { command: "call <name>"; type: 0 }
     }
 
     SilicaListView {
