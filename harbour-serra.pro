@@ -73,7 +73,8 @@ DISTFILES += \
     qml/utils/TetheringControl.qml \
     qml/pages/ChoosingAppPage.qml \
     qml/utils/CalendarControl.qml \
-    qml/utils/CameraControl.qml
+    qml/utils/CameraControl.qml \
+    qml/utils/NotesControl.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

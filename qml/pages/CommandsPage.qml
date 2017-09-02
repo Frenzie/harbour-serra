@@ -48,6 +48,7 @@ Page {
         ListElement { command: "как доехать до <место/адрес>"; type: 0 }
 
         ListElement { command: "Офис"; type: 1 }
+        ListElement { command: "создай заметку"; type: 0 }
         ListElement { command: "покажи расписание"; type: 0 }
 
         ListElement { command: "Мультимедиа"; type: 1 }
@@ -107,6 +108,7 @@ Page {
         ListElement { command: "navigate to <place/address>"; type: 0 }
 
         ListElement { command: "Office"; type: 1 }
+        ListElement { command: "create a note"; type: 0 }
         ListElement { command: "show agenda"; type: 0 }
 
         ListElement { command: "Multimedia"; type: 1 }

@@ -65,6 +65,8 @@ Page {
 
     FontContol { id: fontControl }
 
+    NotesControl { id: notesControl }
+
     TetheringControl { id: tetheringControl }
 
     VolumeControl { id: volumeControl }
@@ -432,6 +434,9 @@ Page {
                         break;
                     case 31:
                         calendarControl.showAgenda();
+                        break;
+                    case 32:
+                        notesControl.createEmptyNote();
                         break;
                     default:
                         isSimpleCommand = false;
