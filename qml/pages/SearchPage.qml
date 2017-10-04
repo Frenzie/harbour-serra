@@ -55,11 +55,21 @@ Page {
 
     BrightnessContol { id: brightnessContol }
 
-    FlashlightSwitcher { id: flashlight }
+    CalendarControl { id: calendarControl }
+
+    CameraControl { id: cameraControl }
+
+    FlashlightControl { id: flashlightControl }
 
     FlightControl { id: flightControl }
 
     FontContol { id: fontControl }
+
+    GalleryControl { id: galleryControl }
+
+    NotesControl { id: notesControl }
+
+    SettingsControl { id: settingsControl }
 
     TetheringControl { id: tetheringControl }
 
@@ -280,7 +290,7 @@ Page {
                         else answer = "Яркость уменьшена на 10%"
                         break
                     case 7:
-                        cameraDbus.takeSelfie()
+                        cameraControl.activateFrontCamera()
                         if (lang === "en-US") answer = "Opening the camera"
                         else answer = "Открываю камеру"
                         break
@@ -346,12 +356,12 @@ Page {
                         else answer = "Wi-Fi выключен"
                         break
                     case 14:
-                        if (!flashlight.flashlightOn) flashlight.toggleFlashlight()
+                        if (!flashlightControl.flashlightOn) flashlightControl.toggleFlashlight()
                         if (lang === "en-US") answer = "Flashlight is on"
                         else answer = "Вспышка включена"
                         break
                     case 15:
-                        if (flashlight.flashlightOn) flashlight.toggleFlashlight()
+                        if (flashlightControl.flashlightOn) flashlightControl.toggleFlashlight()
                         if (lang === "en-US") answer = "Flashlight is off"
                         else answer = "Вспышка выключена"
                         break
@@ -426,6 +436,15 @@ Page {
                     case 30:
                         tetheringControl.turnOffTethering();
                         break;
+                    case 31:
+                        calendarControl.showAgenda();
+                        break;
+                    case 32:
+                        notesControl.createEmptyNote();
+                        break;
+                    case 33:
+                        settingsControl.showSettings();
+                        break;
                     default:
                         isSimpleCommand = false;
                         break;
@@ -491,6 +510,7 @@ Page {
             numbersListView.visible = false
             gridView.model = images
 //            console.log(images)
+//            galleryControl.showImages(images)
         }
     }
 
@@ -534,21 +554,7 @@ Page {
         }
     }
 
-    DBusInterface {
-        id: cameraDbus
-        iface: "com.jolla.camera.ui"
-        service: "com.jolla.camera"
-        path: "/"
-
-        function takePhoto() {
-            call("showViewfinder", undefined)
-        }
-
-        function takeSelfie() {
-            call("showFrontViewfinder", undefined)
-        }
-    }
-
+    // TODO: move to the separate module
     DBusInterface {
         id: voicecall
         service: "com.jolla.voicecall.ui"

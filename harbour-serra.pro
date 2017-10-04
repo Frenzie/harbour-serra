@@ -30,7 +30,8 @@ SOURCES += src/harbour-serra.cpp \
     src/googlemapshelper.cpp \
     src/navigationstep.cpp \
     src/vkstream.cpp \
-    src/contactshelper.cpp
+    src/contactshelper.cpp \
+    src/applicationslistmodel.cpp
 
 OTHER_FILES += qml/harbour-serra.qml \
     qml/cover/CoverPage.qml \
@@ -59,7 +60,6 @@ DISTFILES += \
     qml/views/SearchBox.qml \
     qml/pages/CommandsPage.qml \
     qml/utils/WiFiSwitcher.qml \
-    qml/utils/FlashlightSwitcher.qml \
     qml/pages/CustomCommandsPage.qml \
     qml/pages/NavigationPage.qml \
     qml/pages/ImageViewPage.qml \
@@ -69,7 +69,15 @@ DISTFILES += \
     qml/utils/BluetoothControl.qml \
     qml/utils/AmbienceControl.qml \
     qml/utils/FontContol.qml \
-    qml/utils/TetheringControl.qml
+    qml/utils/TetheringControl.qml \
+    qml/pages/ChoosingAppPage.qml \
+    qml/utils/CalendarControl.qml \
+    qml/utils/CameraControl.qml \
+    qml/utils/NotesControl.qml \
+    qml/utils/SettingsControl.qml \
+    qml/utils/FlashlightControl.qml \
+    qml/utils/PhoneControl.qml \
+    qml/utils/GalleryControl.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \
@@ -86,5 +94,6 @@ HEADERS += \
     src/googlemapshelper.h \
     src/navigationstep.h \
     src/vkstream.h \
-    src/contactshelper.h
+    src/contactshelper.h \
+    src/applicationslistmodel.h
 

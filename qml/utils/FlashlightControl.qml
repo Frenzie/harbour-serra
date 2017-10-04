@@ -19,43 +19,32 @@
   along with Serra. If not, see <http://www.gnu.org/licenses/>.
 */
 
+import QtQuick 2.0
+import Sailfish.Silica 1.0
+
 import org.nemomobile.dbus 2.0
-;import QtQml 2.0
 
-QtObject {
-    id: flashlight
+Item {
+    id: flashlightControl
 
+    // The state of the flashlight.
     property bool flashlightOn
-    property bool busy
 
-    function handleToggle(available) {
-        if (!available) {
-            busy = false
-        }
-    }
-
-    function handleError() {
-        console.log("Failed to call method 'toggleFlashlight'.")
-        busy = false
-    }
-
+    /* Turning on or off the flashlight.
+     */
     function toggleFlashlight() {
-        busy = true
-        flashlightDbus.call("toggleFlashlight", undefined, handleToggle, handleError)
+        flashlightOn = !flashlightOn;
+        flashlight.call("toggleFlashlight", undefined);
     }
 
-    property QtObject flashlightDbus: DBusInterface {
-        signalsEnabled: true
+    DBusInterface {
+        id: flashlight
         service: "com.jolla.settings.system.flashlight"
         path: "/com/jolla/settings/system/flashlight"
         iface: "com.jolla.settings.system.flashlight"
-        function flashlightOnChanged(newOn) {
-            busy = false
-            flashlight.flashlightOn = newOn
-        }
     }
 
     Component.onCompleted: {
-        flashlight.flashlightOn = flashlightDbus.getProperty("flashlightOn")
+        flashlightControl.flashlightOn = flashlight.getProperty("flashlightOn")
     }
 }

@@ -31,6 +31,7 @@
 
 #include <QFile>
 
+#include "applicationslistmodel.h"
 #include "commandsparser.h"
 #include "contactshelper.h"
 #include "googlemapshelper.h"
@@ -58,6 +59,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<QGuiApplication> application(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
+    QScopedPointer<ApplicationsListModel> applications(new ApplicationsListModel(view.data()));
     QScopedPointer<ContactsHelper> contactsHelper(new ContactsHelper(view.data()));
     QScopedPointer<CommandsParser> commandsParser(new CommandsParser(view.data()));
     QScopedPointer<GoogleMapsHelper> googleMapsHelper(new GoogleMapsHelper(view.data()));
@@ -70,6 +72,7 @@ int main(int argc, char *argv[]) {
     QScopedPointer<YandexSearchHelper> yandexSearchHelper(new YandexSearchHelper(view.data()));
     QScopedPointer<YandexSpeechKitHelper> yandexSpeechKitHelper(new YandexSpeechKitHelper(view.data()));
 
+    view->rootContext()->setContextProperty("applications", applications.data());
     view->rootContext()->setContextProperty("contactsHelper", contactsHelper.data());
     view->rootContext()->setContextProperty("commandsParser", commandsParser.data());
     view->rootContext()->setContextProperty("googleMapsHelper", googleMapsHelper.data());

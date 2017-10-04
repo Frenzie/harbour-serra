@@ -30,24 +30,32 @@
     </message>
 </context>
 <context>
+    <name>ChoosingAppPage</name>
+    <message>
+        <location filename="../qml/pages/ChoosingAppPage.qml" line="16"/>
+        <source>Installed applications</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CommandsPage</name>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="143"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="153"/>
         <source>Commands list</source>
         <translation>Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="174"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="184"/>
         <source>Commands language:</source>
         <translation>Язык команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="192"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="202"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CommandsPage.qml" line="197"/>
+        <location filename="../qml/pages/CommandsPage.qml" line="207"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
@@ -73,24 +81,24 @@
         <translation>Пользовательские команды</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="66"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="70"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="91"/>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="92"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="95"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="96"/>
         <source>Command text</source>
         <translation>Текст команды</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="98"/>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="99"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="107"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="108"/>
         <source>Sh-command/file</source>
         <translation>Sh-команда/файл</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CustomCommandsPage.qml" line="105"/>
+        <location filename="../qml/pages/CustomCommandsPage.qml" line="128"/>
         <source>Add command</source>
         <translation>Добавить команду</translation>
     </message>
@@ -115,37 +123,37 @@
 <context>
     <name>SearchPage</name>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="76"/>
+        <location filename="../qml/pages/SearchPage.qml" line="86"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="81"/>
+        <location filename="../qml/pages/SearchPage.qml" line="91"/>
         <source>Settings</source>
         <translation type="unfinished">Настройки</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="86"/>
+        <location filename="../qml/pages/SearchPage.qml" line="96"/>
         <source>Commands list</source>
         <translation type="unfinished">Список команд</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="119"/>
+        <location filename="../qml/pages/SearchPage.qml" line="129"/>
         <source>Create ambience</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="144"/>
+        <location filename="../qml/pages/SearchPage.qml" line="154"/>
         <source>Choose the number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="182"/>
+        <location filename="../qml/pages/SearchPage.qml" line="192"/>
         <source>Load more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SearchPage.qml" line="584"/>
+        <location filename="../qml/pages/SearchPage.qml" line="590"/>
         <source>Commands language is set to </source>
         <translation type="unfinished"></translation>
     </message>

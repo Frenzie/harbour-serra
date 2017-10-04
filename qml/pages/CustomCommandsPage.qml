@@ -35,8 +35,11 @@ Page {
 
         delegate: ListItem {
             width: parent.width
+            height: commandData.height + 2 * Theme.paddingSmall + commandMenu.height
 
             Column {
+                id: commandData
+                anchors.centerIn: parent
                 width: parent.width
                 spacing: Theme.paddingSmall
 
@@ -61,6 +64,7 @@ Page {
             }
 
             menu: ContextMenu {
+                id: commandMenu
 
                 MenuItem {
                     text: qsTr("Remove")
@@ -92,11 +96,30 @@ Page {
                     label: qsTr("Command text")
                 }
 
-                TextField {
-                    id: commandValue
-                    width: parent.width
-                    placeholderText: qsTr("Sh-command/file")
-                    label: qsTr("Sh-command/file")
+                Row {
+                    anchors.left: parent.left
+                    width: parent.width - Theme.horizontalPageMargin
+                    height: Math.max(commandValue.height, appsListButton.height)
+
+                    TextField {
+                        id: commandValue
+                        width: parent.width - appsListButton.width
+                        placeholderText: qsTr("Sh-command/file")
+                        label: qsTr("Sh-command/file")
+                    }
+
+                    Button {
+                        id: appsListButton
+                        width: Theme.buttonWidthSmall / 3
+                        text: "..."
+                        onClicked: {
+                            var dialog = pageStack.push(Qt.resolvedUrl("ChoosingAppPage.qml"))
+                            dialog.accepted.connect(function () {
+                                commandText.text = dialog.name
+                                commandValue.text = dialog.exec
+                            })
+                        }
+                    }
                 }
 
                 Button {
