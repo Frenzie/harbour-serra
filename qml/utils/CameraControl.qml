@@ -6,6 +6,8 @@ import org.nemomobile.dbus 2.0
 Item {
     id: cameraControl
 
+    /* Opening front camera.
+     */
     function activateFrontCamera() {
         camera.call('showFrontViewfinder', undefined)
     }

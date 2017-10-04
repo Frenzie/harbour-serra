@@ -7,6 +7,8 @@ import org.nemomobile.dbus 2.0
 Item {
     id: calendarControl
 
+    /* Opening the calendar for current date.
+     */
     function showAgenda() {
         calendar.call('viewDate', Date.now())
     }

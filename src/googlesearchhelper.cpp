@@ -74,7 +74,7 @@ void GoogleSearchHelper::requestFinished(QNetworkReply *reply) {
                     _searchResults.append(searchResult);
             }
         }
-        if (_isImages) gotImages(_imagesResult);
+        if (_isImages) emit gotImages(_imagesResult);
         else emit gotSearchPage(QVariant::fromValue(_searchResults));
     } else {
         QNetworkRequest request(url);

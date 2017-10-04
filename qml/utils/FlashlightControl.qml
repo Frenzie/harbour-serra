@@ -27,8 +27,11 @@ import org.nemomobile.dbus 2.0
 Item {
     id: flashlightControl
 
+    // The state of the flashlight.
     property bool flashlightOn
 
+    /* Turning on or off the flashlight.
+     */
     function toggleFlashlight() {
         flashlightOn = !flashlightOn;
         flashlight.call("toggleFlashlight", undefined);
@@ -36,7 +39,6 @@ Item {
 
     DBusInterface {
         id: flashlight
-        signalsEnabled: true
         service: "com.jolla.settings.system.flashlight"
         path: "/com/jolla/settings/system/flashlight"
         iface: "com.jolla.settings.system.flashlight"

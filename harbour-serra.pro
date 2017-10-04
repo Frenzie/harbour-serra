@@ -75,7 +75,9 @@ DISTFILES += \
     qml/utils/CameraControl.qml \
     qml/utils/NotesControl.qml \
     qml/utils/SettingsControl.qml \
-    qml/utils/FlashlightControl.qml
+    qml/utils/FlashlightControl.qml \
+    qml/utils/PhoneControl.qml \
+    qml/utils/GalleryControl.qml
 
 HEADERS += \
     src/yandexsearchhelper.h \

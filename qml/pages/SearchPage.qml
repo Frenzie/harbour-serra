@@ -65,6 +65,8 @@ Page {
 
     FontContol { id: fontControl }
 
+    GalleryControl { id: galleryControl }
+
     NotesControl { id: notesControl }
 
     SettingsControl { id: settingsControl }
@@ -508,6 +510,7 @@ Page {
             numbersListView.visible = false
             gridView.model = images
 //            console.log(images)
+//            galleryControl.showImages(images)
         }
     }
 
@@ -551,6 +554,7 @@ Page {
         }
     }
 
+    // TODO: move to the separate module
     DBusInterface {
         id: voicecall
         service: "com.jolla.voicecall.ui"
